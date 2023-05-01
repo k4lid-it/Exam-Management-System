@@ -1,4 +1,63 @@
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" 
+    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+    </script>
+
+    <style>
+        #go-to-read {
+            margin: auto;
+            display: flex;
+            width: 150;
+        }
+    </style>
 
 </head>
+
+<body>
+
+    <!--Element takes input, What ever get Inputted here, is gonna be the QR--> 
+    <input type="text" id ="std-id">
+
+    <!--The Create Button-->
+    <button id="create-btn">Create QR code</button>
+    
+        
+    <!--DIV to print the QR in-->
+    <div id="QR"></div>
+
+    <!---->
+    <button id="go-to-read">CLICK TO READ A QR</button>
+
+    <script>
+
+            // The function for generating QRs
+
+            function QRgen(){
+
+            // JS References to the HTML elements. 
+            const QrPlace = document.getElementById('QR');
+            const stdInput = document.getElementById('std-id').value;
+            
+            //remove any old QR
+            QrPlace.innerHTML = "";
+
+            // The method that creates the QR
+            new QRCode(QrPlace,{
+                text: `${stdInput}`
+            });
+
+        }
+        
+        // this will happens when the button is clicked
+        document.getElementById('create-btn').addEventListener('click', QRgen);
+        
+        // the button that will take you to the reading QR page.
+        document.getElementById('go-to-read').addEventListener('click',function(){
+            window.location.assign("Exam-access.html");
+        })
+
+
+    </script>
+</body>
