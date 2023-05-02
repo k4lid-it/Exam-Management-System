@@ -1,0 +1,94 @@
+/* Exam Room page styles */
+
+/* Center align the content */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Style the room number */
+  .room-number {
+    font-size: 2.5rem;
+    margin-top: 1rem;
+  }
+  
+  /* Style the buttons */
+  .btn-group {
+    display: flex;
+    margin-top: 2rem;
+  }
+  
+  .btn {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: #148f77;
+  }
+  
+  /* Style the table */
+  table {
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    width: 80%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 0.6rem;
+  }
+  
+  th {
+    background-color: #1abc9c;
+    color: #fff;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+  }
+  
+  /* Style the table cells */
+  .name {
+    font-weight: bold;
+  }
+  
+  .course {
+    color: #666;
+  }
+  
+  .seat {
+    color: #666;
+  }
+  
+  .status {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .present {
+    color: green;
+  }
+  
+  .absent {
+    color: red;
+  }
+  
+  .pending {
+    color: orange;
+  }
+  
