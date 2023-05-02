@@ -5,6 +5,7 @@ import LoginPage from './LoginPage';
 import InvigilatorHomePage from './invigilator/InvigilatorHomePage';
 import ExamRoomDetailsPage from './invigilator/ExamRoomDetailsPage';
 //import StudentDetailsPage from './invigilator/StudentDetailsPage';
+import AdminHomePage from './Admin/AdminHomePage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/Invigilator-home" element={<InvigilatorHomePage />} />
           <Route exact path="/exam-room-details" element={<ExamRoomDetailsPage />} />
           <Route path="/exam-room/:roomId" element={<ExamRoomDetailsPage />} />
+          <Route exact path="/Admin-home" element={<AdminHomePage />} />
         </Routes>
       </div>
     </Router>
