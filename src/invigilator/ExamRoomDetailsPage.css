@@ -56,12 +56,14 @@
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
-  
+
+ /* 
   tr:hover {
-    background-color: #e6e6e6;
+    background-color: #ffcf70;
     cursor: pointer;
   }
-  
+ */
+
   /* Style the table cells */
   .name {
     font-weight: bold;
