@@ -1,10 +1,30 @@
 .login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(90deg, rgb(29, 38, 210), rgb(160, 231, 255));
+  animation: gradientAnimation 5s infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.logo {
+  width: 240px; /* Adjust the width as needed */
+  height: 140px; /* Adjust the height proportionally */
+  margin-bottom: 20px; /* Add spacing between the logo and the title */
+}
+
   
   .login-form {
     display: flex;
