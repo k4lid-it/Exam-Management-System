@@ -1,4 +1,4 @@
-/* this array data is for the Invigilator Home Page , later it will be replaced by API*/
+/* this array data is for the Invigilator Home Page , later it will be replaced by API fetched data*/
 
 
 const examRoomData = [

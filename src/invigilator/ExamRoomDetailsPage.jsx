@@ -4,12 +4,12 @@ import ExamRoomDetails from "./ExamRoomDetails";
 
 function ExamRoom() {
   /* the below two lines are commented out because they are producing errors */
-  const { roomId } = useParams(); // get the room ID from the URL parameter
-  const examRoom = ExamRoomDetails.find((room) => room.id === roomId); // find the exam room data based on the room ID
+  //const { roomId } = useParams(); // get the room ID from the URL parameter
+  //const examRoom = ExamRoomDetails.find((room) => room.id === roomId); // find the exam room data based on the room ID
 
   return (
     <div className="exam-room-container">
-      <h1 className="room-number">{examRoom.number}</h1>
+      <h1 className="room-number">105</h1>
       <div className="exam-room-actions">
         <button className="grant-exam-access-btn">Grant Exam Access</button>
         <button className="take-attendance-btn">Take Attendance</button>
@@ -18,6 +18,7 @@ function ExamRoom() {
       <table className="students-table">
         <thead>
           <tr>
+            <th></th>
             <th>Name</th>
             <th>Course</th>
             <th>Seat</th>
@@ -25,14 +26,175 @@ function ExamRoom() {
           </tr>
         </thead>
         <tbody>
-          {examRoom.students.map((student) => (
-            <tr key={student.id} className="student-row">
-              <td>{student.name}</td>
-              <td>{student.course}</td>
-              <td>{student.seat}</td>
-              <td>{student.status}</td>
+          
+        <tr className="student-row">
+              <td>1</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr><tr className="student-row">
+              <td>2</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
             </tr>
-          ))}
+            <tr className="student-row">
+              <td>3</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>4</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>5</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>6</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>7</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>8</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>9</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>10</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>11</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>12</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>13</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>14</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>15</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>16</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>17</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>18</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>19</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>20</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>21</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>22</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>23</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+            <tr className="student-row">
+              <td>24</td>
+              <td>student name</td>
+              <td>course</td>
+              <td>seat</td>
+              <td>status</td>
+            </tr>
+          
         </tbody>
       </table>
     </div>

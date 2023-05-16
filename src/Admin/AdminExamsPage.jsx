@@ -37,6 +37,9 @@ function AdminExamsPage() {
     <div className="overWhiteBox">
       <div className="whiteBox">
         <div className="AdminExamsPage">
+        <Link to="/Admin-home">
+          <button>Home</button>
+        </Link>
           <main>
             <table className="">
               <thead>

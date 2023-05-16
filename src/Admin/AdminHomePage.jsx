@@ -7,7 +7,7 @@ function HomePage() {
     <div className="overWhiteBox"> <div className="whiteBox">
     <div className="admin-home-page">
       <div className="admin-home-page-buttons">
-        <Link to="/exams">
+        <Link to="/AdminExamsPage">
           <button>View Exams</button>
         </Link>
         <Link to="/it-support-tickets">
