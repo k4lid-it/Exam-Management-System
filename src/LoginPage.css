@@ -42,7 +42,7 @@
     margin-bottom: 30px;
     font-size: 36px;
     font-weight: 600;
-    color: #333;
+    color: rgb(2, 49, 157);
     text-align: center;
   }
   
@@ -91,20 +91,20 @@
   }
   
   .login-button {
-    background-color: black;
+    background-color: rgb(33, 186, 233);
     color: white;
     padding: 15px 30px;
-    border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-color: rgb(33, 186, 233);
   }
   
   .login-button:hover {
     background-color: white;
-    color: black;
-    border: 2px solid black;
+    color: rgb(33, 186, 233);
+    
   }
   

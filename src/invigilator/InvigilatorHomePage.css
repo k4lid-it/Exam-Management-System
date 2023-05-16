@@ -47,6 +47,7 @@ table {
   width: 100%; /* table fills width of its container */
   border-collapse: collapse; /* remove borders between cells */
   margin-top: 20px; /* add some space between header and table */
+  background-color: #fff; /* add a white background color to the table */
 }
 
 th, td {

@@ -14,7 +14,7 @@ function InvigilatorHomePage() {
   ));
 
   return (
-    <div className="overWhiteBox"> <div className="whiteBox">
+    
       <div className="InvigilatorHomePage">
       {/* header with welcome message and user name */}
       <header>
@@ -38,7 +38,7 @@ function InvigilatorHomePage() {
         </table>
       </main>
     </div>
-  </div> </div>
+  
   );
 }
 

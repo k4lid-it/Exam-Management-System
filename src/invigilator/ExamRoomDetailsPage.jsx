@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import ExamRoomDetails from "./ExamRoomDetails";
+import "./ExamRoomDetailsPage.css";
 
 function ExamRoom() {
   /* the below two lines are commented out because they are producing errors */
@@ -9,12 +10,12 @@ function ExamRoom() {
 
   return (
     <div className="exam-room-container">
-      <h1 className="room-number">105</h1>
-      <div className="exam-room-actions">
-        <button className="grant-exam-access-btn">Grant Exam Access</button>
-        <button className="take-attendance-btn">Take Attendance</button>
-        <button className="request-it-support-btn">Request IT Support</button>
-      </div>
+      <h1 className="room-number">Room 105</h1>
+      
+          <button className="btn">Grant Exam Access</button>
+          <button className="btn">Take Attendance</button>
+          <button className="btn">Request IT Support</button> 
+      
       <table className="students-table">
         <thead>
           <tr>
