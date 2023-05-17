@@ -39,6 +39,7 @@
   }
   .buttons{
     margin: 3rem 5rem;
+    cursor: pointer; /*to change the cursor to hand pointer when hover over the button - HD*/
   }
   button{
     border-radius: 15px;

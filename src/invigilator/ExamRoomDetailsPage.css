@@ -94,3 +94,12 @@
     color: orange;
   }
   
+  /* page background color */
+  /* {background-color: rgb(160, 231, 255)}*/
+
+  /* responsive styles for smaller screens */
+@media (max-width: 480px) {
+  table {
+    font-size: 14px; /* decrease font size of table on smaller screens */
+  }
+}

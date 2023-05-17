@@ -4,9 +4,6 @@ import ExamRoomDetails from "./ExamRoomDetails";
 import "./ExamRoomDetailsPage.css";
 
 function ExamRoom() {
-  /* the below two lines are commented out because they are producing errors */
-  //const { roomId } = useParams(); // get the room ID from the URL parameter
-  //const examRoom = ExamRoomDetails.find((room) => room.id === roomId); // find the exam room data based on the room ID
 
   return (
     <div className="exam-room-container">
@@ -30,167 +27,191 @@ function ExamRoom() {
           
         <tr className="student-row">
               <td>1</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
-            </tr><tr className="student-row">
+            </tr> 
+            
+            <tr className="student-row">
               <td>2</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>3</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>4</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>5</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>6</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>7</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>8</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>9</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>10</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>11</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>12</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>13</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>14</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>15</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>16</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>17</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>18</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>19</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>20</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>21</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>22</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>23</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>
             </tr>
+
             <tr className="student-row">
               <td>24</td>
-              <td>student name</td>
+              <td><a href="/student-details/1">student name</a></td>
               <td>course</td>
               <td>seat</td>
               <td>status</td>

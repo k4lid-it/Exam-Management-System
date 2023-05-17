@@ -7,6 +7,9 @@ import ExamRoomDetailsPage from './invigilator/ExamRoomDetailsPage';
 //import StudentDetailsPage from './invigilator/StudentDetailsPage';
 import AdminHomePage from './Admin/AdminHomePage';
 import AdminExamsPage from './Admin/AdminExamsPage';
+import Acceptticket from './Itsupport/Acceptticket';
+import Closeticket from './Itsupport/Closeticket';
+import Tickets from './Itsupport/Tickets';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -20,6 +23,9 @@ function App() {
           <Route exact path="/exam-room/:roomId" element={<ExamRoomDetailsPage />} />
           <Route exact path="/Admin-home" element={<AdminHomePage />} />
           <Route exact path="/AdminExamsPage" element={<AdminExamsPage />} />
+          <Route exact path="/Accept-ticket" element={<Acceptticket />} />
+          <Route exact path="/Close-ticket" element={<Closeticket />} />
+          <Route exact path="/Tickets" element={<Tickets />} />
         </Routes>
       </div>
     </Router>
