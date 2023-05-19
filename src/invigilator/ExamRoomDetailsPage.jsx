@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./ExamRoomDetailsPage.css";
 
 function ExamRoom() {
@@ -37,8 +37,8 @@ function ExamRoom() {
       <h1 className="room-number">Room 105</h1>
       
       <div className="buttons">
-        <button className="btn">Grant Exam Access</button>
-        <button className="btn">Take Attendance</button>
+        <Link to="QRcodeScannerPage"> <button className="btn">Grant Exam Access</button> </Link>
+        <Link to="QRcodeScannerPage"> <button className="btn">Take Attendance</button> </Link>
         <button className="btn">Request IT Support</button>
       </div>
       

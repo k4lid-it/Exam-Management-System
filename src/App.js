@@ -12,6 +12,7 @@ import Closeticket from './Itsupport/Closeticket';
 import Tickets from './Itsupport/Tickets';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import StudentDetailsPage from './invigilator/studentDetailsPage';
+import QRcodeScannerPage from './invigilator/QRcodeScannerPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/Login" element={<LoginPage />} />
           <Route exact path="/student-details" element={<StudentDetailsPage />} />
           <Route exact path="/student-details/:studentId" element={<StudentDetailsPage />} />
+          <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
         </Routes>
       </div>
     </Router>

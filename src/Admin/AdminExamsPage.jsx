@@ -34,14 +34,13 @@ function AdminExamsPage() {
   ));
 
   return (
-    <div className="overWhiteBox">
-      <div className="whiteBox">
+   
         <div className="AdminExamsPage">
         <Link to="/Admin-home">
           <button>Home</button>
         </Link>
           <main>
-            <table className="">
+            <table className="tttable">
               <thead>
                 <tr>
                   <th>Room</th>
@@ -56,8 +55,7 @@ function AdminExamsPage() {
             </table>
           </main>
         </div>
-      </div>
-    </div>
+      
   );
 }
 
