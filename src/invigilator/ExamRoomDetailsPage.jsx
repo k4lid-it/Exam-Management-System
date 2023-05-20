@@ -36,11 +36,11 @@ function ExamRoom() {
     <div className="exam-room-container">
       <h1 className="room-number">Room 105</h1>
       
-      <div className="buttons">
-        <Link to="QRcodeScannerPage"> <button className="btn">Grant Exam Access</button> </Link>
-        <Link to="QRcodeScannerPage"> <button className="btn">Take Attendance</button> </Link>
+      
+        <Link to="../QR-code-scanner"> <button className="btn">Grant Exam Access</button> </Link>
+        <Link to="../QR-code-scanner"> <button className="btn">Take Attendance</button> </Link>
         <button className="btn">Request IT Support</button>
-      </div>
+      
       
       <table className="students-table">
         <thead>

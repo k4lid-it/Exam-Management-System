@@ -23,7 +23,7 @@ function InvigilatorHomePage() {
 
       {/* main content with table of exam rooms */}
       <main>
-        <h2>Invigilation duties:</h2>
+        <h2 className='invigilation-duties'>Invigilation duties:</h2>
         <table>
           <thead>
             <tr>

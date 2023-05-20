@@ -1,5 +1,17 @@
 /* Exam Room page styles */
 
+
+
+/* background image */
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("https://img.freepik.com/premium-vector/hexagon-technology-connect-modern-style-blue-background-internet-connection-network-high-digital-technology-abstract-background-technology-graphic-design_46577-751.jpg?w=900");
+  background-size: cover;
+}
+
+
+
+
 /* Center align the content */
 .container {
     display: flex;
@@ -11,6 +23,7 @@
   .room-number {
     font-size: 2.5rem;
     margin-top: 1rem;
+    color: #fff;
   }
   
   /* Style the buttons */
@@ -34,7 +47,8 @@
   }
   
   .btn:hover {
-    background-color: rgb(0, 39, 181);
+    background-color: #ffffff;
+    color: rgb(2, 132, 208);
   }
   
   /* Style the table */

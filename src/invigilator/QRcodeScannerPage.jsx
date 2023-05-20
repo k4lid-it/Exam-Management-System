@@ -24,7 +24,7 @@ const QRCodeScannerPage = () => {
   return (
     <div className="qrcode-scanner-page">
       <div className="qrcode-scanner-container">
-        <h1 className="qrcode-scanner-title">Scan the student's QR Code</h1>
+        <h1 className="qrcode-scanner-title">Scan student's QR Code</h1>
         {!showPopup && ( // Conditionally render the QR scanner if showPopup is false
           <div className="qrcode-scanner">
             <QrScanner

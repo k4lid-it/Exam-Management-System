@@ -1,34 +1,22 @@
-.overWhiteBox {
-  display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    background-color: #f7f7f7;
-}
-
-
-/* white box in the background */
-.whiteBox {
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    width: 400px;
-}
-
 .welcome {
-  color: #00758E;
+  color: #ffffff;
+  margin-bottom: 10%;
+}
+
+.invigilation-duties {
+  color: #E9AB33;
 }
 
 /* base font and background colors */
+
+/* background image */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-image: url("https://img.freepik.com/premium-vector/hexagon-technology-connect-modern-style-blue-background-internet-connection-network-high-digital-technology-abstract-background-technology-graphic-design_46577-751.jpg?w=900");
+  background-size: cover;
 }
+
+
 
 /* page container */
 .InvigilatorHomePage {

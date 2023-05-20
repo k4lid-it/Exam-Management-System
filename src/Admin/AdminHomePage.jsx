@@ -4,7 +4,7 @@ import "./AdminHomePage.css";
 
 function HomePage() {
   return (
-    <div className="overWhiteBox"> <div className="whiteBox">
+    // <div className="overWhiteBox"> <div className="whiteBox">
     <div className="admin-home-page">
       <div className="admin-home-page-buttons">
         <Link to="/AdminExamsPage">
@@ -18,7 +18,7 @@ function HomePage() {
         </Link>
       </div>
     </div>
-    </div> </div>
+    // </div> </div>
   );
 }
 

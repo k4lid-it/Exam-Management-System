@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Acceptticket.css'
 export default function Acceptticket() {
   return (
@@ -31,7 +32,7 @@ export default function Acceptticket() {
 
         </table>
         <div className="buttons">
-          <button>accept</button>
+          <Link to="../QRcodeScannerPage"><button>accept</button></Link>
           <button>cancel</button>
         </div>
       </div>
