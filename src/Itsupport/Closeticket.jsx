@@ -34,9 +34,9 @@ export default function Closeticket() {
           <div className="form-info">
             <div className="inputs">
               <input type="radio" name="resolve" id="resolve" />
-              <label htmlFor="resolve">Resolve</label>
+              <label htmlFor="resolve">Resolved</label>
               <input type="radio" name="resolve" id="unresolve" />
-              <label htmlFor="unresolve">Unresolve</label>
+              <label htmlFor="unresolve">Unresolved</label>
             </div>
 
             <br />

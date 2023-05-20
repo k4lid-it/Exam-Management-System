@@ -3,116 +3,118 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* background: linear-gradient(90deg, rgb(29, 38, 210), rgb(160, 231, 255));
-  animation: gradientAnimation 5s infinite; */
-} 
-
-/* @keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-} */
-
+}
 
 /* background image */
 body {
   background-image: url("https://img.freepik.com/premium-vector/hexagon-technology-connect-modern-style-blue-background-internet-connection-network-high-digital-technology-abstract-background-technology-graphic-design_46577-751.jpg?w=900");
 }
 
-
-
 .logo {
-  width: 240px; /* Adjust the width as needed */
-  height: 140px; /* Adjust the height proportionally */
-  margin-bottom: 20px; /* Add spacing between the logo and the title */
+  width: 240px;
+  height: 140px;
+  margin-bottom: 20px;
 }
 
-  
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 36px;
+  font-weight: 600;
+  color: rgb(2, 49, 157);
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.show-password {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  color: #0070c0;
+}
+
+button {
+  padding: 10px;
+}
+
+.login-button {
+  background-color: rgb(33, 186, 233);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-color: rgb(33, 186, 233);
+}
+
+.login-button:hover {
+  background-color: white;
+  color: rgb(33, 186, 233);
+}
+
+/* Responsive Styles */
+
+@media (max-width: 600px) {
   .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 90%;
+    padding: 30px;
   }
-  
+
+  .logo {
+    width: 180px;
+    height: auto;
+  }
+
   .title {
-    margin-bottom: 30px;
-    font-size: 36px;
-    font-weight: 600;
-    color: rgb(2, 49, 157);
-    text-align: center;
+    font-size: 28px;
   }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .password-input-container {
-    position: relative;
-    display: flex;
-    width: 100%;
-  }
-  
-  .show-password {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 14px;
-    color: #0070c0;
-  }
-  
-  button {
-    padding: 10px;
-       
-  }
-  
+
   .login-button {
-    background-color: rgb(33, 186, 233);
-    color: white;
-    padding: 15px 30px;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-color: rgb(33, 186, 233);
+    padding: 12px 24px;
+    font-size: 16px;
   }
-  
-  .login-button:hover {
-    background-color: white;
-    color: rgb(33, 186, 233);
-    
-  }
-  
+}
