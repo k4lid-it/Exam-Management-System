@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { SupportService } from './support.service';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -9,8 +9,22 @@ export class SupportController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('Home')
-    getHomePage(){
+    getHomePage(@Req() req: any){
+        if (req.user.userType === 'support'){
         return this.supportService.viewTickets()
+        }else{
+            throw new UnauthorizedException();
+        }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('My-ticket')
+    viewMyTickets(@Req() req: any){
+        if (req.user.userType === 'support'){
+            return this.supportService.viewMyTickets(req.user.name);
+            }else{
+                throw new UnauthorizedException();
+            }
     }
 
     @UseGuards(AuthGuard('jwt'))
@@ -18,14 +32,40 @@ export class SupportController {
     viewTicketDetails(@Req() req: any, @Body('ticketID') ticketID:string){
         if (req.user.userType === 'support'){
             return this.supportService.viewTicketDetails(ticketID);
+        }else{
+            throw new UnauthorizedException();
         }
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Post('ticket')
     acceptTicket(@Req() req: any, @Body('ticketID') ticketID:string){
+        if (req.user.userType === 'support'){
         const support = req.user.name;
         return this.supportService.acceptTicket(ticketID,support);
+        }else{
+            throw new UnauthorizedException();
+        }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Post('ticket')
+    reopenTicket(@Req() req: any, @Body('ticketID') ticketID:string){
+        if (req.user.userType === 'support'){
+            return this.supportService.reopenTicket(ticketID);
+        }else{
+            throw new UnauthorizedException();
+        }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Post('ticket')
+    closeTicket(@Req() req: any, @Body('ticketID') ticketID:string){
+        if (req.user.userType === 'support'){
+            return this.supportService.closeTicket(ticketID);
+        }else{
+            throw new UnauthorizedException();
+        }
     }
 
 

@@ -25,7 +25,17 @@ export class SupportService {
       }
 
       async viewTickets(): Promise<ticket[]>{
-        const tickets =  await this.ticketRepository.find();
+        const tickets =  await this.ticketRepository.find({where:{status:'open'}});
+        if (tickets){
+          return tickets;
+        }else{
+          throw new Error('No tickets found');
+        }
+  
+      }
+
+      async viewMyTickets(supportName:string): Promise<ticket[]>{
+        const tickets =  await this.ticketRepository.find({where:{employee:supportName}});
         if (tickets){
           return tickets;
         }else{
@@ -55,6 +65,17 @@ export class SupportService {
         }
       }
 
+      async reopenTicket(ticketID:string){
+        const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
+        if (ticket) {
+          ticket.status = 'Open';
+          ticket.employee = null;
+          this.ticketRepository.save(ticket);
+        } else {
+          throw new Error('ticket not found');
+        }
+      }
+
       async closeTicket(ticketID:string){
         const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
         if (ticket) {
@@ -64,6 +85,8 @@ export class SupportService {
           throw new Error('ticket not found');
         }
       }
+
+
 
 
     }
