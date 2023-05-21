@@ -1,0 +1,18 @@
+<head>
+
+</head>
+<body>
+    <div id="box">hello</div>
+    <script>
+        let didMatch = sessionStorage.getItem("match"); 
+        if (didMatch == 'true' ){
+            document.getElementById("box").innerHTML= "GOOD";
+        }
+        else if (didMatch == 'false'){
+            document.getElementById("box").innerHTML= "BAD";
+        }
+        else {
+            document.getElementById('box').innerHTML= 'Very BAD';
+        }
+    </script>
+</body>

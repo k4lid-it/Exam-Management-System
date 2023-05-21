@@ -1,0 +1,64 @@
+.welcome {
+  color: #ffffff;
+  margin-bottom: 10%;
+}
+
+.invigilation-duties {
+  color: #E9AB33;
+}
+
+/* base font and background colors */
+
+/* background image */
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("https://img.freepik.com/premium-vector/hexagon-technology-connect-modern-style-blue-background-internet-connection-network-high-digital-technology-abstract-background-technology-graphic-design_46577-751.jpg?w=900");
+  background-size: cover;
+}
+
+
+
+/* page container */
+.InvigilatorHomePage {
+  max-width: 800px; /* limit width of page */
+  margin: 0 auto; /* center page horizontally */
+  padding: 20px; /* add some padding around the content */
+}
+
+/* header */
+header {
+  text-align: center; /* center text within header */
+}
+
+/* table styles */
+table {
+  width: 100%; /* table fills width of its container */
+  border-collapse: collapse; /* remove borders between cells */
+  margin-top: 20px; /* add some space between header and table */
+  background-color: #fff; /* add a white background color to the table */
+}
+
+th, td {
+  padding: 10px; /* add padding to cells */
+  text-align: center; /* center text within cells */
+}
+
+th {
+  background-color: #E9AB33; /* set background color of header cells */
+  color: #fff; /* set text color of header cells */
+}
+
+tr:hover {
+  background-color: #00748e12; /* change background color of row on hover */
+}
+
+td:first-child {
+  text-align: left; /* left-align first cell in each row */
+}
+
+/* responsive styles for smaller screens */
+@media (max-width: 480px) {
+  table {
+    font-size: 14px; /* decrease font size of table on smaller screens */
+  }
+}
