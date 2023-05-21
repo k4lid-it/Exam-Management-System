@@ -7,7 +7,7 @@ export class AppService { }
 
 // the inviglator not know it
 const secertKey = `K1417@!Copte`;
-// ONLY THE ADMIN MAKE IT
+// ONLY THE ADMIN HAVE IT
 
 
 //The Dateset 
