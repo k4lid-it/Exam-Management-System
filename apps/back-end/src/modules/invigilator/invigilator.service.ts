@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createInvigilatorDto } from 'src/dtos/createInvigilator.dto';
 import { createTicketDto } from 'src/dtos/createTicket.dto';
+import { generatePasswordDto } from 'src/dtos/generatePassword.dto';
 import { getStudnetsDto } from 'src/dtos/getStudents.dto';
+import { studentInfoDto } from 'src/dtos/studentInfo.dto';
 import { exam } from 'src/entities/Exam.entity';
 import { invigilator } from 'src/entities/invigilator.entity';
 import { student } from 'src/entities/student.entity';
@@ -44,7 +46,7 @@ export class InvigilatorService {
       }
     }
 
-    async getStudent(getStudnetsDto:getStudnetsDto) : Promise <student[]>{
+    async getStudents(getStudnetsDto:getStudnetsDto) : Promise <student[]>{
       const students = await this.studentRepository.find({where:{room:getStudnetsDto.room,time:getStudnetsDto.time}});
       if (students){
         return students;
@@ -77,6 +79,28 @@ export class InvigilatorService {
       const newTicket = this.ticketRepository.create({ ...ticketInfo});
       return this.ticketRepository.save(newTicket)
   }
+
+    async writeReport(studentInfo:studentInfoDto){
+      const student = await this.studentRepository.findOne({ where: {studentID:studentInfo.studentID, exam:studentInfo.exam} });
+      if (student){
+        student.note = studentInfo.report;
+        this.studentRepository.save(student);
+      }else{
+        throw new Error('Student not found');
+      }
+    }
+
+
+    async generatePassword(generatePassword:generatePasswordDto){
+      const student = await this.studentRepository.findOne({ where: {studentID:generatePassword.studentID, exam:generatePassword.exam} });
+      if(student){
+        const slice = (student.name).substring(0,2)+(student.studentID).substring(3,7)
+                      + generatePassword.salt+(student.exam).substring(2,6);
+
+        const crypto = require('crypto');                  
+
+      }
+    }
 
 
 

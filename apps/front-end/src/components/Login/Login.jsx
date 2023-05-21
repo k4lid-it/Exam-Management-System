@@ -61,7 +61,7 @@ setLoading(true)
   return (
     <>
 
-<h1>Login form</h1>
+<h1>Login using SEU account</h1>
  {error?<div className="alert alert-danger">{error}</div>:''} 
  {errorsList.map((erroor,i)=> <div className="alert alert-danger" key={i}>{erroor.message}</div>)}
 

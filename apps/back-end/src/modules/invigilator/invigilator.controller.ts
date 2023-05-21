@@ -2,7 +2,6 @@ import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards, } f
 import { InvigilatorService } from './invigilator.service';
 import { AuthGuard } from '@nestjs/passport';
 import { getStudnetsDto } from 'src/dtos/getStudents.dto';
-import { studentId } from 'src/dtos/studentId.dto';
 import { createTicketDto } from 'src/dtos/createTicket.dto';
 
 @Controller('invigilator')
@@ -13,7 +12,7 @@ export class InvigilatorController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('Home')
-    getHomePage(@Req() req: any){
+    getExams(@Req() req: any){
         if (req.user.userType === 'invigilator'){
         return this.invigilatorService.viewExams(req.user.name);
         }else{
@@ -25,7 +24,7 @@ export class InvigilatorController {
     @Get('Room')
     getStudnets(@Req() req: any, @Body() getStudnetsDto:getStudnetsDto ){
         if (req.user.userType === 'invigilator'){
-        return this.invigilatorService.getStudent(getStudnetsDto);
+        return this.invigilatorService.getStudents(getStudnetsDto);
         }else{
             throw new UnauthorizedException();
         }
