@@ -1,0 +1,80 @@
+import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards, } from '@nestjs/common';
+import { InvigilatorService } from './invigilator.service';
+import { AuthGuard } from '@nestjs/passport';
+import { getStudnetsDto } from 'src/dtos/getStudents.dto';
+import { studentId } from 'src/dtos/studentId.dto';
+import { createTicketDto } from 'src/dtos/createTicket.dto';
+
+@Controller('invigilator')
+export class InvigilatorController {
+
+    constructor(private invigilatorService:InvigilatorService){}
+
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('Home')
+    getHomePage(@Req() req: any){
+        if (req.user.userType === 'invigilator'){
+        return this.invigilatorService.viewExams(req.user.name);
+        }else{
+            throw new UnauthorizedException();
+        }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('Room')
+    getStudnets(@Req() req: any, @Body() getStudnetsDto:getStudnetsDto ){
+        if (req.user.userType === 'invigilator'){
+        return this.invigilatorService.getStudent(getStudnetsDto);
+        }else{
+            throw new UnauthorizedException();
+        }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Post('Room/Scanner')
+    markPresnt(@Req() req: any, @Body('studentID') studentId:string ){
+        if (req.user.userType === 'invigilator'){
+            const invigilator = req.user.name;
+            return this.invigilatorService.markPresent(studentId,invigilator);
+
+        }else{
+            throw new UnauthorizedException();
+        }
+    }   
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('student-details')
+    viewStudentDetails(@Req() req: any, @Body('studentName') studentName:string ){
+        if (req.user.userType === 'invigilator'){
+            return this.invigilatorService.viewStudentDetails(studentName);
+            }else{
+                throw new UnauthorizedException();
+            }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Post('ticket')
+    createTicket(@Req() req: any, @Body() ticketInfo:createTicketDto ){
+        if (req.user.userType === 'invigilator'){
+            return this.invigilatorService.createTicket(ticketInfo);
+            }else{
+                throw new UnauthorizedException();
+            }
+    }
+
+    
+
+
+    
+
+
+
+
+
+    @Post()
+    createInvigilators(@Body() createInvigilator: any) {
+    this.invigilatorService.createInvigilators(createInvigilator);
+    }
+
+}

@@ -1,0 +1,31 @@
+/* background image */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://img.freepik.com/premium-vector/hexagon-technology-connect-modern-style-blue-background-internet-connection-network-high-digital-technology-abstract-background-technology-graphic-design_46577-751.jpg?w=900");
+    background-size: cover;
+  }
+  
+  
+.containerTickets{
+    width: 80%;
+    margin: auto;
+    background-color: none;
+}
+caption
+{
+    margin: 25px 0;
+
+}
+
+.bgRow{
+    background-color: #fff;
+}
+.lastChildOne{
+    background-color: yellow;
+}
+.lastChildTwo{
+    background-color: rgb(83, 240, 10);
+}
+.lastChildThree{
+    background-color: darkgray;
+}
