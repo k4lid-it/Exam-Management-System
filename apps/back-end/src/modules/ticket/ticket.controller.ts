@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { TicketService } from './ticket.service';
 import { createTicketDto } from 'src/dtos/createTicket.dto';
-import { solveTicketDto } from 'src/dtos/solveTicket.dto';
 
 @Controller('ticket')
 export class TicketController {
