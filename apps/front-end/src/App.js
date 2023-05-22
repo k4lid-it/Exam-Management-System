@@ -13,16 +13,17 @@ import Closeticket from './components/Itsupport/Closeticket';
 import Tickets from './components/Itsupport/Tickets';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import notFound404 from './components/notFound404';
+import notFound from './components/notFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function App() {
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
       <div className="App">
         <Routes>
+          <Route path="*" element={<notFound />} />
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/Invigilator-home" element={<InvigilatorHomePage />} />
           <Route exact path="/exam-room-details" element={<ExamRoomDetailsPage />} />
@@ -33,13 +34,12 @@ function App() {
           <Route exact path="/Close-ticket" element={<Closeticket />} />
           <Route exact path="/Tickets" element={<Tickets />} />
           <Route exact path="/Login" element={<LoginPage />} />
-          <Route exact path="/student-details" element={<StudentDetailsPage />} />
+          {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
           <Route exact path="/student-details/:studentId" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
-          <Route path="*" element={<notFound404 />} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   )
 }
