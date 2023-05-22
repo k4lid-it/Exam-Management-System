@@ -7,37 +7,6 @@
   pointer-events: none;
 }
 
-/* Header Nav Styles */
-/* Nav Styles */
-nav {
-  background-color: #004377;
-  color: #ffffff;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-nav ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-nav ul li {
-  margin-left: 50px;
-  cursor: pointer;
-}
-
-
-/* Footer Styles */
-footer {
-  background-color: #004377;
-  color: #ffffff;
-  padding: 10px;
-  text-align: center;
-}
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
