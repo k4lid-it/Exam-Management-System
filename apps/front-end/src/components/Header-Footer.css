@@ -1,0 +1,83 @@
+/* Header Nav Styles */
+/* Nav Styles */
+nav {
+  background-color: #0284D0;
+  color: #ffffff;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.logo-item img {
+  max-height: 30px;
+}
+
+
+.logo-item {
+  max-height: 30px;
+  
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: #ccc;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #0284D0;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}
+  /* Footer Styles */
+  footer {
+    background-color: #0284D0;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    margin-top: 50px;
+  }
