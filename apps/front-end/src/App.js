@@ -11,7 +11,8 @@ import AdminExamsPage from './components/Admin/AdminExamsPage';
 import Acceptticket from './components/Itsupport/Acceptticket';
 import Closeticket from './components/Itsupport/Closeticket';
 import Tickets from './components/Itsupport/Tickets';
-import Header from './components/Header';
+import HeaderAdmin from './components/HeaderAdmin';
+import nonAdminHeader from './components/HeaderNonAdmin';
 import Footer from './components/Footer';
 import notFound from './components/notFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -20,7 +21,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      {/* <Header /> */}
+      {/* <AdminHeader /> */}
       <div className="App">
         <Routes>
           <Route path="*" element={<notFound />} />
@@ -39,7 +40,7 @@ function App() {
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   )
 }

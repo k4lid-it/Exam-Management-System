@@ -1,5 +1,7 @@
 import React from 'react';
 import './studentDetailsPage.css';
+import HeaderAdmin from '../HeaderAdmin';
+import HeaderNonAdmin from '../HeaderNonAdmin';
 
 const StudentDetailsPage = () => {
   const studentData = [
@@ -15,7 +17,15 @@ const StudentDetailsPage = () => {
     // Add more student data here...
   ];
 
-  return (
+  
+   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
+   const userRole = 'non-admin';
+
+   return (
+     <div>
+       {userRole === 'admin' ? <HeaderAdmin /> : <HeaderNonAdmin />}
+ 
+ 
     <div className="student-details-page">
       <div className="buttons">
         <button className="button">Student Exam Password</button>
@@ -109,6 +119,7 @@ const StudentDetailsPage = () => {
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

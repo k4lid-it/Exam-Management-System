@@ -1,10 +1,5 @@
-.welcome {
-  color: #ffffff;
-  margin-bottom: 10%;
-}
-
 .invigilation-duties {
-  color: #E9AB33;
+  color: #fff;
 }
 
 /* base font and background colors */
@@ -20,15 +15,10 @@ body {
 
 /* page container */
 .InvigilatorHomePage {
-  max-width: 800px; /* limit width of page */
   margin: 0 auto; /* center page horizontally */
-  padding: 20px; /* add some padding around the content */
+  max-width: 95%; /* set max-width to limit page width */
 }
 
-/* header */
-header {
-  text-align: center; /* center text within header */
-}
 
 /* table styles */
 table {

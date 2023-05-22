@@ -1,10 +1,14 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "./ExamRoomDetailsPage.css";
+import HeaderNonAdmin from "../HeaderNonAdmin";
+import HeaderAdmin from "../HeaderAdmin";
+
 
 function ExamRoom() {
   const { studentId } = useParams();
   const students = [
+    // Static student data
     { id: 1, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
     { id: 2, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
     { id: 3, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
@@ -29,41 +33,52 @@ function ExamRoom() {
     { id: 22, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
     { id: 23, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
     { id: 24, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    // Add more static student data here... this is temporary data, later we will fetch it from the server
+    //this is temporary data, later we will fetch it from the server
   ];
 
+  // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
+  const userRole = 'non-admin';
+
   return (
-    <div className="exam-room-container">
-      <h1 className="room-number">Room 105</h1>
-      
-      
-        <Link to="../QR-code-scanner"> <button className="btn">Grant Exam Access</button> </Link>
-        <Link to="../QR-code-scanner"> <button className="btn">Take Attendance</button> </Link>
+    <div>
+      {userRole === 'admin' ? <HeaderAdmin /> : <HeaderNonAdmin />}
+
+      <div className="exam-room-container">
+        <h1 className="room-number">Room 105</h1>
+
+        <Link to="../QR-code-scanner">
+          <button className="btn">Grant Exam Access</button>
+        </Link>
+        <Link to="../QR-code-scanner">
+          <button className="btn">Take Attendance</button>
+        </Link>
         <button className="btn">Request IT Support</button>
-      
-      
-      <table className="students-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Seat</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student, index) => (
-            <tr className="student-row" key={index}>
-              <td>{index + 1}</td>
-              <td><a href={`/student-details/${student.id}`}>{student.name}</a></td>
-              <td>{student.course}</td>
-              <td>{student.seat}</td>
-              <td>{student.status}</td>
+
+        <table className="students-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Course</th>
+              <th>Seat</th>
+              <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {students.map((student, index) => (
+              <tr className="student-row" key={index}>
+                <td>{index + 1}</td>
+                <td>
+                  <a href={`/student-details/${student.id}`}>{student.name}</a>
+                </td>
+                <td>{student.course}</td>
+                <td>{student.seat}</td>
+                <td>{student.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
