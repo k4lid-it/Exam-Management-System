@@ -13,6 +13,7 @@ import Closeticket from './components/Itsupport/Closeticket';
 import Tickets from './components/Itsupport/Tickets';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import notFound404 from './components/notFound404';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/student-details" element={<StudentDetailsPage />} />
           <Route exact path="/student-details/:studentId" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
+          <Route path="*" element={<notFound404 />} />
         </Routes>
       </div>
       <Footer />
