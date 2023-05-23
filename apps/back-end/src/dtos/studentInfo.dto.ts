@@ -1,7 +1,7 @@
 export class studentInfoDto {
     
     studentID:string;
-    exam:string;
+    subject:string;
     report:string;
 
 }
