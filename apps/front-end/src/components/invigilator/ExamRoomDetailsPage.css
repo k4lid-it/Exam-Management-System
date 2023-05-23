@@ -10,6 +10,10 @@ body {
 }
 
 
+.exam-room-container {
+  margin: 0 auto; /* center page horizontally */
+  max-width: 95%; /* set max-width to limit page width */
+}
 
 
 /* Center align the content */

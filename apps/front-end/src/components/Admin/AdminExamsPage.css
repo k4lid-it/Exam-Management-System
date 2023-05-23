@@ -4,6 +4,13 @@
     background-color: #f5f5f5;
   }
   
+
+  .Admin-exams-page {
+    margin: 0 auto; /* center page horizontally */
+    max-width: 95%; /* set max-width to limit page width */
+  }
+
+
   /* page container 
   .InvigilatorHomePage {
     max-width: 800px; /* limit width of page */

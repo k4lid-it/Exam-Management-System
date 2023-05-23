@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import examRoomData from '../invigilator/examRoomData';
 import './AdminExamsPage.css';
+import HeaderAdmin from "../HeaderAdmin";
 
 function AdminExamsPage() {
   const [rooms, setRooms] = useState(examRoomData);
@@ -34,11 +35,14 @@ function AdminExamsPage() {
   ));
 
   return (
-   
-        <div className="AdminExamsPage">
-        <Link to="/Admin-home">
+    <div>
+        <HeaderAdmin />
+    
+        <div className="Admin-exams-page">
+    
+        {/* <Link to="/Admin-home">
           <button>Home</button>
-        </Link>
+        </Link> */}
           <main>
             <table className="tttable">
               <thead>
@@ -55,7 +59,7 @@ function AdminExamsPage() {
             </table>
           </main>
         </div>
-      
+      </div>
   );
 }
 
