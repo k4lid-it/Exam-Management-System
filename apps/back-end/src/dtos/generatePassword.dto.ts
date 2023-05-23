@@ -1,6 +1,6 @@
 export class generatePasswordDto {
 
     studentID:string;
-    exam:string;
+    subject:string;
     salt:string;
 }
