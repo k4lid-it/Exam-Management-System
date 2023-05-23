@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/Tickets" element={<Tickets />} />
           <Route exact path="/Login" element={<LoginPage />} />
           {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
-          <Route exact path="/student-details/:studentId" element={<StudentDetailsPage />} />
+          <Route exact path="/student-details/:seat" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
         </Routes>
       </div>
