@@ -5,6 +5,7 @@ import { changeInvigilatorDto } from 'src/dtos/changeInvigilator.dto';
 import { createAdminDto } from 'src/dtos/createAdminDto.dto';
 import { Administrator } from 'src/entities/Administrator.entity';
 import { exam } from 'src/entities/Exam.entity';
+import { student } from 'src/entities/student.entity';
 import { ticket } from 'src/entities/ticket.entity';
 import { Repository } from 'typeorm';
 
@@ -13,7 +14,8 @@ export class AdminService {
 
     constructor(@InjectRepository(Administrator) private adminRepository: Repository<Administrator>,
                 @InjectRepository(exam) private examRepository: Repository<exam>,
-                @InjectRepository(ticket) private ticketRepository: Repository<ticket>){}
+                @InjectRepository(ticket) private ticketRepository: Repository<ticket>,
+                @InjectRepository(student) private studentRepository: Repository<student>){}
 
     async createAdmins(createAdminDtoArray: createAdminDto[]) {
         const newAdminArray = createAdminDtoArray.map((dto) =>
@@ -53,4 +55,71 @@ export class AdminService {
 
     }
 
-  }
+    async viewTicketDetails(ticketID:string){
+      const ticket = this.ticketRepository.findOne({where:{id:ticketID}});
+      if (ticket){
+        return ticket;
+      }else{
+        throw new Error('Ticket not found');
+      }
+
+    }
+
+    async acceptTicket(ticketID:string,admin:string){
+      const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
+      if (ticket) {
+        ticket.status = 'In progress';
+        ticket.employee = admin;
+        this.ticketRepository.save(ticket);
+      } else {
+        throw new Error('ticket not found');
+      }
+    }
+
+    async reopenTicket(ticketID:string){
+      const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
+      if (ticket) {
+        ticket.status = 'Open';
+        ticket.employee = null;
+        this.ticketRepository.save(ticket);
+      } else {
+        throw new Error('ticket not found');
+      }
+    }
+
+    async closeTicket(ticketID:string){
+      const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
+      if (ticket) {
+        ticket.status = 'Closed';
+        this.ticketRepository.save(ticket);
+      } else {
+        throw new Error('ticket not found');
+      }
+    } 
+
+    async checkStudentsRoom(studentID:string){
+      const studentRecords = await this.studentRepository.find({ where: {studentID} });
+      
+
+      const now = new Date();
+      const options = { hour: '2-digit', minute: '2-digit', hour12: true } as Intl.DateTimeFormatOptions;
+      const currentTime = now.toLocaleTimeString([], options);
+
+
+    const currentStudentRecord = studentRecords .find((student) => {
+      const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
+      return currentTime >= startTime && currentTime <= endTime;});
+      
+      if(currentStudentRecord){
+          throw new Error("Please go to room "+currentStudentRecord.room);
+        
+      }else{
+        throw new Error('The student doesnt have an exam at the current time');
+       }
+    } 
+
+    
+    }
+
+    
+    

@@ -6,6 +6,7 @@ import { createInvigilatorDto } from 'src/dtos/createInvigilator.dto';
 import { createTicketDto } from 'src/dtos/createTicket.dto';
 import { generatePasswordDto } from 'src/dtos/generatePassword.dto';
 import { getStudnetsDto } from 'src/dtos/getStudents.dto';
+import { markPresentSwitchDto } from 'src/dtos/markPresentSwitch.dto';
 import { studentInfoDto } from 'src/dtos/studentInfo.dto';
 import { exam } from 'src/entities/Exam.entity';
 import { invigilator } from 'src/entities/invigilator.entity';
@@ -128,13 +129,12 @@ export class InvigilatorService {
       }
     }
 
-  
-
-    
-
-
-
-
+    async markPresnetSwitch(markPresentSwitch:markPresentSwitchDto){
+      const student = await this.studentRepository.findOne({where:{name:markPresentSwitch.name, subject:markPresentSwitch.subject}});
+      student.attendance = 'present';
+        this.studentRepository.save(student);
+    }
 
 
 }
+

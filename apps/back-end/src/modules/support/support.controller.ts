@@ -28,7 +28,7 @@ export class SupportController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Get('ticket')
+    @Get('ticket-details')
     viewTicketDetails(@Req() req: any, @Body('ticketID') ticketID:string){
         if (req.user.userType === 'support'){
             return this.supportService.viewTicketDetails(ticketID);
@@ -38,7 +38,7 @@ export class SupportController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Post('ticket')
+    @Post('ticket-details')
     acceptTicket(@Req() req: any, @Body('ticketID') ticketID:string){
         if (req.user.userType === 'support'){
         const support = req.user.name;

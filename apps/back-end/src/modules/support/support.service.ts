@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { createSupportDto } from 'src/dtos/createSupportDto.dto';
 import { support } from 'src/entities/support.entity';
 import { ticket } from 'src/entities/ticket.entity';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 
 @Injectable()
 export class SupportService {
@@ -25,8 +25,9 @@ export class SupportService {
       }
 
       async viewTickets(): Promise<ticket[]>{
-        const tickets =  await this.ticketRepository.find({where:{status:'open'}});
-        if (tickets){
+        
+        const tickets =  await this.ticketRepository.find({where:{status:'open', type:Not('password')}});
+        if (tickets.length > 0){
           return tickets;
         }else{
           throw new Error('No tickets found');
@@ -36,7 +37,7 @@ export class SupportService {
 
       async viewMyTickets(supportName:string): Promise<ticket[]>{
         const tickets =  await this.ticketRepository.find({where:{employee:supportName}});
-        if (tickets){
+        if (tickets.length > 0){
           return tickets;
         }else{
           throw new Error('No tickets found');

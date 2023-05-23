@@ -5,6 +5,7 @@ import { getStudnetsDto } from 'src/dtos/getStudents.dto';
 import { createTicketDto } from 'src/dtos/createTicket.dto';
 import { generatePasswordDto } from 'src/dtos/generatePassword.dto';
 import { studentInfoDto } from 'src/dtos/studentInfo.dto';
+import { markPresentSwitchDto } from 'src/dtos/markPresentSwitch.dto';
 
 @Controller('invigilator')
 export class InvigilatorController {
@@ -31,6 +32,18 @@ export class InvigilatorController {
             throw new UnauthorizedException();
         }
     }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Post('Room')
+    markPresnetSwitch(@Req() req: any, @Body() markPresentSwitch:markPresentSwitchDto ){
+        if (req.user.userType === 'invigilator'){
+        return this.invigilatorService.markPresnetSwitch(markPresentSwitch);
+        }else{
+            throw new UnauthorizedException();
+        }
+    }
+
+
 
     @UseGuards(AuthGuard('jwt'))
     @Post('Room/Scanner')
