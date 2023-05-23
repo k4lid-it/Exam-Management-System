@@ -14,7 +14,7 @@ import Tickets from './components/Itsupport/Tickets';
 import HeaderAdmin from './components/HeaderAdmin';
 import nonAdminHeader from './components/HeaderNonAdmin';
 import Footer from './components/Footer';
-import notFound from './components/notFound';
+import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -24,7 +24,7 @@ function App() {
       {/* <AdminHeader /> */}
       <div className="App">
         <Routes>
-          <Route path="*" element={<notFound />} />
+          <Route path="*" element={<NotFound />} />
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/Invigilator-home" element={<InvigilatorHomePage />} />
           <Route exact path="/exam-room-details" element={<ExamRoomDetailsPage />} />
