@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "passport": "^0.6.0",
+    "react-qr-scanner": "^1.0.0-alpha.11",
     "typeorm": "^0.3.16"
   }
 }
