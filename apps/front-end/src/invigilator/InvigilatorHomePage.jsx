@@ -13,9 +13,36 @@ function InvigilatorHomePage() {
     </tr>
   ));
 
+
+  //  WORK IN PROGRESS ...
+  /** 
+    fetch('http://localhost:4000/invigilator/home')
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response data 
+        console.log(`this is what we got:`);
+        console.log(data);
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the request
+        console.log('Error:', error);
+      });
+  
+      fetch('http://localhost:4000/invigilator/home', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json',  },
+        body: JSON.stringify({
+          'id': 2,
+          'Hi': 'Hello 2'
+        }),
+      })
+        .then((response) => response.text())
+        .then(setGreeting);
+  */
+
   return (
-    
-      <div className="InvigilatorHomePage">
+
+    <div className="InvigilatorHomePage">
       {/* header with welcome message and user name */}
       <header>
         <h1 className='welcome'>Welcome, Ehsan Ahmad</h1>
@@ -38,7 +65,7 @@ function InvigilatorHomePage() {
         </table>
       </main>
     </div>
-  
+
   );
 }
 
