@@ -55,6 +55,7 @@ button[type="submit"]:hover {
 @media (max-width: 480px) {
   .form-container {
     font-size: 14px; /* decrease font size of text on smaller screens */
+    max-width: 86%;
   }
   
 .form-row {
