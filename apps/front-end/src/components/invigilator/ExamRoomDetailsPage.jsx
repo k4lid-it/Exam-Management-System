@@ -80,8 +80,9 @@ function ExamRoom() {
         <Link to="../QR-code-scanner">
           <button className="btn">Take Attendance</button>
         </Link>
+        <Link to="/request-it-support">
         <button className="btn">Request IT Support</button>
-
+        </Link>
         <table className="students-table">
           <thead>
             <tr>

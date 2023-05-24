@@ -15,6 +15,7 @@ import HeaderAdmin from './components/HeaderAdmin';
 import nonAdminHeader from './components/HeaderNonAdmin';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
+import RequestITsupportPage from './components/invigilator/RequestITsupportPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -38,6 +39,7 @@ function App() {
           {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
           <Route exact path="/student-details/:seat" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
+          <Route exact path="/Request-IT-support" element={<RequestITsupportPage />} />
         </Routes>
       </div>
       <Footer />

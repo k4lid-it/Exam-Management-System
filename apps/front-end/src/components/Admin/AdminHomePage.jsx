@@ -9,15 +9,15 @@ function HomePage() {
     <div className="admin-home-page">
       <HeaderAdmin />
       <div className="admin-home-page-buttons">
+        
         <Link to="/AdminExamsPage">
           <button>View Exams</button>
         </Link>
+        
         <Link to="/tickets">
           <button>View IT Support Tickets</button>
         </Link>
-        <Link to="/exams-secret-key">
-          <button>View Exams' Secret Key</button>
-        </Link>
+        
       </div>
     </div>
     // </div> </div>

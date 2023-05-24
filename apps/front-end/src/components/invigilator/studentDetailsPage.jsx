@@ -40,8 +40,8 @@ const StudentDetailsPage = () => {
  
     <div className="student-details-page">
       <div className="buttons">
-        <button className="button">Student Exam Password</button>
-        <button className="button">Write note</button>
+        <button className="btn">Student Exam Password</button>
+        <button className="btn">Report Violation</button>
       </div>
       <table className="details-table">
         <tbody>
