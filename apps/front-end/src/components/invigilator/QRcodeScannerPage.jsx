@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import QrScanner from 'react-qr-scanner';
 import './QRcodeScannerPage.css';
 import HeaderAdmin from "../HeaderAdmin";
