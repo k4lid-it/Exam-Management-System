@@ -1,5 +1,5 @@
-import { TimeoutInfo } from "rxjs";
-import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name:'tickets'})
 export class ticket {
@@ -32,7 +32,7 @@ export class ticket {
     this.time = currentTime;
     }
 
-    @Column({default:'open'})
+    @Column({default:'Open'})
     status: string;
 
 

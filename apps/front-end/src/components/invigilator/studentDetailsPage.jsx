@@ -1,21 +1,43 @@
 import React from 'react';
 import './studentDetailsPage.css';
+import HeaderAdmin from '../HeaderAdmin';
+import HeaderNonAdmin from '../HeaderNonAdmin';
 
 const StudentDetailsPage = () => {
   const studentData = [
     {
-      studentName: 'Abdullah Mohammed Zain Abdulrahman',
+      seat: 1,
+      studentName: 'HANI GHASSAN DARWICHEH',
       studentID: 's190155298',
       courseName: 'Data mining and warehousing',
       courseCode: 'IT446',
       CRN: '41882',
-      examTime: '9:00 AM - 11:00 AM',
+      examTime: '3:30 PM - 5:30 PM',
       roomNumber: '105',
     },
+    {
+      seat: 2,
+      studentName: 'Abdullah Mohammed Zain Abdulrahman',
+      studentID: 's190053445',
+      courseName: 'Enterprise Systems',
+      courseCode: 'IT342',
+      CRN: '10301',
+      examTime: '6:00 PM - 8:00 PM',
+      roomNumber: '117',
+    },
+    
     // Add more student data here...
   ];
 
-  return (
+  
+   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
+   const userRole = 'non-admin';
+
+   return (
+     <div>
+       {userRole === 'admin' ? <HeaderAdmin /> : <HeaderNonAdmin />}
+ 
+ 
     <div className="student-details-page">
       <div className="buttons">
         <button className="button">Student Exam Password</button>
@@ -109,6 +131,7 @@ const StudentDetailsPage = () => {
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

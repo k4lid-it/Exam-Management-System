@@ -2,8 +2,10 @@ import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards, } f
 import { InvigilatorService } from './invigilator.service';
 import { AuthGuard } from '@nestjs/passport';
 import { getStudnetsDto } from 'src/dtos/getStudents.dto';
-import { studentId } from 'src/dtos/studentId.dto';
 import { createTicketDto } from 'src/dtos/createTicket.dto';
+import { generatePasswordDto } from 'src/dtos/generatePassword.dto';
+import { studentInfoDto } from 'src/dtos/studentInfo.dto';
+import { markPresentSwitchDto } from 'src/dtos/markPresentSwitch.dto';
 
 @Controller('invigilator')
 export class InvigilatorController {
@@ -13,7 +15,7 @@ export class InvigilatorController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('Home')
-    getHomePage(@Req() req: any){
+    getExams(@Req() req: any){
         if (req.user.userType === 'invigilator'){
         return this.invigilatorService.viewExams(req.user.name);
         }else{
@@ -25,11 +27,23 @@ export class InvigilatorController {
     @Get('Room')
     getStudnets(@Req() req: any, @Body() getStudnetsDto:getStudnetsDto ){
         if (req.user.userType === 'invigilator'){
-        return this.invigilatorService.getStudent(getStudnetsDto);
+        return this.invigilatorService.getStudents(getStudnetsDto);
         }else{
             throw new UnauthorizedException();
         }
     }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Post('Room')
+    markPresnetSwitch(@Req() req: any, @Body() markPresentSwitch:markPresentSwitchDto ){
+        if (req.user.userType === 'invigilator'){
+        return this.invigilatorService.markPresnetSwitch(markPresentSwitch);
+        }else{
+            throw new UnauthorizedException();
+        }
+    }
+
+
 
     @UseGuards(AuthGuard('jwt'))
     @Post('Room/Scanner')
@@ -41,7 +55,7 @@ export class InvigilatorController {
         }else{
             throw new UnauthorizedException();
         }
-    }   
+    }
 
     @UseGuards(AuthGuard('jwt'))
     @Get('student-details')
@@ -54,6 +68,17 @@ export class InvigilatorController {
     }
 
     @UseGuards(AuthGuard('jwt'))
+    @Post('student-details')
+    writeReport(@Req() req: any, @Body('studentName') studentInfo:studentInfoDto ){
+        if (req.user.userType === 'invigilator'){
+            return this.invigilatorService.writeReport(studentInfo);
+            }else{
+                throw new UnauthorizedException();
+            }
+    }
+
+
+    @UseGuards(AuthGuard('jwt'))
     @Post('ticket')
     createTicket(@Req() req: any, @Body() ticketInfo:createTicketDto ){
         if (req.user.userType === 'invigilator'){
@@ -63,10 +88,17 @@ export class InvigilatorController {
             }
     }
 
-    
+    @UseGuards(AuthGuard('jwt'))
+    @Post('generate-password')
+    generatePassword(@Req() req: any, @Body() generatePassword:generatePasswordDto ){
+        if (req.user.userType === 'invigilator'){
+            return this.invigilatorService.generatePassword(generatePassword);
+            }else{
+                throw new UnauthorizedException();
+            }
+    }
 
 
-    
 
 
 

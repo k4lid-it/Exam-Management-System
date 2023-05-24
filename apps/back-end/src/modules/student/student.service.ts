@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { createStudentDto } from 'src/dtos/createStudent.dto';
 import { student } from 'src/entities/student.entity';
-import { studentId } from 'src/dtos/studentId.dto';
 import { ticket } from 'src/entities/ticket.entity';
 
 
@@ -31,11 +30,9 @@ export class StudentService {
 
     async checkRoom(studentID: string){
         const student = await this.studentRepository.findOne({where: {studentID}});
-        if (student && student.room == '115'){
+        
           return student;
-        } else {
-          throw new Error('Student not found or you are in the worng room');
-        }
+        
        
       }
       

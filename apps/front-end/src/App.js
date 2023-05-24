@@ -1,24 +1,30 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LoginPage from './LoginPage';
-import InvigilatorHomePage from './invigilator/InvigilatorHomePage';
-import ExamRoomDetailsPage from './invigilator/ExamRoomDetailsPage';
-//import StudentDetailsPage from './invigilator/StudentDetailsPage';
-import AdminHomePage from './Admin/AdminHomePage';
-import AdminExamsPage from './Admin/AdminExamsPage';
-import Acceptticket from './Itsupport/Acceptticket';
-import Closeticket from './Itsupport/Closeticket';
-import Tickets from './Itsupport/Tickets';
+import LoginPage from './components/Login/LoginPage';
+import InvigilatorHomePage from './components/invigilator/InvigilatorHomePage';
+import ExamRoomDetailsPage from './components/invigilator/ExamRoomDetailsPage';
+import StudentDetailsPage from './components/invigilator/studentDetailsPage';
+import QRcodeScannerPage from './components/invigilator/QRcodeScannerPage';
+import AdminHomePage from './components/Admin/AdminHomePage';
+import AdminExamsPage from './components/Admin/AdminExamsPage';
+import Acceptticket from './components/Itsupport/Acceptticket';
+import Closeticket from './components/Itsupport/Closeticket';
+import Tickets from './components/Itsupport/Tickets';
+import HeaderAdmin from './components/HeaderAdmin';
+import nonAdminHeader from './components/HeaderNonAdmin';
+import Footer from './components/Footer';
+import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import StudentDetailsPage from './invigilator/studentDetailsPage';
-import QRcodeScannerPage from './invigilator/QRcodeScannerPage';
+
 
 function App() {
   return (
     <Router>
+      {/* <AdminHeader /> */}
       <div className="App">
         <Routes>
+          <Route path="*" element={<NotFound />} />
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/Invigilator-home" element={<InvigilatorHomePage />} />
           <Route exact path="/exam-room-details" element={<ExamRoomDetailsPage />} />
@@ -29,11 +35,12 @@ function App() {
           <Route exact path="/Close-ticket" element={<Closeticket />} />
           <Route exact path="/Tickets" element={<Tickets />} />
           <Route exact path="/Login" element={<LoginPage />} />
-          <Route exact path="/student-details" element={<StudentDetailsPage />} />
-          <Route exact path="/student-details/:studentId" element={<StudentDetailsPage />} />
+          {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
+          <Route exact path="/student-details/:seat" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
         </Routes>
       </div>
+      <Footer />
     </Router>
   )
 }

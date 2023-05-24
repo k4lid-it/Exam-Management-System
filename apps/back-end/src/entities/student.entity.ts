@@ -12,8 +12,11 @@ export class student {
     @Column()
     name: string;
 
+    @Column() 
+    college: string;
+
     @Column()
-    exam: string;
+    subject: string;
 
     @Column()
     CRN:string;
@@ -34,7 +37,7 @@ export class student {
     attendance: string;
 
     @Column({nullable: true})
-    note: string;
+    report: string;
 
 
 }

@@ -1,7 +1,7 @@
 export class createStudentDto {
     studentID: string
     name: string;
-    exam: string;
+    subject: string;
     CRN: string;
     course: string;
     time:string;

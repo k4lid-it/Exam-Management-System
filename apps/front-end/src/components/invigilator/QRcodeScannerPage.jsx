@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import QrScanner from 'react-qr-scanner';
 import './QRcodeScannerPage.css';
+import HeaderAdmin from "../HeaderAdmin";
+import HeaderNonAdmin from "../HeaderNonAdmin";
 
 const QRCodeScannerPage = () => {
   const [result, setResult] = useState('');
@@ -21,7 +23,14 @@ const QRCodeScannerPage = () => {
     setShowPopup(false);
   };
 
-  return (
+   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
+   const userRole = 'non-admin';
+
+   return (
+     <div>
+       {userRole === 'admin' ? <HeaderAdmin /> : <HeaderNonAdmin />}
+ 
+ 
     <div className="qrcode-scanner-page">
       <div className="qrcode-scanner-container">
         <h1 className="qrcode-scanner-title">Scan student's QR Code</h1>
@@ -48,6 +57,7 @@ const QRCodeScannerPage = () => {
         )}
       </div>
     </div>
+  </div>
   );
 };
 
