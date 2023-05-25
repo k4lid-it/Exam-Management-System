@@ -27,7 +27,9 @@ function Login() {
     <div className="login-page">
       <div className="login-form">
       <img src="seuLogo.png" alt="Logo" className="logo" />
+        <p className="portal-title">SEU Exam Portal</p>
         <h1 className="title">Login using SEU account</h1>
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>

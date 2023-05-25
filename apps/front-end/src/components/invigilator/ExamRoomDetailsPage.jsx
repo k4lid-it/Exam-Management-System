@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./ExamRoomDetailsPage.css";
 import HeaderNonAdmin from "../HeaderNonAdmin";
@@ -6,35 +6,63 @@ import HeaderAdmin from "../HeaderAdmin";
 
 
 function ExamRoom() {
-  const { studentId } = useParams();
+  // const { studentId } = useParams();
   const students = [
     // Static student data
-    { id: 1, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 2, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 3, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 4, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 5, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 6, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 7, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 8, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 9, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 10, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 11, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 12, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 13, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 14, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 15, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 16, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 17, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 18, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 19, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 20, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 21, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 22, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
-    { id: 23, name: "John Doe", course: "Math", seat: "A1", status: "Present" },
-    { id: 24, name: "Jane Smith", course: "Science", seat: "B2", status: "Absent" },
+    { seat: 1, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", Attendance: "Present" },
+    { seat: 2, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", Attendance: "Absent" },
+    { seat: 3, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 4, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 5, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 6, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 7, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 8, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 9, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 10, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 11, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 12, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 13, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 14, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 15, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 16, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 17, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 18, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 19, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 20, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 21, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 22, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+    { seat: 23, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
+    { seat: 24, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
+   
     //this is temporary data, later we will fetch it from the server
   ];
+
+
+  const [switchState, setSwitchState] = useState(students.map(() => false));
+
+  // const handleSwitchToggle = (index) => {
+  //   const confirmed = window.confirm("Are you sure?");
+  //   if (confirmed) {
+  //     const newSwitchState = [...switchState];
+  //     newSwitchState[index] = !newSwitchState[index];
+  //     setSwitchState(newSwitchState);
+  //   }
+  // };
+
+  const handleSwitchToggle = (index) => {
+    const confirmed = window.confirm("Are you sure?");
+    if (confirmed) {
+      const newSwitchState = [...switchState];
+      newSwitchState[index] = !newSwitchState[index];
+      setSwitchState(newSwitchState);
+    } else {
+      const checkbox = document.getElementById(`checkbox-${index}`);
+      checkbox.checked = !checkbox.checked;
+    }
+  };
+  
+  
+  
 
   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
   const userRole = 'non-admin';
@@ -52,31 +80,41 @@ function ExamRoom() {
         <Link to="../QR-code-scanner">
           <button className="btn">Take Attendance</button>
         </Link>
+        <Link to="/request-it-support">
         <button className="btn">Request IT Support</button>
-
+        </Link>
         <table className="students-table">
           <thead>
             <tr>
-              <th></th>
+              <th>Seat</th>
               <th>Name</th>
               <th>Course</th>
-              <th>Seat</th>
-              <th>Status</th>
+              <th>College</th>
+              <th>Attendance</th>
             </tr>
           </thead>
           <tbody>
             {students.map((student, index) => (
               <tr className="student-row" key={index}>
-                <td>{index + 1}</td>
+                <td>{student.seat}</td>
                 <td>
-                  <a href={`/student-details/${student.id}`}>{student.name}</a>
+                  <a href={`/student-details/${student.seat}`}>{student.name}</a>
                 </td>
                 <td>{student.course}</td>
-                <td>{student.seat}</td>
-                <td>{student.status}</td>
+                <td>{student.College}</td>
+                <td>
+                <input
+                    id={`checkbox-${index}`}
+                    type="checkbox"
+                    className={`status-checkbox ${switchState[index] ? "checked" : ""}`}
+                    onChange={() => handleSwitchToggle(index)}
+                  />
+
+                </td>
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     </div>

@@ -41,7 +41,7 @@ body {
     background-color: rgb(2, 132, 208);
     color: #fff;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 15px;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     margin-right: 1rem;
@@ -65,7 +65,7 @@ body {
   }
   
   th, td {
-    text-align: left;
+    /* text-align: left; */
     padding: 0.6rem;
   }
   
@@ -94,11 +94,11 @@ body {
   .seat {
     color: #666;
   }
-  
+/*   
   .status {
     text-transform: uppercase;
     font-weight: bold;
-  }
+  } */
   
   .present {
     color: green;
@@ -112,6 +112,18 @@ body {
     color: orange;
   }
   
+  .status-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .status-checkbox.checked {
+    background-color: green;
+  }
+  
+
   /* page background color */
   /* {background-color: rgb(160, 231, 255)}*/
 

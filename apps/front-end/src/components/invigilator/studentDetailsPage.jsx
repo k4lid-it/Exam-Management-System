@@ -1,37 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './studentDetailsPage.css';
 import HeaderAdmin from '../HeaderAdmin';
 import HeaderNonAdmin from '../HeaderNonAdmin';
+import { Link } from 'react-router-dom';
 
 const StudentDetailsPage = () => {
   const studentData = [
     {
-      studentName: 'Abdullah Mohammed Zain Abdulrahman',
+      seat: 1,
+      studentName: 'HANI GHASSAN DARWICHEH',
       studentID: 's190155298',
       courseName: 'Data mining and warehousing',
       courseCode: 'IT446',
       CRN: '41882',
-      examTime: '9:00 AM - 11:00 AM',
+      examTime: '3:30 PM - 5:30 PM',
       roomNumber: '105',
+    },
+    {
+      seat: 2,
+      studentName: 'Abdullah Mohammed Zain Abdulrahman',
+      studentID: 's190053445',
+      courseName: 'Enterprise Systems',
+      courseCode: 'IT342',
+      CRN: '10301',
+      examTime: '6:00 PM - 8:00 PM',
+      roomNumber: '117',
     },
     // Add more student data here...
   ];
 
-  
-   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
-   const userRole = 'non-admin';
+  const [showTextInput, setShowTextInput] = useState(false);
+  const [textInputValue, setTextInputValue] = useState('');
 
-   return (
-     <div>
-       {userRole === 'admin' ? <HeaderAdmin /> : <HeaderNonAdmin />}
- 
- 
-    <div className="student-details-page">
-      <div className="buttons">
-        <button className="button">Student Exam Password</button>
-        <button className="button">Write note</button>
-      </div>
-      <table className="details-table">
+  const handleReportViolation = () => {
+    setShowTextInput(true);
+  };
+
+  const handleTextInputChange = (event) => {
+    setTextInputValue(event.target.value);
+  };
+
+  const handleCancel = () => {
+    setShowTextInput(false);
+    setTextInputValue('');
+  };
+
+  const handleSubmit = () => {
+    // Perform actions with the submitted text input value, e.g., send it to the server
+    console.log('Submitted text:', textInputValue);
+
+    // Reset the state
+    setShowTextInput(false);
+    setTextInputValue('');
+  };
+
+  // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
+  const userRole = 'non-admin';
+
+  return (
+    <div>
+      {userRole === 'admin' ? <HeaderAdmin /> : <HeaderNonAdmin />}
+
+      <div className="student-details-page">
+        <div className="buttons">
+          <Link to="/QR-code-scanner">
+            <button className="btn">Generate Exam Password</button>
+          </Link>
+            <button className="btn" onClick={handleReportViolation}>
+            Report Violation
+          </button>
+        </div>
+
+        {showTextInput && (
+          <div className="text-input-container">
+            <input
+              type="text"
+              value={textInputValue}
+              onChange={handleTextInputChange}
+              placeholder="Enter your report on this student and describe the violation..."
+            />
+            <div className="buttons">
+              <button className="btn" onClick={handleCancel}>
+                Cancel
+              </button>
+              <button className="btn" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
+          </div>
+        )}
+
+       <table className="details-table">
         <tbody>
           <tr>
             <td>Student Name:</td>
@@ -118,8 +177,8 @@ const StudentDetailsPage = () => {
             </td>
           </tr>
         </tbody>
-      </table>
-    </div>
+      </table>        
+      </div>
     </div>
   );
 };
