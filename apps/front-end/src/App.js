@@ -10,7 +10,7 @@ import AdminHomePage from './components/Admin/AdminHomePage';
 import AdminExamsPage from './components/Admin/AdminExamsPage';
 import Acceptticket from './components/Itsupport/Acceptticket';
 import Closeticket from './components/Itsupport/Closeticket';
-import Tickets from './components/Itsupport/Tickets';
+import TicketsPage from './components/Itsupport/TicketsPage';
 import HeaderAdmin from './components/HeaderAdmin';
 import nonAdminHeader from './components/HeaderNonAdmin';
 import Footer from './components/Footer';
@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/AdminExamsPage" element={<AdminExamsPage />} />
           <Route exact path="/Accept-ticket" element={<Acceptticket />} />
           <Route exact path="/Close-ticket" element={<Closeticket />} />
-          <Route exact path="/Tickets" element={<Tickets />} />
+          <Route exact path="/IT-Support/Tickets" element={<TicketsPage />} />
           <Route exact path="/Login" element={<LoginPage />} />
           {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
           <Route exact path="/student-details/:seat" element={<StudentDetailsPage />} />

@@ -37,7 +37,7 @@ const RequestITsupportPage = () => {
               <option value="2">Power Bank</option>
               <option value="3">Network</option>
               <option value="4">Other</option>
-              {/* Add more options as needed */}
+              
             </select>
           </div>
         </div>
@@ -55,7 +55,7 @@ const RequestITsupportPage = () => {
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
-              {/* Add more options as needed */}
+              {/* this data should represent actual student seat numbers in a room, I currently hard coded it */}
             </select>
           </div>
         </div>

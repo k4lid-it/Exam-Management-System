@@ -9,23 +9,14 @@ body {
 .containerTickets{
     width: 80%;
     margin: auto;
-    background-color: none;
 }
+
 caption
 {
     margin: 25px 0;
-
+    color: #ffffff;
 }
 
-.bgRow{
+tr {
     background-color: #fff;
-}
-.lastChildOne{
-    background-color: yellow;
-}
-.lastChildTwo{
-    background-color: rgb(83, 240, 10);
-}
-.lastChildThree{
-    background-color: darkgray;
 }
