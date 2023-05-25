@@ -13,11 +13,11 @@ body {
     background-color: #f2f2f2;
     border-radius: 15px;
   }
-  
+/*   
   .item{
     text-transform: capitalize;
   }
-  
+   */
   .item h2{
     background-color: #e9ab33;
     padding: 1rem;
@@ -31,8 +31,7 @@ body {
   }
   .tablee{
     border-collapse: collapse;
-    width: 40%;
-
+    width: 100%;
   }
   table td{
     padding: 5px;
@@ -109,4 +108,20 @@ body {
   
   input[type='radio'] {
     accent-color: #000;
+  }
+
+  
+  @media screen and (max-width: 480px){
+   .container{
+     width: 86%;
+   }
+
+    .item h2{
+      font-size: 1.2rem;
+    }
+    
+    .tablee {
+      max-width: 86%;
+    }
+    
   }

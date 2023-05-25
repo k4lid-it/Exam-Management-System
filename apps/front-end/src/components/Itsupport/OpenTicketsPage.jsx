@@ -90,6 +90,8 @@ function OpenTicketsITsupportPage() {
         <tbody>{ticketRows}</tbody>
       </table>
     </div>
+    <Link to="/IT-support/assigned-tickets"><button className='btn'>view my Tickets</button></Link>
+
     </div>
   );
 }

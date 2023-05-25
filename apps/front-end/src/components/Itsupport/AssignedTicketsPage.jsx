@@ -59,6 +59,7 @@ function ITsupportPage() {
         <tbody>{ticketRows}</tbody>
       </table>
     </div>
+      <Link to="/IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link>
     </div>
   );
 }

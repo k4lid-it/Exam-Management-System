@@ -1,42 +1,67 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './Acceptticket.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Acceptticket.css';
+import HeaderNonAdmin from '../HeaderNonAdmin';
+
 export default function Acceptticket() {
+  // Fetch ticket data from API or other source
+  const fetchTicketData = () => {
+    // Simulating an API call or data retrieval
+    return {
+      room: '103',
+      date: '16/5/2023',
+      time: '2:26 PM',
+      examPeriod: '103',
+      service: 'Password',
+      Description: 'the QR code is not working, the student needs a password to access the exam, please hurry up! Thank you in advance. One Piece is your uncle!'
+    };
+  };
+
+  // Call the fetchTicketData function to get the ticket data
+  const ticketData = fetchTicketData();
+
   return (
-    <div className='container'>
-      <div className="item">
-        <h2>it support ticket</h2>
-        <p>ticket information:</p>
+    <div>
+      <HeaderNonAdmin />
 
-        <table className='.tablee'>
-          <tr>
-            <td className='tdOne'>room:</td>
-            <td className='tdTwo'>103</td>
-          </tr>
-          <tr>
-            <td className='tdOne'>date:</td>
-            <td className='tdTwo'>16/5/2023</td>
-          </tr>
-          <tr>
-            <td className='tdOne'>time:</td>
-            <td className='tdTwo'>2:26PM</td>
-          </tr>
-          <tr>
-            <td className='tdOne'>exam period:</td>
-            <td className='tdTwo'>103</td>
-          </tr>
-          <tr>
-            <td className='tdOne'>service:</td>
-            <td className='tdTwo'>password</td>
-          </tr>
+      <div className="container">
+        <h2>IT Support Ticket</h2>
+        <p className="ticket-information">Ticket Information:</p>
 
+        <table className="tablee">
+          <tbody>
+            <tr>
+              <td className="tdOne">Room:</td>
+              <td className="tdTwo">{ticketData.room}</td>
+            </tr>
+            <tr>
+              <td className="tdOne">Date:</td>
+              <td className="tdTwo">{ticketData.date}</td>
+            </tr>
+            <tr>
+              <td className="tdOne">Time:</td>
+              <td className="tdTwo">{ticketData.time}</td>
+            </tr>
+            <tr>
+              <td className="tdOne">Exam Period:</td>
+              <td className="tdTwo">{ticketData.examPeriod}</td>
+            </tr>
+            <tr>
+              <td className="tdOne">Service:</td>
+              <td className="tdTwo">{ticketData.service}</td>
+            </tr>
+            <tr>
+              <td className="tdOne">Description:</td>
+              <td className="tdTwo">{ticketData.Description}</td>
+            </tr>
+          </tbody>
         </table>
+        
         <div className="buttons">
-          <Link to=""><button>accept</button></Link>
-          <button>cancel</button>
+          <Link to=""><button>Accept</button></Link>
+          <Link to="/IT-support/open-tickets"><button>Cancel</button></Link>
         </div>
       </div>
-
     </div>
-  )
+  );
 }
