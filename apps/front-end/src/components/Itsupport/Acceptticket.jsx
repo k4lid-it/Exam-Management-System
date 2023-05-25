@@ -32,7 +32,7 @@ export default function Acceptticket() {
 
         </table>
         <div className="buttons">
-          <Link to="../QRcodeScannerPage"><button>accept</button></Link>
+          <Link to=""><button>accept</button></Link>
           <button>cancel</button>
         </div>
       </div>
