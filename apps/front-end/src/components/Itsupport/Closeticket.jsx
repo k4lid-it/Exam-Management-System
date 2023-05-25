@@ -20,6 +20,23 @@ export default function Closeticket() {
     }
   };
 
+
+  const fetchTicketData = () => {
+    // Simulating an API call or data retrieval
+    return {
+      room: '103',
+      date: '16/5/2023',
+      time: '2:26 PM',
+      examPeriod: '103',
+      service: 'Password',
+      Description: 'the QR code is not working, the student needs a password to access the exam, please hurry up! Thank you in advance. One Piece is your uncle!'
+    };
+  };
+
+  // Call the fetchTicketData function to get the ticket data
+  const ticketData = fetchTicketData();
+
+
   return (
     <div>
       <HeaderNonAdmin />
@@ -29,26 +46,30 @@ export default function Closeticket() {
         <p>ticket information:</p>
 
         <table className='tablee'>
-          <tbody>
+        <tbody>
             <tr>
-              <td className='tdOne'>room:</td>
-              <td className='tdTwo'>103</td>
+              <td className="tdOne">Room:</td>
+              <td className="tdTwo">{ticketData.room}</td>
             </tr>
             <tr>
-              <td className='tdOne'>date:</td>
-              <td className='tdTwo'>16/5/2023</td>
+              <td className="tdOne">Date:</td>
+              <td className="tdTwo">{ticketData.date}</td>
             </tr>
             <tr>
-              <td className='tdOne'>time:</td>
-              <td className='tdTwo'>2:26PM</td>
+              <td className="tdOne">Time:</td>
+              <td className="tdTwo">{ticketData.time}</td>
             </tr>
             <tr>
-              <td className='tdOne'>exam period:</td>
-              <td className='tdTwo'>103</td>
+              <td className="tdOne">Exam Period:</td>
+              <td className="tdTwo">{ticketData.examPeriod}</td>
             </tr>
             <tr>
-              <td className='tdOne'>service:</td>
-              <td className='tdTwo'>password</td>
+              <td className="tdOne">Service:</td>
+              <td className="tdTwo">{ticketData.service}</td>
+            </tr>
+            <tr>
+              <td className="tdOne">Description:</td>
+              <td className="tdTwo">{ticketData.Description}</td>
             </tr>
           </tbody>
         </table>

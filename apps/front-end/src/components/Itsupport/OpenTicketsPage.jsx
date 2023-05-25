@@ -74,6 +74,9 @@ function OpenTicketsITsupportPage() {
     <HeaderNonAdmin />
 
     <div className='ITsupportPage-container'>
+        
+    <Link to="/IT-support/assigned-tickets"><button className='btn'>view my Tickets</button></Link>
+
       <h1>Open IT support requests:</h1>
       <table>
         <thead>
@@ -90,7 +93,7 @@ function OpenTicketsITsupportPage() {
         <tbody>{ticketRows}</tbody>
       </table>
     </div>
-    <Link to="/IT-support/assigned-tickets"><button className='btn'>view my Tickets</button></Link>
+    {/* <Link to="/IT-support/assigned-tickets"><button className='btn'>view my Tickets</button></Link> */}
 
     </div>
   );

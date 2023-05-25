@@ -118,10 +118,14 @@ body {
 
     .item h2{
       font-size: 1.2rem;
+      max-width: 70%;
+      margin: auto;
     }
     
     .tablee {
-      max-width: 86%;
+      max-width: 80%;
+      margin: auto;
     }
+    
     
   }

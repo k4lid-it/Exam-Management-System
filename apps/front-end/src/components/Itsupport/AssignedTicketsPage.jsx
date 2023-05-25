@@ -44,7 +44,10 @@ function ITsupportPage() {
     <HeaderNonAdmin />
 
     <div className='ITsupportPage-container'>
-      <h1>My assigned IT support tickets:</h1>
+
+    <Link to="/IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link>
+
+      <h1>IT support tickets assigned to me:</h1>
       <table>
         <thead>
           <tr>
@@ -59,7 +62,7 @@ function ITsupportPage() {
         <tbody>{ticketRows}</tbody>
       </table>
     </div>
-      <Link to="/IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link>
+      {/* <Link to="/IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link> */}
     </div>
   );
 }
