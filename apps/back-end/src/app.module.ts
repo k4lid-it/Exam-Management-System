@@ -13,7 +13,6 @@ import { support } from './entities/support.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { SupportModule } from './modules/support/support.module';
 import { ExamModule } from './modules/exam/exam.module';
-import { HomeModule } from './modules/home/home.module';
 import { Administrator } from './entities/Administrator.entity';
 import { AdminModule } from './modules/admin/admin.module';
 
@@ -36,7 +35,6 @@ import { AdminModule } from './modules/admin/admin.module';
   AuthModule,
   SupportModule,
   ExamModule,
-  HomeModule,
   AdminModule,
   ],
   controllers: [AppController,],
