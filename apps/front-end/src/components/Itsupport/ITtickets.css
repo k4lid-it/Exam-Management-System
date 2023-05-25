@@ -1,0 +1,56 @@
+
+  /* background image */
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://img.freepik.com/premium-vector/hexagon-technology-connect-modern-style-blue-background-internet-connection-network-high-digital-technology-abstract-background-technology-graphic-design_46577-751.jpg?w=900");
+    background-size: cover;
+  }
+  
+  /* page container */
+  .ITsupportPage-container {
+    margin: 0 auto; /* center page horizontally */
+    margin-top: 5%; /* add some space at the top */;
+    max-width: 95%; /* set max-width to limit page width */
+  }
+  
+  /* table styles */
+  table {
+    width: 100%; /* table fills width of its container */
+    border-collapse: collapse; /* remove borders between cells */
+    margin-top: 20px; /* add some space between header and table */
+    background-color: #fff; /* add a white background color to the table */
+  }
+  
+  .ITsupportPage th,
+  .ITsupportPage td {
+    padding: 10px; /* add padding to cells */
+    text-align: center; /* center text within cells */
+  }
+  
+  .ITsupportPage th {
+    background-color: #E9AB33; /* set background color of header cells */
+    color: #fff; /* set text color of header cells */
+  }
+  
+  .ITsupportPage tr:hover {
+    background-color: #00748e12; /* change background color of row on hover */
+  }
+  
+  .ITsupportPage td:first-child {
+    text-align: left; /* left-align first cell in each row */
+  }
+  
+  /* responsive styles for smaller screens */
+  @media (max-width: 480px) {
+    .ITsupportPage table {
+      font-size: 14px; /* decrease font size of table on smaller screens */
+
+    }
+
+    H1 {
+      font-size: 1.5rem;
+      margin-top: 5%;
+      margin-bottom: 15px;
+    }
+  }
+  

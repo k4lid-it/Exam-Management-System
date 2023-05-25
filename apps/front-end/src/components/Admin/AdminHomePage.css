@@ -16,7 +16,7 @@ body {
 .admin-home-page-buttons button {
   margin-bottom: 1rem;
   padding: 1.5rem 3rem; /* Increase the padding to make the buttons bigger */
-  border: none;
+  border: 1px solid #fff;
   border-radius: 0.25rem;
   background-color: #E9AB33;
   color: #fff;
@@ -28,5 +28,7 @@ body {
 }
 
 .admin-home-page-buttons button:hover {
-  background-color: #C79119;
+  background-color: #fff;
+  color: #E9AB33;
+  border: 1px solid #E9AB33;
 }

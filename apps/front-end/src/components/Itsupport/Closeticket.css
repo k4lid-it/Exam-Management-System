@@ -7,9 +7,13 @@ body {
 
 
 .container{
-    width: 80%;
-    margin: auto;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 15px;
   }
+  
   .item{
     text-transform: capitalize;
   }
@@ -87,9 +91,11 @@ body {
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
   }
+  
   .close{
     text-align: center;
   }
+
   .close button{
     background-color: #d9d9d9;
     text-decoration: underline;

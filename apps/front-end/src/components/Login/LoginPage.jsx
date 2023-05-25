@@ -72,6 +72,7 @@ function Login() {
       <div className="login-form">
         <img src="seuLogo.png" alt="Logo" className="logo" />
         <h1 className="title">Login using SEU account</h1>
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>

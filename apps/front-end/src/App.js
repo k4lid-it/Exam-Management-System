@@ -8,13 +8,16 @@ import StudentDetailsPage from './components/invigilator/studentDetailsPage';
 import QRcodeScannerPage from './components/invigilator/QRcodeScannerPage';
 import AdminHomePage from './components/Admin/AdminHomePage';
 import AdminExamsPage from './components/Admin/AdminExamsPage';
+import AdminTicketsPage from './components/Admin/AdminTicketsPage';
 import Acceptticket from './components/Itsupport/Acceptticket';
 import Closeticket from './components/Itsupport/Closeticket';
-import Tickets from './components/Itsupport/Tickets';
+import AssignedTicketsPage from './components/Itsupport/AssignedTicketsPage';
+import OpenTicketsITsupportPage from './components/Itsupport/OpenTicketsPage';
 import HeaderAdmin from './components/HeaderAdmin';
 import nonAdminHeader from './components/HeaderNonAdmin';
 import Footer from './components/Footer';
-import NotFound from './components/notFound';
+import NotFound from './components/NotFound';
+import RequestITsupportPage from './components/invigilator/RequestITsupportPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NotAllowed from './components/Unauthorized';
 
@@ -29,17 +32,23 @@ function App() {
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/Invigilator-home" element={<InvigilatorHomePage />} />
           <Route exact path="/exam-room-details" element={<ExamRoomDetailsPage />} />
-          <Route exact path="/exam-room/:roomId" element={<ExamRoomDetailsPage />} />
+          <Route exact path="/exam-room/:roomID" element={<ExamRoomDetailsPage />} />
           <Route exact path="/Admin-home" element={<AdminHomePage />} />
           <Route exact path="/AdminExamsPage" element={<AdminExamsPage />} />
+          <Route exact path="/Admin/Tickets" element={<AdminTicketsPage />} />
           <Route exact path="/Accept-ticket" element={<Acceptticket />} />
-          <Route exact path="/Close-ticket" element={<Closeticket />} />
-          <Route exact path="/Tickets" element={<Tickets />} />
+          <Route exact path="/Accept-ticket/:ticketID" element={<Acceptticket />} />
+          {/* <Route exact path="/CloseTicket" element={<Closeticket />} /> */}
+          <Route exact path="/CloseTicket/:ticketID" element={<Closeticket />} />
+          <Route exact path="/IT-Support/Open-Tickets" element={<OpenTicketsITsupportPage />} />
+          <Route exact path="/IT-Support/Assigned-Tickets" element={<AssignedTicketsPage />} />
           <Route exact path="/Login" element={<LoginPage />} />
           {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
-          <Route exact path="/student-details/:seat" element={<StudentDetailsPage />} />
+          <Route exact path="/student-details/:studentSEAT" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
           <Route path="/security-stop" element={<NotAllowed />} />
+          <Route exact path="/Request-IT-support" element={<RequestITsupportPage />} />
+
         </Routes>
       </div>
       <Footer />

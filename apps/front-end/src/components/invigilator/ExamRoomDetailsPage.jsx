@@ -131,7 +131,9 @@ function ExamRoom() {
         <Link to="../QR-code-scanner">
           <button className="btn">Take Attendance</button>
         </Link>
-        <button className="btn">Request IT Support</button>
+        <Link to="/request-it-support">
+          <button className="btn">Request IT Support</button>
+        </Link>
 
         <button onClick={window.print} className="btn">Print this page</button>
 

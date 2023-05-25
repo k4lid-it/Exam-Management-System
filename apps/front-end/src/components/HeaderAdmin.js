@@ -31,7 +31,7 @@ const Nav = () => {
           {isOpen && (
             <ul className="dropdown-menu">
           <Link to="/AdminExamsPage">    <li>exam rooms</li>     </Link>
-          <Link to="/Tickets">    <li>IT support tickets</li>     </Link>
+          <Link to="/Admin/Tickets">    <li>IT support tickets</li>     </Link>
             </ul>
           )}
         </li>
