@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { isWithinInterval, format } from 'date-fns';
-
 import { createInvigilatorDto } from 'src/dtos/createInvigilator.dto';
 import { createTicketDto } from 'src/dtos/createTicket.dto';
 import { generatePasswordDto } from 'src/dtos/generatePassword.dto';
@@ -13,6 +11,7 @@ import { invigilator } from 'src/entities/invigilator.entity';
 import { student } from 'src/entities/student.entity';
 import { ticket } from 'src/entities/ticket.entity';
 import { Repository } from 'typeorm';
+import { studentDetailsDto } from 'src/dtos/studentDetails.dto';
 
 @Injectable()
 export class InvigilatorService {
@@ -87,8 +86,8 @@ export class InvigilatorService {
       
     }
 
-    async viewStudentDetails(studentName:string){
-      const student = await this.studentRepository.findOne({ where: {name:studentName} });
+    async viewStudentDetails(studentDetailsDto: studentDetailsDto){
+      const student = await this.studentRepository.findOne({ where: {name:studentDetailsDto.studentName, subject:studentDetailsDto.subject} });
       if (student){
         return student
       }else{
