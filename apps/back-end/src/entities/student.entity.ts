@@ -12,7 +12,7 @@ export class student {
     @Column()
     name: string;
 
-    @Column() 
+    @Column({default: 'CCI'}) 
     college: string;
 
     @Column()
