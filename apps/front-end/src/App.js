@@ -19,6 +19,7 @@ import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import RequestITsupportPage from './components/invigilator/RequestITsupportPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NotAllowed from './components/Unauthorized';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
           <Route exact path="/student-details/:studentSEAT" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
+          <Route path="/security-stop" element={<NotAllowed />} />
           <Route exact path="/Request-IT-support" element={<RequestITsupportPage />} />
 
         </Routes>

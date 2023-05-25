@@ -1,10 +1,10 @@
 import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: 'students'})
+@Entity({ name: 'students' })
 export class student {
-    
+
     @PrimaryGeneratedColumn()
-    ID:number;
+    ID: number;
 
     @Column()
     studentID: string;
@@ -12,20 +12,20 @@ export class student {
     @Column()
     name: string;
 
-    @Column({default: 'CCI'}) 
+    @Column({ default: 'CCI' })
     college: string;
 
     @Column()
     subject: string;
 
     @Column()
-    CRN:string;
+    CRN: string;
 
     @Column()
-    course:string
+    course: string
 
     @Column()
-    time:string; 
+    time: string;
 
     @Column()
     room: string;
@@ -33,10 +33,10 @@ export class student {
     @Column()
     seat: string;
 
-    @Column({default: 'Absent'})
+    @Column({ default: 'Absent' })
     attendance: string;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     report: string;
 
 
