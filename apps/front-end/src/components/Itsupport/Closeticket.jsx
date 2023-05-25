@@ -93,12 +93,12 @@ export default function Closeticket() {
                 <input
                   type='radio'
                   name='resolve'
-                  value='unresolved'
-                  checked={selectedOption === 'unresolved'}
+                  value='Unresolved'
+                  checked={selectedOption === 'Unresolved'}
                   onChange={handleOptionChange}
                   required
                 />
-                unresolved
+                Unresolved
               </label>
             </div>
 

@@ -67,46 +67,47 @@ function Login() {
   }
     ;
 
-  return (
-    <div className="login-page">
-      <div className="login-form">
+    return (
+      <div className="login-page">
+        <div className="login-form">
         <img src="seuLogo.png" alt="Logo" className="logo" />
-        <h1 className="title">Login using SEU account</h1>
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={handleUsernameChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="password-input-container">
+          <p className="portal-title">SEU Exam Portal</p>
+          <h1 className="title">Login using SEU account</h1>
+  
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
               <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                value={password}
-                onChange={handlePasswordChange}
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={handleUsernameChange}
               />
-              <div
-                className="show-password"
-                onClick={handleShowPasswordClick}
-              >
-                Show
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <div className="password-input-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <div
+                  className="show-password"
+                  onClick={handleShowPasswordClick}
+                >
+                  Show
+                </div>
               </div>
             </div>
-          </div>
-          <button type="submit" className="login-button">Login</button>
-        </form>
+            <button type="submit" className="login-button">Login</button>
+          </form>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 export default Login;
