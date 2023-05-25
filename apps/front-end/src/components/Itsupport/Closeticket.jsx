@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Closeticket.css';
 import HeaderNonAdmin from '../HeaderNonAdmin';
+import { Link } from 'react-router-dom';
 
 export default function Closeticket() {
   const [selectedOption, setSelectedOption] = useState('');
@@ -112,6 +113,7 @@ export default function Closeticket() {
           </div>
           <div className='close'>
             <button type='submit'>Close Ticket</button>
+            <Link to="/IT-support/assigned-tickets">  <button type='submit'>Cancel</button>  </Link>
           </div>
         </form>
       </div>

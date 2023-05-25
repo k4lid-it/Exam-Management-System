@@ -58,8 +58,8 @@ export default function Acceptticket() {
         </table>
         
         <div className="buttons">
-          <Link to=""><button>Accept</button></Link>
-          <Link to="/IT-support/open-tickets"><button>Cancel</button></Link>
+          <Link to=""><button type='submit'>Accept</button></Link>
+          <Link to="/IT-support/open-tickets"><button type='submit'>Cancel</button></Link>
         </div>
       </div>
     </div>
