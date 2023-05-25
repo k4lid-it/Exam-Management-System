@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { SupportService } from './support.service';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -29,7 +29,7 @@ export class SupportController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('ticket-details')
-    viewTicketDetails(@Req() req: any, @Body('ticketID') ticketID:string){
+    viewTicketDetails(@Req() req: any, @Query() ticketID:string){
         if (req.user.userType === 'support'){
             return this.supportService.viewTicketDetails(ticketID);
         }else{

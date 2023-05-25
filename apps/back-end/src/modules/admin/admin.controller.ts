@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { AuthGuard } from '@nestjs/passport';
 import { changeInvigilatorDto } from 'src/dtos/changeInvigilator.dto';
@@ -40,7 +40,7 @@ export class AdminController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('ticket-details')
-    viewTicketDetails(@Req() req: any,@Body('ticketID') ticketID:string){
+    viewTicketDetails(@Req() req: any,@Query() ticketID:string){
         if (req.user.userType === 'admin'){
             return this.adminService.viewTicketDetails(ticketID);
             }else{

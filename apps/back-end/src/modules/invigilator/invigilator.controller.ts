@@ -59,7 +59,7 @@ export class InvigilatorController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('student-details')
-    viewStudentDetails(@Req() req: any, @Body('studentName') studentName:string ){
+    viewStudentDetails(@Req() req: any, @Query() studentName:string ){
         if (req.user.userType === 'invigilator'){
             return this.invigilatorService.viewStudentDetails(studentName);
             }else{
