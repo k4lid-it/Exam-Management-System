@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import './ITtickets.css';
 import HeaderNonAdmin from '../HeaderNonAdmin';
 
-function ITsupportPage() {
+function AdminITticketsPage() {
   // Mock data for IT support tickets
-  const ITSupportTicketData = [
+  const AdminITSupportTicketData = [
     {
       id: 1,
       room: 'Room A',
@@ -26,7 +26,7 @@ function ITsupportPage() {
   ];
 
   // Map over the IT support ticket data and create a table row for each ticket
-  const ticketRows = ITSupportTicketData.map((ticket) => (
+  const ticketRows = AdminITSupportTicketData.map((ticket) => (
     <tr key={ticket.id}>
       <td>
         <Link to={`/CloseTicket/${ticket.id}`}>View Ticket</Link>
@@ -63,4 +63,4 @@ function ITsupportPage() {
   );
 }
 
-export default ITsupportPage;
+export default AdminITticketsPage;

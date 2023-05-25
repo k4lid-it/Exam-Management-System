@@ -29,11 +29,13 @@ function App() {
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/Invigilator-home" element={<InvigilatorHomePage />} />
           <Route exact path="/exam-room-details" element={<ExamRoomDetailsPage />} />
-          <Route exact path="/exam-room/:roomId" element={<ExamRoomDetailsPage />} />
+          <Route exact path="/exam-room/:roomID" element={<ExamRoomDetailsPage />} />
           <Route exact path="/Admin-home" element={<AdminHomePage />} />
           <Route exact path="/AdminExamsPage" element={<AdminExamsPage />} />
           <Route exact path="/Accept-ticket" element={<Acceptticket />} />
-          <Route exact path="/Close-ticket" element={<Closeticket />} />
+          {/* <Route exact path="/CloseTicket" element={<Closeticket />} /> */}
+          <Route exact path="/CloseTicket/:ticketID" element={<Closeticket />} />
+
           <Route exact path="/IT-Support/Tickets" element={<TicketsPage />} />
           <Route exact path="/Login" element={<LoginPage />} />
           {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
