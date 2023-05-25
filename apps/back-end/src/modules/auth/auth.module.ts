@@ -16,20 +16,21 @@ import { Administrator } from 'src/entities/Administrator.entity';
 @Module({
   controllers: [AuthController],
   imports: [
-  InvigilatorModule,
-  TypeOrmModule.forFeature([invigilator]),
-  TypeOrmModule.forFeature([support]),
-  TypeOrmModule.forFeature([Administrator]),
-  PassportModule,
-  JwtModule.register({
-    secret: jwtConstants.secret,
-    signOptions: { expiresIn: '120s' },
-  })],
+    InvigilatorModule,
+    TypeOrmModule.forFeature([invigilator]),
+    TypeOrmModule.forFeature([support]),
+    TypeOrmModule.forFeature([Administrator]),
+    PassportModule,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '1h' },
+    })],
   providers: [
-  AuthService,
-  LocalStrategy,
-  JwtStrategy
-  ],})
+    AuthService,
+    LocalStrategy,
+    JwtStrategy
+  ],
+})
 export class AuthModule {
 
 

@@ -14,8 +14,9 @@ import Tickets from './components/Itsupport/Tickets';
 import HeaderAdmin from './components/HeaderAdmin';
 import nonAdminHeader from './components/HeaderNonAdmin';
 import Footer from './components/Footer';
-import NotFound from './components/NotFound';
+import NotFound from './components/notFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NotAllowed from './components/Unauthorized';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           {/* <Route exact path="/student-details" element={<StudentDetailsPage />} /> */}
           <Route exact path="/student-details/:seat" element={<StudentDetailsPage />} />
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
+          <Route path="/security-stop" element={<NotAllowed />} />
         </Routes>
       </div>
       <Footer />
