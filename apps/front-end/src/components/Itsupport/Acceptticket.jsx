@@ -59,6 +59,8 @@ export default function Acceptticket() {
         
         <div className="buttons">
           <Link to=""><button type='submit'>Accept</button></Link>
+          
+          {/* IMPORTAN! Change the link to the correct one, this link takes the user to the "IT-Support" open tickets page where it shows only Open tickets, but in case of an "Admin" user, it will show ALL tickets whether the ticket is Open, In-progress, orClosed. */}
           <Link to="/IT-support/open-tickets"><button type='submit'>Cancel</button></Link>
         </div>
       </div>

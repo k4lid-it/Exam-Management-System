@@ -9,6 +9,7 @@ import QRcodeScannerPage from './components/invigilator/QRcodeScannerPage';
 import AdminHomePage from './components/Admin/AdminHomePage';
 import AdminExamsPage from './components/Admin/AdminExamsPage';
 import AdminTicketsPage from './components/Admin/AdminTicketsPage';
+import AdminMyTicketsPage from './components/Admin/AdminMyTicketsPage';
 import Acceptticket from './components/Itsupport/Acceptticket';
 import Closeticket from './components/Itsupport/Closeticket';
 import AssignedTicketsPage from './components/Itsupport/AssignedTicketsPage';
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/Admin-home" element={<AdminHomePage />} />
           <Route exact path="/AdminExamsPage" element={<AdminExamsPage />} />
           <Route exact path="/Admin/Tickets" element={<AdminTicketsPage />} />
+          <Route exact path="/Admin/Assigned-Tickets" element={<AdminMyTicketsPage />} />
           <Route exact path="/Accept-ticket" element={<Acceptticket />} />
           <Route exact path="/Accept-ticket/:ticketID" element={<Acceptticket />} />
           {/* <Route exact path="/CloseTicket" element={<Closeticket />} /> */}
