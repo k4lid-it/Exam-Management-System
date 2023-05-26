@@ -125,7 +125,8 @@ function ExamRoom() {
                   <a href={`/student-details/${student.seat}`}
                     onClick={() => {
                       sessionStorage.setItem('selectedStudent', student.name);
-                      sessionStorage.setItem('selectedSubject', student.subject)
+                      sessionStorage.setItem('selectedSubject', student.subject);
+                      sessionStorage.setItem('selectedID', student.studentID);
                     }}>{student.name}</a>
                 </td>
                 <td>{student.subject}</td>

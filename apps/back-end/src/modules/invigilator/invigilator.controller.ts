@@ -71,7 +71,7 @@ export class InvigilatorController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('student-details')
-    writeReport(@Req() req: any, @Body('studentName') studentInfo: studentInfoDto) {
+    writeReport(@Req() req: any, @Body() studentInfo: studentInfoDto) {
         if (req.user.userType === 'invigilator') {
             return this.invigilatorService.writeReport(studentInfo);
         } else {

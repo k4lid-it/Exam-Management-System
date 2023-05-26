@@ -3,35 +3,13 @@ import './studentDetailsPage.css';
 import HeaderAdmin from '../HeaderAdmin';
 import HeaderNonAdmin from '../HeaderNonAdmin';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const StudentDetailsPage = () => {
-  const studentData = [
-    {
-      seat: 1,
-      studentName: 'HANI GHASSAN DARWICHEH',
-      studentID: 's190155298',
-      courseName: 'Data mining and warehousing',
-      courseCode: 'IT446',
-      CRN: '41882',
-      examTime: '3:30 PM - 5:30 PM',
-      roomNumber: '105',
-    },
-    {
-      seat: 2,
-      studentName: 'Abdullah Mohammed Zain Abdulrahman',
-      studentID: 's190053445',
-      courseName: 'Enterprise Systems',
-      courseCode: 'IT342',
-      CRN: '10301',
-      examTime: '6:00 PM - 8:00 PM',
-      roomNumber: '117',
-    },
-    // Add more student data here...
-  ];
-
 
   const [showTextInput, setShowTextInput] = useState(false);
   const [textInputValue, setTextInputValue] = useState('');
+
 
   const handleReportViolation = () => {
     setShowTextInput(true);
@@ -47,8 +25,20 @@ const StudentDetailsPage = () => {
   };
 
   const handleSubmit = () => {
-    // Perform actions with the submitted text input value, e.g., send it to the server
-    console.log('Submitted text:', textInputValue);
+    axios.post('http://localhost:4000/invigilator/student-details', {
+
+      studentID: sessionStorage.getItem("selectedID"),
+      subject: sessionStorage.getItem("selectedSubject"),
+      report: textInputValue
+
+    },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      });
+    console.log('Submitted text:', textInputValue, sessionStorage.getItem("selectedStudent"));
 
     // Reset the state
     setShowTextInput(false);
