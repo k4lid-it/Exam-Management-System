@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Acceptticket.css';
-import HeaderNonAdmin from '../HeaderNonAdmin';
+import HeaderIT from '../HeaderIT';
 
 export default function Acceptticket() {
   // Fetch ticket data from API or other source
@@ -22,7 +22,7 @@ export default function Acceptticket() {
 
   return (
     <div>
-      <HeaderNonAdmin />
+      <HeaderIT />
 
       <div className="container">
         <h2>IT Support Ticket</h2>
@@ -59,6 +59,8 @@ export default function Acceptticket() {
         
         <div className="buttons">
           <Link to=""><button type='submit'>Accept</button></Link>
+          
+          {/* IMPORTAN! Change the link to the correct one, this link takes the user to the "IT-Support" open tickets page where it shows only Open tickets, but in case of an "Admin" user, it will show ALL tickets whether the ticket is Open, In-progress, orClosed. */}
           <Link to="/IT-support/open-tickets"><button type='submit'>Cancel</button></Link>
         </div>
       </div>
