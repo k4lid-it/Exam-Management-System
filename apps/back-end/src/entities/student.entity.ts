@@ -39,5 +39,8 @@ export class student {
     @Column({ nullable: true })
     report: string;
 
+    @Column({ default: 'No' })
+    submitted: string;
+
 
 }
