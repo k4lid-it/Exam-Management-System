@@ -58,31 +58,31 @@ const StudentDetailsPage = () => {
   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
   const userRole = 'non-admin';
 
-  // const [examRoomData, setExamRoomData] = useState([]);
+  const [examRoomData, setExamRoomData] = useState([]);
 
-  // const stdInfo = sessionStorage.getItem("selectedStudent");
-  // const token = localStorage.getItem('auth');
+  const token = localStorage.getItem('auth');
 
-  // console.log(stdInfo);
-  // const url = `http://localhost:4000/invigilator/student-details?name=${stdInfo}`;
+  const url = `http://localhost:4000/invigilator/student-details?studentName=${sessionStorage.getItem("selectedStudent")}&subject=${sessionStorage.getItem("selectedSubject")}`;
 
-  // useEffect(() => {
-  //   fetch(url, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       if (data.message === "Unauthorized") { window.location.href = "../security-stop"; }
-  //       else { setExamRoomData(data); }
-  //     })
-  //     .catch(error => {
-  //       console.error('Error:', error);
-  //     });
+  useEffect(() => {
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "Unauthorized") { window.location.href = "../security-stop"; }
+        else {
+          setExamRoomData(data);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
 
-  // }, [token]);
+  }, [token]);
 
   return (
     <div>
@@ -125,7 +125,7 @@ const StudentDetailsPage = () => {
                 <table>
                   <tbody>
                     <tr>
-                      {/* <td>{HERE}</td> */}
+                      <td>{examRoomData.name}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -137,7 +137,7 @@ const StudentDetailsPage = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td>{studentData[0]?.studentID}</td>
+                      <td>{examRoomData.studentID}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -149,7 +149,7 @@ const StudentDetailsPage = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td>{studentData[0]?.courseName}</td>
+                      <td>{examRoomData.course}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -161,7 +161,7 @@ const StudentDetailsPage = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td>{studentData[0]?.courseCode}</td>
+                      <td>{examRoomData.subject}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -173,7 +173,7 @@ const StudentDetailsPage = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td>{studentData[0]?.CRN}</td>
+                      <td>{examRoomData.CRN}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -185,7 +185,7 @@ const StudentDetailsPage = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td>{studentData[0]?.examTime}</td>
+                      <td>{examRoomData.time}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -197,7 +197,7 @@ const StudentDetailsPage = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td>{studentData[0]?.roomNumber}</td>
+                      <td>{examRoomData.room}</td>
                     </tr>
                   </tbody>
                 </table>
