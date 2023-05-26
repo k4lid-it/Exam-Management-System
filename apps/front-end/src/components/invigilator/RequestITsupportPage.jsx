@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './RequestITsupportPage.css';
 import HeaderNonAdmin from "../HeaderNonAdmin";
+import axios from 'axios';
 
 const RequestITsupportPage = () => {
   const [selectedService, setSelectedService] = useState('');
@@ -9,79 +10,99 @@ const RequestITsupportPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form submission or validation logic here
+    axios.post("http://localhost:4000/invigilator/ticket", {
+
+      room: sessionStorage.getItem("selectedRoom"),
+      type: selectedService,
+      description: issueDescription,
+      seat: selectedSeat
+
+    },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
   };
+
+  const token = localStorage.getItem('auth');
+
+  const seatNumbers = JSON.parse(sessionStorage.getItem('seatNumbers'));
+
+  const optionElements = seatNumbers.map((seatNumber) => (
+    <option key={seatNumber} value={seatNumber}>
+      {seatNumber}
+    </option>
+  ));
 
 
 
   return (
-    
+
     <div>
-    <HeaderNonAdmin />
+      <HeaderNonAdmin />
 
-    <div className="form-container">
-      <h2>Request IT Support</h2>
-      <form onSubmit={handleSubmit}>
-        
-      <div className="form-row">
-          <label htmlFor="service-type">Service type:</label>
-          <div className="form-input">
-            <select
-              id="service-type"
-              value={selectedService}
-              onChange={(e) => setSelectedService(e.target.value)}
-              required
-            >
-              <option value="">Select</option>
-              <option value="1">Password</option>
-              <option value="2">Power Bank</option>
-              <option value="3">Network</option>
-              <option value="4">Other</option>
-              
-            </select>
+      <div className="form-container">
+        <h2>Request IT Support</h2>
+        <form onSubmit={handleSubmit}>
+
+          <div className="form-row">
+            <label htmlFor="service-type">Service type:</label>
+            <div className="form-input">
+              <select
+                id="service-type"
+                value={selectedService}
+                onChange={(e) => setSelectedService(e.target.value)}
+                required
+              >
+                <option value="">Select</option>
+                <option value="1">Password</option>
+                <option value="2">Power Bank</option>
+                <option value="3">Network</option>
+                <option value="4">Other</option>
+
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div className="form-row">
-          <label htmlFor="seat">Seat Number:</label>
-          <div className="form-input">
-            <select
-              id="seat"
-              value={selectedSeat}
-              onChange={(e) => setSelectedSeat(e.target.value)}
+          <div className="form-row">
+            <label htmlFor="seat">Seat Number:</label>
+            <div className="form-input">
+              <select
+                id="seat"
+                value={selectedSeat}
+                onChange={(e) => setSelectedSeat(e.target.value)}
               // required
-            >
-              <option value="">Select</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              {/* this data should represent actual student seat numbers in a room, I currently hard coded it */}
-            </select>
+              >
+                <option value="0">Select</option>
+                {optionElements}
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div className="form-row">
-          <label htmlFor="description">Issue Description:</label>
-          <div className="form-input">
-            <textarea
-              id="description"
-              value={issueDescription}
-              onChange={(e) => setIssueDescription(e.target.value)}
-              rows="4"
-              cols="50"
-              placeholder="Please describe the issue here...(Optional)"
-            ></textarea>
+          <div className="form-row">
+            <label htmlFor="description">Issue Description:</label>
+            <div className="form-input">
+              <textarea
+                id="description"
+                value={issueDescription}
+                onChange={(e) => setIssueDescription(e.target.value)}
+                rows="4"
+                cols="50"
+                placeholder="Please describe the issue here...(Optional)"
+              ></textarea>
+            </div>
           </div>
-        </div>
 
-        
+
           <div className="form-input">
             <button type="submit">Send</button>
           </div>
-       
-      </form>
+
+        </form>
+      </div>
     </div>
-  </div>
   );
 };
 

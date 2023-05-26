@@ -48,6 +48,11 @@ function ExamRoom() {
 
   }, [token]);
 
+  const seats = () => {
+    const seatNumbers = examRoomData.map((item) => item.seat);
+    sessionStorage.setItem('seatNumbers', JSON.stringify(seatNumbers));
+  }
+
   const handleSwitchToggle = (index) => {
     const confirmed = window.confirm("Are you sure?");
     if (confirmed) {
@@ -101,7 +106,9 @@ function ExamRoom() {
         <Link to="../QR-code-scanner">
           <button className="btn">Take Attendance</button>
         </Link>
-        <Link to="/request-it-support">
+        <Link to="/request-it-support"
+          onClick={seats()}
+        >
           <button className="btn">Request IT Support</button>
         </Link>
 
