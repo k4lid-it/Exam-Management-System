@@ -1,7 +1,12 @@
  .studentName {
     background-color: #fff;
 }
-
+/* 
 a {
     color: #fff;
+} */
+
+.examPass {
+    background-color: #fff;
+    max-width: 40px;
 }
