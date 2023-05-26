@@ -113,6 +113,8 @@ export default function Closeticket() {
           </div>
           <div className='close'>
             <button type='submit'>Close Ticket</button>
+              
+              {/* IMPORTAN! Change the link to the correct one, this link takes the user to the "IT-Support" open tickets page where it shows only Open tickets, but in case of an "Admin" user, it will show ALL tickets whether the ticket is Open, In-progress, orClosed. */}
             <Link to="/IT-support/assigned-tickets">  <button type='submit'>Cancel</button>  </Link>
           </div>
         </form>

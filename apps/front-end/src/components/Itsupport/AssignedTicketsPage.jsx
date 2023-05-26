@@ -13,6 +13,7 @@ function ITsupportPage() {
       time: '10:00 AM',
       examPeriod: 'Morning',
       service: 'Service 1',
+      state: 'In progress'
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ function ITsupportPage() {
       time: '2:00 PM',
       examPeriod: 'Afternoon',
       service: 'Service 2',
+      state: 'Closed',
     },
     // Add more IT support ticket data here...
   ];
@@ -28,14 +30,25 @@ function ITsupportPage() {
   // Map over the IT support ticket data and create a table row for each ticket
   const ticketRows = ITSupportTicketData.map((ticket) => (
     <tr key={ticket.id}>
-      <td>
+
+      {/* <td>
         <Link to={`/CloseTicket/${ticket.id}`}>View Ticket</Link>
-      </td>
+      </td> */}
+
+    <td>
+      {ticket.state === 'In progress' ? (
+        <Link to={`/closeTicket/${ticket.id}`}>View Ticket</Link>
+      ) : (
+        <span></span>
+      )}
+    </td>
+
       <td>{ticket.room}</td>
       <td>{ticket.date}</td>
       <td>{ticket.time}</td>
       <td>{ticket.examPeriod}</td>
       <td>{ticket.service}</td>
+      <td>{ticket.state}</td>
     </tr>
   ));
 
@@ -57,6 +70,7 @@ function ITsupportPage() {
             <th>Time</th>
             <th>Exam Period</th>
             <th>Service</th>
+            <th>State</th>
           </tr>
         </thead>
         <tbody>{ticketRows}</tbody>
