@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Itsupport/ITtickets.css';
-import HeaderNonAdmin from '../HeaderNonAdmin';
+import HeaderAdmin from '../HeaderAdmin';
 
 function AdminMyTickets() {
   // Mock data for IT support tickets
@@ -41,11 +41,11 @@ function AdminMyTickets() {
 
   return (
     <div>
-    <HeaderNonAdmin />
+    <HeaderAdmin />
 
     <div className='ITsupportPage-container'>
 
-    <Link to="/admin/tickets"><button className='btn'>view Open Tickets</button></Link>
+    <Link to="/admin/tickets"><button className='btn'>view All Tickets</button></Link>
 
       <h1>IT support tickets assigned to me:</h1>
       <table>

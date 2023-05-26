@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Acceptticket.css';
-import HeaderNonAdmin from '../HeaderNonAdmin';
+import HeaderIT from '../HeaderIT';
 
 export default function Acceptticket() {
   // Fetch ticket data from API or other source
@@ -22,7 +22,7 @@ export default function Acceptticket() {
 
   return (
     <div>
-      <HeaderNonAdmin />
+      <HeaderIT />
 
       <div className="container">
         <h2>IT Support Ticket</h2>
