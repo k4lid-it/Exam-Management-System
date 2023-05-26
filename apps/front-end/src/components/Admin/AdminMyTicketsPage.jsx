@@ -13,6 +13,7 @@ function AdminMyTickets() {
       time: '10:00 AM',
       examPeriod: 'Morning',
       service: 'Service 1',
+      state: 'closed',
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ function AdminMyTickets() {
       time: '2:00 PM',
       examPeriod: 'Afternoon',
       service: 'Service 2',
+      state: 'In progress',
     },
     // Add more IT support ticket data here...
   ];
@@ -29,13 +31,18 @@ function AdminMyTickets() {
   const ticketRows = ITSupportTicketData.map((ticket) => (
     <tr key={ticket.id}>
       <td>
-        <Link to={`/CloseTicket/${ticket.id}`}>View Ticket</Link>
-      </td>
+      {ticket.state === 'In progress' ? (
+        <Link to={`/closeTicket/${ticket.id}`}>View Ticket</Link>
+      ) : (
+        <span></span>
+      )}
+    </td>
       <td>{ticket.room}</td>
       <td>{ticket.date}</td>
       <td>{ticket.time}</td>
       <td>{ticket.examPeriod}</td>
       <td>{ticket.service}</td>
+      <td>{ticket.state}</td>
     </tr>
   ));
 
