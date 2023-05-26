@@ -6,6 +6,7 @@ import { createTicketDto } from 'src/dtos/createTicket.dto';
 import { generatePasswordDto } from 'src/dtos/generatePassword.dto';
 import { studentInfoDto } from 'src/dtos/studentInfo.dto';
 import { markPresentSwitchDto } from 'src/dtos/markPresentSwitch.dto';
+import { studentDetailsDto } from 'src/dtos/studentDetails.dto';
 
 @Controller('invigilator')
 export class InvigilatorController {
@@ -60,9 +61,9 @@ export class InvigilatorController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('student-details')
-    viewStudentDetails(@Req() req: any, @Query() studentName: string) {
+    viewStudentDetails(@Req() req: any, @Query() studentDetailsDto: studentDetailsDto) {
         if (req.user.userType === 'invigilator') {
-            return this.invigilatorService.viewStudentDetails(studentName);
+            return this.invigilatorService.viewStudentDetails(studentDetailsDto);
         } else {
             throw new UnauthorizedException();
         }
@@ -70,7 +71,7 @@ export class InvigilatorController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('student-details')
-    writeReport(@Req() req: any, @Body('studentName') studentInfo: studentInfoDto) {
+    writeReport(@Req() req: any, @Body() studentInfo: studentInfoDto) {
         if (req.user.userType === 'invigilator') {
             return this.invigilatorService.writeReport(studentInfo);
         } else {

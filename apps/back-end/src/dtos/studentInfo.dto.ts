@@ -1,7 +1,5 @@
 export class studentInfoDto {
-    
-    studentID:string;
-    subject:string;
-    report:string;
-
+    studentID: string;
+    subject: string;
+    report: string;
 }

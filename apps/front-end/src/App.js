@@ -17,7 +17,7 @@ import OpenTicketsITsupportPage from './components/Itsupport/OpenTicketsPage';
 import HeaderAdmin from './components/HeaderAdmin';
 import nonAdminHeader from './components/HeaderNonAdmin';
 import Footer from './components/Footer';
-import NotFound from './components/NotFound';
+import NotFound from './components/notFound';
 import RequestITsupportPage from './components/invigilator/RequestITsupportPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NotAllowed from './components/Unauthorized';

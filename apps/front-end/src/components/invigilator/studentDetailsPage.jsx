@@ -1,36 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './studentDetailsPage.css';
 import HeaderAdmin from '../HeaderAdmin';
 import HeaderNonAdmin from '../HeaderNonAdmin';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const StudentDetailsPage = () => {
-  const studentData = [
-    {
-      seat: 1,
-      studentName: 'HANI GHASSAN DARWICHEH',
-      studentID: 's190155298',
-      courseName: 'Data mining and warehousing',
-      courseCode: 'IT446',
-      CRN: '41882',
-      examTime: '3:30 PM - 5:30 PM',
-      roomNumber: '105',
-    },
-    {
-      seat: 2,
-      studentName: 'Abdullah Mohammed Zain Abdulrahman',
-      studentID: 's190053445',
-      courseName: 'Enterprise Systems',
-      courseCode: 'IT342',
-      CRN: '10301',
-      examTime: '6:00 PM - 8:00 PM',
-      roomNumber: '117',
-    },
-    // Add more student data here...
-  ];
 
   const [showTextInput, setShowTextInput] = useState(false);
   const [textInputValue, setTextInputValue] = useState('');
+
 
   const handleReportViolation = () => {
     setShowTextInput(true);
@@ -46,8 +25,20 @@ const StudentDetailsPage = () => {
   };
 
   const handleSubmit = () => {
-    // Perform actions with the submitted text input value, e.g., send it to the server
-    console.log('Submitted text:', textInputValue);
+    axios.post('http://localhost:4000/invigilator/student-details', {
+
+      studentID: sessionStorage.getItem("selectedID"),
+      subject: sessionStorage.getItem("selectedSubject"),
+      report: textInputValue
+
+    },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      });
+    console.log('Submitted text:', textInputValue, sessionStorage.getItem("selectedStudent"));
 
     // Reset the state
     setShowTextInput(false);
@@ -56,6 +47,32 @@ const StudentDetailsPage = () => {
 
   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
   const userRole = 'non-admin';
+
+  const [examRoomData, setExamRoomData] = useState([]);
+
+  const token = localStorage.getItem('auth');
+
+  const url = `http://localhost:4000/invigilator/student-details?studentName=${sessionStorage.getItem("selectedStudent")}&subject=${sessionStorage.getItem("selectedSubject")}`;
+
+  useEffect(() => {
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "Unauthorized") { window.location.href = "../security-stop"; }
+        else {
+          setExamRoomData(data);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+  }, [token]);
 
   return (
     <div>
@@ -66,7 +83,7 @@ const StudentDetailsPage = () => {
           <Link to="/QR-code-scanner">
             <button className="btn">Generate Exam Password</button>
           </Link>
-            <button className="btn" onClick={handleReportViolation}>
+          <button className="btn" onClick={handleReportViolation}>
             Report Violation
           </button>
         </div>
@@ -90,94 +107,94 @@ const StudentDetailsPage = () => {
           </div>
         )}
 
-       <table className="details-table">
-        <tbody>
-          <tr>
-            <td>Student Name:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.studentName}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Student ID:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.studentID}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Course Name:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.courseName}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Course Code:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.courseCode}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>CRN:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.CRN}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Exam Time:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.examTime}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Room Number:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.roomNumber}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>        
+        <table className="details-table">
+          <tbody>
+            <tr>
+              <td>Student Name:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{examRoomData.name}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Student ID:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{examRoomData.studentID}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Course Name:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{examRoomData.course}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Course Code:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{examRoomData.subject}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>CRN:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{examRoomData.CRN}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Exam Time:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{examRoomData.time}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Room Number:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{examRoomData.room}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );

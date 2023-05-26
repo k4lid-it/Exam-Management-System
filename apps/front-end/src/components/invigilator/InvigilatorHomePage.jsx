@@ -28,7 +28,7 @@ function InvigilatorHomePage() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data.message);
+        // console.log(data.message);
         if (data.message === "Unauthorized") { window.location.href = "../security-stop"; }
         else { setExamRoomData(data); }
       })
