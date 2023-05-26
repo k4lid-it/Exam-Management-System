@@ -21,7 +21,7 @@ const Nav = () => {
         </li>
     </Link>
     
-    <Link to="/Admin-home">
+    <Link to="/IT-Support/assigned-tickets">
         <li className="logo-item"> 
           <img src={process.env.PUBLIC_URL + '/home-button-icon.png'} alt="Home Logo" />
         </li>
@@ -30,9 +30,8 @@ const Nav = () => {
         <img className='logo-item' src={process.env.PUBLIC_URL + '/dropdown-button-icon.png'} alt="dropdown icon" />
           {isOpen && (
             <ul className="dropdown-menu">
-          <Link to="/AdminExamsPage">    <li>Exam rooms</li>     </Link>
-          <Link to="/Admin/assigned-Tickets">    <li>My tickets</li>     </Link>
-          <Link to="/Admin/Tickets">    <li>All tickets</li>     </Link>
+          <Link to="/IT-support/assigned-Tickets">    <li>My tickets</li>     </Link>
+          <Link to="/IT-support/open-Tickets">    <li>Open tickets</li>     </Link>
 
             </ul>
           )}

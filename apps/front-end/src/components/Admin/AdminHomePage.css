@@ -23,7 +23,7 @@ body {
   font-size: 1.25rem; /* Increase the font size for larger buttons */
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  width: 20rem;
+  width: 25rem;
   max-width: 90%; /* Set a maximum width to make the buttons responsive */
 }
 

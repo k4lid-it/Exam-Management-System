@@ -11,11 +11,15 @@ function HomePage() {
       <div className="admin-home-page-buttons">
         
         <Link to="/AdminExamsPage">
-          <button>View Exams</button>
+          <button>View Exam Rooms</button>
         </Link>
         
-        <Link to="/tickets">
-          <button>View IT Support Tickets</button>
+        <Link to="/admin/tickets">
+          <button>View all IT Support Tickets</button>
+        </Link>
+
+        <Link to="/admin/assigned-tickets">
+          <button>View my IT Support Tickets</button>
         </Link>
         
       </div>

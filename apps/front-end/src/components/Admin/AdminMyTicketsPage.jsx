@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ITtickets.css';
-import HeaderIT from '../HeaderIT';
+import '../Itsupport/ITtickets.css';
+import HeaderAdmin from '../HeaderAdmin';
 
-function ITsupportPage() {
+function AdminMyTickets() {
   // Mock data for IT support tickets
   const ITSupportTicketData = [
     {
@@ -41,11 +41,11 @@ function ITsupportPage() {
 
   return (
     <div>
-    <HeaderIT />
+    <HeaderAdmin />
 
     <div className='ITsupportPage-container'>
 
-    <Link to="/IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link>
+    <Link to="/admin/tickets"><button className='btn'>view All Tickets</button></Link>
 
       <h1>IT support tickets assigned to me:</h1>
       <table>
@@ -67,4 +67,4 @@ function ITsupportPage() {
   );
 }
 
-export default ITsupportPage;
+export default AdminMyTickets;

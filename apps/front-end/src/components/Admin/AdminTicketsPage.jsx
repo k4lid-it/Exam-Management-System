@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Itsupport/ITtickets.css';
-import HeaderNonAdmin from '../HeaderNonAdmin';
+import HeaderAdmin from '../HeaderAdmin';
 
-function AdminTicketsPage() {
+function OpenTicketsITsupportPage() {
   // Mock data for IT support tickets
-  const AdminTicketData = [
+  const ITSupportTicketData = [
     {
       id: 1,
       room: '111',
@@ -53,58 +53,136 @@ function AdminTicketsPage() {
       },
       {
         id: 6,
+        room: '116',
+        date: '2023-05-21',
+        time: '2:00 PM',
+        examPeriod: '8:00 - 10:00 AM',
+        service: 'Power Bank',
+        state: 'Closed',
+      },
+     
+    {
+      id: 1,
+      room: '111',
+      date: '2023-05-21',
+      time: '10:00 AM',
+      examPeriod: '8:00 - 10:00 AM',
+      service: 'Password',
+      state: 'Open',
+    },
+    {
+      id: 2,
+      room: '112',
+      date: '2023-05-21',
+      time: '2:00 PM',
+      examPeriod: '8:00 - 10:00 AM',
+      service: 'Power Bank',
+      state: 'Open',
+    },
+    {
+        id: 3,
+        room: '113',
+        date: '2023-05-21',
+        time: '2:00 PM',
+        examPeriod: '8:00 - 10:00 AM',
+        service: 'Network',
+        state: 'Open',
+      },
+      {
+        id: 4,
+        room: '114',
+        date: '2023-05-21',
+        time: '2:00 PM',
+        examPeriod: '8:00 - 10:00 AM',
+        service: 'Other',
+        state: 'Open',
+      },
+      {
+        id: 5,
+        room: '115',
+        date: '2023-05-21',
+        time: '2:00 PM',
+        examPeriod: '8:00 - 10:00 AM',
+        service: 'Power Bank',
+        state: 'Open',
+      },
+      {
+        id: 6,
+        room: '116',
+        date: '2023-05-21',
+        time: '2:00 PM',
+        examPeriod: '8:00 - 10:00 AM',
+        service: 'Power Bank',
+        state: 'Closed',
+      },
+
+      {
+        id: 1,
         room: '111',
         date: '2023-05-21',
         time: '10:00 AM',
         examPeriod: '8:00 - 10:00 AM',
         service: 'Password',
-        state: 'in Progress',
+        state: 'Closed',
       },
       {
-        id: 7,
+        id: 2,
         room: '112',
         date: '2023-05-21',
         time: '2:00 PM',
         examPeriod: '8:00 - 10:00 AM',
         service: 'Power Bank',
-        state: 'in Progress',
+        state: 'in-progress',
       },
       {
-          id: 8,
+          id: 3,
           room: '113',
-          date: '2023-05-20',
+          date: '2023-05-21',
           time: '2:00 PM',
           examPeriod: '8:00 - 10:00 AM',
           service: 'Network',
-          state: 'Closed',
+          state: 'in-progress',
         },
         {
-          id: 9,
+          id: 4,
           room: '114',
-          date: '2023-05-20',
+          date: '2023-05-21',
           time: '2:00 PM',
           examPeriod: '8:00 - 10:00 AM',
           service: 'Other',
-          state: 'Closed',
+          state: 'closed',
         },
         {
-          id: 10,
+          id: 5,
           room: '115',
-          date: '2023-05-18',
+          date: '2023-05-21',
           time: '2:00 PM',
           examPeriod: '8:00 - 10:00 AM',
           service: 'Power Bank',
-          state: 'Closed',
+          state: 'closed',
         },
-    // Add more IT support ticket data here...
+        {
+          id: 6,
+          room: '116',
+          date: '2023-05-21',
+          time: '2:00 PM',
+          examPeriod: '8:00 - 10:00 AM',
+          service: 'Power Bank',
+          state: 'in-progress',
+        },
+    // temporary IT support ticket data here...
   ];
 
   // Map over the IT support ticket data and create a table row for each ticket
-  const ticketRows = AdminTicketData.map((ticket) => (
+  const ticketRows = ITSupportTicketData.map((ticket) => (
     <tr key={ticket.id}>
       <td>
+      {ticket.state === 'Open' ? (
         <Link to={`/accept-ticket/${ticket.id}`}>View Ticket</Link>
-      </td>
+      ) : (
+        <span></span>
+      )}
+    </td>
       <td>{ticket.room}</td>
       <td>{ticket.date}</td>
       <td>{ticket.time}</td>
@@ -116,9 +194,12 @@ function AdminTicketsPage() {
 
   return (
     <div>
-    <HeaderNonAdmin />
+    <HeaderAdmin />
 
     <div className='ITsupportPage-container'>
+        
+    <Link to="/admin/assigned-tickets"><button className='btn'>view my Tickets</button></Link>
+
       <h1>All IT support requests:</h1>
       <table>
         <thead>
@@ -135,8 +216,10 @@ function AdminTicketsPage() {
         <tbody>{ticketRows}</tbody>
       </table>
     </div>
+    {/* <Link to="/IT-support/assigned-tickets"><button className='btn'>view my Tickets</button></Link> */}
+
     </div>
   );
 }
 
-export default AdminTicketsPage;
+export default OpenTicketsITsupportPage;

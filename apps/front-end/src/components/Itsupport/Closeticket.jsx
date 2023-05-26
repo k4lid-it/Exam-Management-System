@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Closeticket.css';
-import HeaderNonAdmin from '../HeaderNonAdmin';
+import HeaderIT from '../HeaderIT';
 import { Link } from 'react-router-dom';
 
 export default function Closeticket() {
@@ -40,7 +40,7 @@ export default function Closeticket() {
 
   return (
     <div>
-      <HeaderNonAdmin />
+      <HeaderIT />
     <div className='container'>
       <div className='item'>
         <h2>it support ticket</h2>
