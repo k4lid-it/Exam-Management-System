@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 import axios from 'axios';
-
-
+import Joi from "joi";
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [userEmail, setUsername] = useState();
+  const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
-
+  let[errorsList,setErrorsList]=useState([]);
+  function validateForm()
+ {
+  let schema=Joi.object({
+    userEmail:Joi.string().email({tlds:{allow: false}}).required(),
+    password:Joi.string().required()
+  })
+  return schema.validate({userEmail,password},{abortEarly:false})
+ }
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -22,8 +29,28 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+  let validateResult=validateForm()
+  if(validateResult.error==null) {
+    axios.post('http://localhost:4000/auth/login', { email: userEmail, password: password})
+      .then(response => {
 
+        //// Save the token in a cookie
+        //// document.cookie = `authcookie=${response.data.access_token
+        ////   }; expires=130; path=/`;
 
+        //Save the token in a local storage
+        localStorage.setItem('auth', response.data.access_token);
+        document.location.href = "Invigilator-home";
+      })
+      .catch(error => {
+        // Log the error
+        console.error(error);
+      });
+  }
+  else {
+setErrorsList(validateResult.error.details)
+console.log(validateResult.error.details);
+  }
     // fetch('http://localhost:4000/auth/login', {
     //   method: 'POST',
     //   // headers: {
@@ -45,24 +72,7 @@ function Login() {
     //     console.error('Error:', error);
     //   });
 
-    axios.post('http://localhost:4000/auth/login', {
-      email: username,
-      password: password
-    })
-      .then(response => {
-
-        //// Save the token in a cookie
-        //// document.cookie = `authcookie=${response.data.access_token
-        ////   }; expires=130; path=/`;
-
-        //Save the token in a local storage
-        localStorage.setItem('auth', response.data.access_token);
-        document.location.href = "Invigilator-home";
-      })
-      .catch(error => {
-        // Log the error
-        console.error(error);
-      });
+   
 
   }
     ;
@@ -73,15 +83,18 @@ function Login() {
         <img src="seuLogo.png" alt="Logo" className="logo" />
           <p className="portal-title">SEU Exam Portal</p>
           <h1 className="title">Login using SEU account</h1>
-  
+          {errorsList.map((erroor,i)=> 
+          <div className="alert alert-danger text-danger" key={i}>
+            {erroor.message}
+          </div>)}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Useremail</label>
               <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
+                type="email"
+                id="userEmail"
+                name="userEmail"
+                value={userEmail}
                 onChange={handleUsernameChange}
               />
             </div>
