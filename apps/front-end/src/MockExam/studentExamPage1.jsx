@@ -43,7 +43,7 @@ export default function QRCodeGeneratorStudent1() {
       />
 
 <div className="input-button">
-        <input type="text" value={textValue} placeholder="Enter some text" />
+        <input type="text" value={textValue} placeholder="Enter Password" />
         <button>Submit</button>
       </div>
 

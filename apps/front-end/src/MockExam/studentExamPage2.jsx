@@ -6,6 +6,8 @@ import './mockExam.css';
 export default function QRCodeGeneratorStudent2() {
   const [studentData, setStudentData] = useState({ id: '', name: '' });
   const [qrCodeValue, setQRCodeValue] = useState('');
+  const [textValue, setTextValue] = useState('');
+
 
   useEffect(() => {
     // Simulating the fetching of student data from the backend
@@ -38,6 +40,13 @@ export default function QRCodeGeneratorStudent2() {
     //   value='seu.edu.sa'
       size={390}
       />
+
+
+<div className="input-button">
+        <input type="text" value={textValue} placeholder="Enter Password" />
+        <button>Submit</button>
+      </div>
+
     </div>
   );
 }
