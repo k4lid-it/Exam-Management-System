@@ -44,7 +44,7 @@ export class InvigilatorService {
     if (exams.length > 0) {
       return exams;
     } else {
-      throw new Error('no exams found');
+      throw new Error('No exams found');
     }
   }
 
@@ -53,7 +53,7 @@ export class InvigilatorService {
     if (students.length > 0) {
       return students;
     } else {
-      throw new Error('no students found');
+      throw new Error('No students found');
     }
   }
 
@@ -77,10 +77,10 @@ export class InvigilatorService {
 
     if (currentStudentRecord) {
       if (currentStudentRecord.room === currentExam.room) {
-        currentStudentRecord.attendance = 'present';
+        currentStudentRecord.attendance = 'Present';
         this.studentRepository.save(currentStudentRecord);
       } else {
-        throw new Error("this is not the studnet's room please go to room " + currentStudentRecord.room);
+        throw new Error("This is not the studnet's room please go to room " + currentStudentRecord.room);
       }
     } else {
       throw new Error('Student doesnt have an exam at the current time');
@@ -134,7 +134,13 @@ export class InvigilatorService {
 
   async markPresnetSwitch(markPresentSwitch: markPresentSwitchDto) {
     const student = await this.studentRepository.findOne({ where: { name: markPresentSwitch.name, subject: markPresentSwitch.subject } });
-    student.attendance = 'present';
+    student.attendance = 'Present';
+    this.studentRepository.save(student);
+  }
+
+  async markAbsentSwitch(markPresentSwitch: markPresentSwitchDto) {
+    const student = await this.studentRepository.findOne({ where: { name: markPresentSwitch.name, subject: markPresentSwitch.subject } });
+    student.attendance = 'Absent';
     this.studentRepository.save(student);
   }
 
