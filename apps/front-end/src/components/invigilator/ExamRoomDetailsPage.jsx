@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./ExamRoomDetailsPage.css";
 import HeaderNonAdmin from "../HeaderNonAdmin";
 import HeaderAdmin from "../HeaderAdmin";
@@ -8,33 +8,6 @@ import HeaderAdmin from "../HeaderAdmin";
 function ExamRoom() {
   // const { studentId } = useParams();
   const students = [
-    // Static student data
-    // { seat: 1, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", Attendance: "Present" },
-    // { seat: 2, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", Attendance: "Absent" },
-    // { seat: 3, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 4, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 5, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 6, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 7, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 8, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 9, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 10, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 11, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 12, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 13, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 14, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 15, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 16, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 17, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 18, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 19, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 20, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 21, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 22, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-    // { seat: 23, name: "HANI GHASSAN DARWICHEH", course: "IT446", College: "CCI", status: "Present" },
-    // { seat: 24, name: "Abdullah Mohammed Zain Abdulrahman", course: "IT342", College: "CCI", status: "Absent" },
-
-    //this is temporary data, later we will fetch it from the server
   ];
 
 
@@ -57,18 +30,15 @@ function ExamRoom() {
 
 
   const url = `http://localhost:4000/invigilator/Room?room=${room}&time=${time}`;
-  console.log(url);
   useEffect(() => {
     fetch(url, {
       headers: {
-        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
-        // "room": "111"
       },
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data.message);
         if (data.message === "Unauthorized") { window.location.href = "../security-stop"; }
         else { setExamRoomData(data); }
       })
@@ -152,7 +122,11 @@ function ExamRoom() {
               <tr className="student-row" key={index}>
                 <td>{student.seat}</td>
                 <td id="stdname">
-                  <a href={`/student-details/${student.seat}`}>{student.name}</a>
+                  <a href={`/student-details/${student.seat}`}
+                    onClick={() => {
+                      sessionStorage.setItem('selectedStudent', student.name);
+                      sessionStorage.setItem('selectedSubject', student.subject)
+                    }}>{student.name}</a>
                 </td>
                 <td>{student.subject}</td>
                 <td>{student.college}</td>

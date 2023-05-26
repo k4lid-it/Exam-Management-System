@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './studentDetailsPage.css';
 import HeaderAdmin from '../HeaderAdmin';
 import HeaderNonAdmin from '../HeaderNonAdmin';
@@ -29,6 +29,7 @@ const StudentDetailsPage = () => {
     // Add more student data here...
   ];
 
+
   const [showTextInput, setShowTextInput] = useState(false);
   const [textInputValue, setTextInputValue] = useState('');
 
@@ -57,6 +58,32 @@ const StudentDetailsPage = () => {
   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
   const userRole = 'non-admin';
 
+  // const [examRoomData, setExamRoomData] = useState([]);
+
+  // const stdInfo = sessionStorage.getItem("selectedStudent");
+  // const token = localStorage.getItem('auth');
+
+  // console.log(stdInfo);
+  // const url = `http://localhost:4000/invigilator/student-details?name=${stdInfo}`;
+
+  // useEffect(() => {
+  //   fetch(url, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       if (data.message === "Unauthorized") { window.location.href = "../security-stop"; }
+  //       else { setExamRoomData(data); }
+  //     })
+  //     .catch(error => {
+  //       console.error('Error:', error);
+  //     });
+
+  // }, [token]);
+
   return (
     <div>
       {userRole === 'admin' ? <HeaderAdmin /> : <HeaderNonAdmin />}
@@ -66,7 +93,7 @@ const StudentDetailsPage = () => {
           <Link to="/QR-code-scanner">
             <button className="btn">Generate Exam Password</button>
           </Link>
-            <button className="btn" onClick={handleReportViolation}>
+          <button className="btn" onClick={handleReportViolation}>
             Report Violation
           </button>
         </div>
@@ -90,94 +117,94 @@ const StudentDetailsPage = () => {
           </div>
         )}
 
-       <table className="details-table">
-        <tbody>
-          <tr>
-            <td>Student Name:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.studentName}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Student ID:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.studentID}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Course Name:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.courseName}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Course Code:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.courseCode}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>CRN:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.CRN}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Exam Time:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.examTime}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Room Number:</td>
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>{studentData[0]?.roomNumber}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>        
+        <table className="details-table">
+          <tbody>
+            <tr>
+              <td>Student Name:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      {/* <td>{HERE}</td> */}
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Student ID:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{studentData[0]?.studentID}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Course Name:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{studentData[0]?.courseName}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Course Code:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{studentData[0]?.courseCode}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>CRN:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{studentData[0]?.CRN}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Exam Time:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{studentData[0]?.examTime}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>Room Number:</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{studentData[0]?.roomNumber}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
