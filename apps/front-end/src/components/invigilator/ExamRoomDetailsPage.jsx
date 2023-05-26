@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./ExamRoomDetailsPage.css";
 import HeaderNonAdmin from "../HeaderNonAdmin";
 import HeaderAdmin from "../HeaderAdmin";
+import axios from 'axios';
 
 
 function ExamRoom() {
@@ -56,9 +57,23 @@ function ExamRoom() {
   const handleSwitchToggle = (index) => {
     const confirmed = window.confirm("Are you sure?");
     if (confirmed) {
-      const newSwitchState = [...switchState];
-      newSwitchState[index] = !newSwitchState[index];
-      setSwitchState(newSwitchState);
+      const selectedStudent = examRoomData[index];
+      const { name, subject } = selectedStudent;
+      axios.post(`http://localhost:4000/invigilator/Room`,
+        {
+          name: name,
+          subject: subject
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      // const newSwitchState = [...switchState];
+      // newSwitchState[index] = !newSwitchState[index];
+      // setSwitchState(newSwitchState);
     } else {
       const checkbox = document.getElementById(`checkbox-${index}`);
       checkbox.checked = !checkbox.checked;
