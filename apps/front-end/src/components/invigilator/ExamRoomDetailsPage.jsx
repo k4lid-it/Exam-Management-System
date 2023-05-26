@@ -12,7 +12,7 @@ function ExamRoom() {
   ];
 
 
-  const [switchState, setSwitchState] = useState(students.map(() => false));
+
   const [examRoomData, setExamRoomData] = useState([]);
 
   // const handleSwitchToggle = (index) => {
@@ -54,26 +54,45 @@ function ExamRoom() {
     sessionStorage.setItem('seatNumbers', JSON.stringify(seatNumbers));
   }
 
-  const handleSwitchToggle = (index) => {
+
+  const handleSwitchToggle = async (index, boolean) => {
     const confirmed = window.confirm("Are you sure?");
     if (confirmed) {
+
       const selectedStudent = examRoomData[index];
       const { name, subject } = selectedStudent;
-      axios.post(`http://localhost:4000/invigilator/Room`,
-        {
-          name: name,
-          subject: subject
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+      if (!boolean)
+        // Checkbox is checked, mark the student as Present
+        await axios.post(
+          "http://localhost:4000/invigilator/Room",
+          {
+            name: name,
+            subject: subject,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
           }
-        }
-      )
-      // const newSwitchState = [...switchState];
-      // newSwitchState[index] = !newSwitchState[index];
-      // setSwitchState(newSwitchState);
+        );
+      else {
+        // Checkbox is unchecked, mark the student as Absent
+        await axios.post(
+          "http://localhost:4000/invigilator/Room/absent",
+          {
+            name: name,
+            subject: subject,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }
+
     } else {
       const checkbox = document.getElementById(`checkbox-${index}`);
       checkbox.checked = !checkbox.checked;
@@ -81,6 +100,8 @@ function ExamRoom() {
   };
 
 
+  //------------------------------------------
+  ;
 
 
 
@@ -157,8 +178,9 @@ function ExamRoom() {
                   <input
                     id={`checkbox-${index}`}
                     type="checkbox"
-                    className={`status-checkbox ${switchState[index] ? "checked" : ""}`}
-                    onChange={() => handleSwitchToggle(index)}
+                    className={`status-checkbox ${index}`}
+                    defaultChecked={student.attendance === "Present"} // Set the checked attribute based on the switchState
+                    onChange={() => handleSwitchToggle(index, student.attendance === "Present")}
                   />
 
                 </td>
@@ -170,6 +192,6 @@ function ExamRoom() {
       </div>
     </div >
   );
-}
 
+}
 export default ExamRoom;

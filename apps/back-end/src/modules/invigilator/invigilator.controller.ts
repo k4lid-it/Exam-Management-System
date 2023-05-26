@@ -46,7 +46,7 @@ export class InvigilatorController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Post('Room')
+    @Post('Room/absent')
     markAbsentSwitch(@Req() req: any, @Body() markAbsent: markPresentSwitchDto) {
         if (req.user.userType === 'invigilator') {
             return this.invigilatorService.markAbsentSwitch(markAbsent);
