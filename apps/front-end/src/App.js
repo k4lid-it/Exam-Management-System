@@ -22,6 +22,12 @@ import RequestITsupportPage from './components/invigilator/RequestITsupportPage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NotAllowed from './components/Unauthorized';
 
+import QRCodeGeneratorStudent1 from './MockExam/studentExamPage1';
+import QRCodeGeneratorStudent2 from './MockExam/studentExamPage2';
+import QRCodeGeneratorStudent1submit from './MockExam/mockExamSubmit1';
+import QRCodeGeneratorStudent2submit from './MockExam/mockExamSubmit2';
+import QRCodeGeneratorExamSubmitted from './MockExam/mockExamSubmitted';
+
 
 function App() {
   return (
@@ -50,6 +56,13 @@ function App() {
           <Route exact path="/QR-code-scanner" element={<QRcodeScannerPage />} />
           <Route path="/security-stop" element={<NotAllowed />} />
           <Route exact path="/Request-IT-support" element={<RequestITsupportPage />} />
+
+          <Route exact path="/mock-exam/student/1" element={<QRCodeGeneratorStudent1 />} />
+          <Route exact path="/mock-exam/student/2" element={<QRCodeGeneratorStudent2 />} />
+          <Route exact path="/mock-exam/student/1/submit" element={<QRCodeGeneratorStudent1submit />} />
+          <Route exact path="/mock-exam/student/2/submit" element={<QRCodeGeneratorStudent2submit />} />
+          <Route exact path="/mock-exam/student/submitted" element={<QRCodeGeneratorExamSubmitted />} />
+
 
         </Routes>
       </div>

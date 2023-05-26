@@ -64,6 +64,7 @@ function AdminMyTickets() {
             <th>Time</th>
             <th>Exam Period</th>
             <th>Service</th>
+            <th>State</th>
           </tr>
         </thead>
         <tbody>{ticketRows}</tbody>
