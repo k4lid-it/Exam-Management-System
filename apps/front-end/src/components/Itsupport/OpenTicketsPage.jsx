@@ -52,7 +52,7 @@ function OpenTicketsITsupportPage() {
       service: 'Power Bank',
       state: 'Open',
     },
-    // Add more IT support ticket data here...
+    // temporary local data for IT support tickets...
   ];
 
   const [examRoomData, setExamRoomData] = useState([]);
