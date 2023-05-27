@@ -57,10 +57,10 @@ const RequestITsupportPage = () => {
                 required
               >
                 <option value="">Select</option>
-                <option value="1">Password</option>
-                <option value="2">Power Bank</option>
-                <option value="3">Network</option>
-                <option value="4">Other</option>
+                <option value="Password">Password</option>
+                <option value="Power Bank">Power Bank</option>
+                <option value="Network">Network</option>
+                <option value="Other">Other</option>
 
               </select>
             </div>

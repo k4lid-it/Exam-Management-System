@@ -12,6 +12,7 @@ import { student } from 'src/entities/student.entity';
 import { ticket } from 'src/entities/ticket.entity';
 import { Repository } from 'typeorm';
 import { studentDetailsDto } from 'src/dtos/studentDetails.dto';
+import { io } from 'socket.io-client';
 
 @Injectable()
 export class InvigilatorService {
@@ -19,6 +20,10 @@ export class InvigilatorService {
     @InjectRepository(exam) private examRepository: Repository<exam>,
     @InjectRepository(student) private studentRepository: Repository<student>,
     @InjectRepository(ticket) private ticketRepository: Repository<ticket>) { }
+
+
+  socket = io("http://localhost:4000");
+
 
 
   createInvigilator(invigilatorInfo: createInvigilatorDto) {
@@ -99,6 +104,7 @@ export class InvigilatorService {
 
   createTicket(ticketInfo: createTicketDto) {
     const newTicket = this.ticketRepository.create({ ...ticketInfo });
+    this.socket.emit('server', 'ticketNew');
     return this.ticketRepository.save(newTicket)
   }
 

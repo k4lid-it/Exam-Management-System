@@ -15,6 +15,7 @@ import { SupportModule } from './modules/support/support.module';
 import { ExamModule } from './modules/exam/exam.module';
 import { Administrator } from './entities/Administrator.entity';
 import { AdminModule } from './modules/admin/admin.module';
+import { AppGatewayModule } from './server/app.module';
 
 
 
@@ -29,15 +30,16 @@ import { AdminModule } from './modules/admin/admin.module';
     entities: [student, ticket, exam, invigilator, support, Administrator],
     synchronize: false,
   }),
-  StudentModule,
-  TicketModule,
-  InvigilatorModule,
-  AuthModule,
-  SupportModule,
-  ExamModule,
-  AdminModule,
+    StudentModule,
+    TicketModule,
+    InvigilatorModule,
+    AuthModule,
+    SupportModule,
+    ExamModule,
+    AdminModule,
+    AppGatewayModule,
   ],
   controllers: [AppController,],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

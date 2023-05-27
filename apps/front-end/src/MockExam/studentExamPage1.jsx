@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode.react';
 import './mockExam.css';
+import '../components/Login/LoginPage.css';
 
 export default function QRCodeGeneratorStudent1() {
   const [studentData, setStudentData] = useState({ id: '', name: '' });
   const [qrCodeValue, setQRCodeValue] = useState('');
+  const [textValue, setTextValue] = useState('');
+
 
   useEffect(() => {
     // Simulating the fetching of student data from the backend
@@ -27,6 +30,7 @@ export default function QRCodeGeneratorStudent1() {
     const qrCodeValue = `${data.id},${data.name}`;
     setQRCodeValue(qrCodeValue);
   };
+  
 
   return (
     <div>
@@ -37,6 +41,13 @@ export default function QRCodeGeneratorStudent1() {
     //   value='seu.edu.sa'
       size={390}
       />
+
+<div className="input-button">
+        <input type="text" value={textValue} placeholder="Enter Password" />
+        <button>Submit</button>
+      </div>
+
+
     </div>
   );
 }
