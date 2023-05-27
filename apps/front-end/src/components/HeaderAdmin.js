@@ -33,6 +33,8 @@ const Nav = () => {
           <Link to="/AdminExamsPage">    <li>Exam rooms</li>     </Link>
           <Link to="/Admin/assigned-Tickets">    <li>My tickets</li>     </Link>
           <Link to="/Admin/Tickets">    <li>All tickets</li>     </Link>
+          <Link to="/Admin/Tickets">    <li>QR Code scanner</li>     </Link>
+
 
             </ul>
           )}
