@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './ITtickets.css';
 import HeaderIT from '../HeaderIT';
+
+
 
 function ITsupportPage() {
   // Mock data for IT support tickets
@@ -27,21 +29,46 @@ function ITsupportPage() {
     // Add more IT support ticket data here...
   ];
 
+  const [examRoomData, setExamRoomData] = useState([]);
+  const token = localStorage.getItem('auth');
+
+  const url = `http://localhost:4000/support/My-ticket`;
+  useEffect(() => {
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "Unauthorized") { window.location.href = "../security-stop"; }
+        else {
+          setExamRoomData(data);
+          console.log(examRoomData);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+  }, [token]);
+
   // Map over the IT support ticket data and create a table row for each ticket
-  const ticketRows = ITSupportTicketData.map((ticket) => (
+  const ticketRows = examRoomData.map((ticket) => ( //will be examRoomData.map
     <tr key={ticket.id}>
 
       {/* <td>
         <Link to={`/CloseTicket/${ticket.id}`}>View Ticket</Link>
       </td> */}
 
-    <td>
-      {ticket.state === 'In progress' ? (
-        <Link to={`/closeTicket/${ticket.id}`}>View Ticket</Link>
-      ) : (
-        <span></span>
-      )}
-    </td>
+      <td>
+        {ticket.status === 'In progress' ? (
+          <Link to={`/closeTicket/${ticket.id}`}>View Ticket</Link>
+        ) : (
+          <span></span>
+        )}
+      </td>
 
       <td>{ticket.room}</td>
       <td>{ticket.date}</td>
@@ -54,28 +81,28 @@ function ITsupportPage() {
 
   return (
     <div>
-    <HeaderIT />
+      <HeaderIT />
 
-    <div className='ITsupportPage-container'>
+      <div className='ITsupportPage-container'>
 
-    <Link to="/IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link>
+        <Link to="../IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link>
 
-      <h1>IT support tickets assigned to me:</h1>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Room</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Exam Period</th>
-            <th>Service</th>
-            <th>State</th>
-          </tr>
-        </thead>
-        <tbody>{ticketRows}</tbody>
-      </table>
-    </div>
+        <h1>IT support tickets assigned to me:</h1>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Room</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Exam Period</th>
+              <th>Service</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          <tbody>{ticketRows}</tbody>
+        </table>
+      </div>
       {/* <Link to="/IT-support/open-tickets"><button className='btn'>view Open Tickets</button></Link> */}
     </div>
   );
