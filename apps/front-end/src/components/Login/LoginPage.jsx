@@ -6,15 +6,14 @@ function Login() {
   const [userEmail, setUsername] = useState();
   const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
-  let[errorsList,setErrorsList]=useState([]);
-  function validateForm()
- {
-  let schema=Joi.object({
-    userEmail:Joi.string().email({tlds:{allow: false}}).required(),
-    password:Joi.string().required()
-  })
-  return schema.validate({userEmail,password},{abortEarly:false})
- }
+  let [errorsList, setErrorsList] = useState([]);
+  function validateForm() {
+    let schema = Joi.object({
+      userEmail: Joi.string().email({ tlds: { allow: false } }).required(),
+      password: Joi.string().required()
+    })
+    return schema.validate({ userEmail, password }, { abortEarly: false })
+  }
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -29,28 +28,34 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  let validateResult=validateForm()
-  if(validateResult.error==null) {
-    axios.post('http://localhost:4000/auth/login', { email: userEmail, password: password})
-      .then(response => {
+    let validateResult = validateForm()
+    if (validateResult.error == null) {
+      axios.post('http://localhost:4000/auth/login', { email: userEmail, password: password })
+        .then(response => {
 
-        //// Save the token in a cookie
-        //// document.cookie = `authcookie=${response.data.access_token
-        ////   }; expires=130; path=/`;
-
-        //Save the token in a local storage
-        localStorage.setItem('auth', response.data.access_token);
-        document.location.href = "Invigilator-home";
-      })
-      .catch(error => {
-        // Log the error
-        console.error(error);
-      });
-  }
-  else {
-setErrorsList(validateResult.error.details)
-console.log(validateResult.error.details);
-  }
+          if (response.data.info.userType === 'invigilator') {
+            //Save the token in a local storage
+            localStorage.setItem('auth', response.data.access_token);
+            window.location.href = '/Invigilator-home';
+          }
+          else if (response.data.info.userType === 'support') {
+            localStorage.setItem('auth', response.data.access_token);
+            window.location.href = '/IT-Support/Assigned-Tickets'
+          }
+          else if (response.data.info.userType === 'Admin') {
+            localStorage.setItem('auth', response.data.access_token);
+            window.location.href = '/Admin-home'
+          }
+        })
+        .catch(error => {
+          // Log the error
+          console.error(error);
+        });
+    }
+    else {
+      setErrorsList(validateResult.error.details)
+      console.log(validateResult.error.details);
+    }
     // fetch('http://localhost:4000/auth/login', {
     //   method: 'POST',
     //   // headers: {
@@ -72,55 +77,55 @@ console.log(validateResult.error.details);
     //     console.error('Error:', error);
     //   });
 
-   
+
 
   }
     ;
 
-    return (
-      <div className="login-page">
-        <div className="login-form">
+  return (
+    <div className="login-page">
+      <div className="login-form">
         <img src="seuLogo.png" alt="Logo" className="logo" />
-          <p className="portal-title">SEU Exam Portal</p>
-          <h1 className="title">Login using SEU account</h1>
-          {errorsList.map((erroor,i)=> 
+        <p className="portal-title">SEU Exam Portal</p>
+        <h1 className="title">Login using SEU account</h1>
+        {errorsList.map((erroor, i) =>
           <div className="alert alert-danger text-danger" key={i}>
             {erroor.message}
           </div>)}
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="username">Useremail</label>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Useremail</label>
+            <input
+              type="email"
+              id="userEmail"
+              name="userEmail"
+              value={userEmail}
+              onChange={handleUsernameChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <div className="password-input-container">
               <input
-                type="email"
-                id="userEmail"
-                name="userEmail"
-                value={userEmail}
-                onChange={handleUsernameChange}
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <div className="password-input-container">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-                <div
-                  className="show-password"
-                  onClick={handleShowPasswordClick}
-                >
-                  Show
-                </div>
+              <div
+                className="show-password"
+                onClick={handleShowPasswordClick}
+              >
+                Show
               </div>
             </div>
-            <button type="submit" className="login-button">Login</button>
-          </form>
-        </div>
+          </div>
+          <button type="submit" className="login-button">Login</button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 export default Login;
