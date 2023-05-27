@@ -45,9 +45,9 @@ export class SupportService {
   
       }
 
-      async viewTicketDetails(ticketID:string){
-        const ticket = this.ticketRepository.findOne({where:{id:ticketID}});
-        if (ticket){
+      async viewTicketDetails(ticketID: number){
+        const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
+        if(ticket){
           return ticket;
         }else{
           throw new Error('Ticket not found');
@@ -55,7 +55,9 @@ export class SupportService {
 
       }
 
-      async acceptTicket(ticketID:string,support:string){
+      
+
+      async acceptTicket(ticketID:number,support:string){
         const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
         if (ticket) {
           ticket.status = 'In progress';
@@ -66,7 +68,7 @@ export class SupportService {
         }
       }
 
-      async reopenTicket(ticketID:string){
+      async reopenTicket(ticketID:number){
         const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
         if (ticket) {
           ticket.status = 'Open';
@@ -77,7 +79,7 @@ export class SupportService {
         }
       }
 
-      async closeTicket(ticketID:string){
+      async closeTicket(ticketID:number){
         const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
         if (ticket) {
           ticket.status = 'Closed';

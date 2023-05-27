@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Query, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { SupportService } from './support.service';
 import { AuthGuard } from '@nestjs/passport';
+import { IntegerType } from 'typeorm';
 
 @Controller('support')
 export class SupportController {
@@ -29,7 +30,7 @@ export class SupportController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('ticket-details')
-    viewTicketDetails(@Req() req: any, @Query() ticketID:string){
+    viewTicketDetails(@Req() req: any, @Query() ticketID:number){
         if (req.user.userType === 'support'){
             return this.supportService.viewTicketDetails(ticketID);
         }else{
@@ -39,7 +40,7 @@ export class SupportController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('ticket-details')
-    acceptTicket(@Req() req: any, @Body('ticketID') ticketID:string){
+    acceptTicket(@Req() req: any, @Body('ticketID') ticketID:number){
         if (req.user.userType === 'support'){
         const support = req.user.name;
         return this.supportService.acceptTicket(ticketID,support);
@@ -50,7 +51,7 @@ export class SupportController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('ticket')
-    reopenTicket(@Req() req: any, @Body('ticketID') ticketID:string){
+    reopenTicket(@Req() req: any, @Body('ticketID') ticketID:number){
         if (req.user.userType === 'support'){
             return this.supportService.reopenTicket(ticketID);
         }else{
@@ -60,7 +61,7 @@ export class SupportController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('ticket')
-    closeTicket(@Req() req: any, @Body('ticketID') ticketID:string){
+    closeTicket(@Req() req: any, @Body('ticketID') ticketID:number){
         if (req.user.userType === 'support'){
             return this.supportService.closeTicket(ticketID);
         }else{

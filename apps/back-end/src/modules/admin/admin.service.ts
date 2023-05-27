@@ -55,7 +55,7 @@ export class AdminService {
 
     }
 
-    async viewTicketDetails(ticketID:string){
+    async viewTicketDetails(ticketID:number){
       const ticket = this.ticketRepository.findOne({where:{id:ticketID}});
       if (ticket){
         return ticket;
@@ -65,7 +65,7 @@ export class AdminService {
 
     }
 
-    async acceptTicket(ticketID:string,admin:string){
+    async acceptTicket(ticketID:number,admin:string){
       const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
       if (ticket) {
         ticket.status = 'In progress';
@@ -76,7 +76,7 @@ export class AdminService {
       }
     }
 
-    async reopenTicket(ticketID:string){
+    async reopenTicket(ticketID:number){
       const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
       if (ticket) {
         ticket.status = 'Open';
@@ -87,7 +87,7 @@ export class AdminService {
       }
     }
 
-    async closeTicket(ticketID:string){
+    async closeTicket(ticketID:number){
       const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
       if (ticket) {
         ticket.status = 'Closed';

@@ -7,7 +7,7 @@ export class TicketController {
     constructor(private ticketService: TicketService){}
 
     @Get()
-    viewTicket(@Body("id") ticketId: string){
+    viewTicket(@Body("id") ticketId: number){
         return this.ticketService.viewTicket(ticketId);
     }
 
@@ -22,12 +22,12 @@ export class TicketController {
     }
 
     @Put()
-    solveTicket(@Body("id") ticketId: string ){
+    solveTicket(@Body("id") ticketId: number ){
         return this.ticketService.solveTicket(ticketId);
     }
 
     @Post('2')
-    closeTicket(@Body("id") ticketId: string){
+    closeTicket(@Body("id") ticketId: number){
         return this.ticketService.closeTicket(ticketId);
     }
 

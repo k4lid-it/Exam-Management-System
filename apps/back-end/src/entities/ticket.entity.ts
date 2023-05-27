@@ -1,11 +1,12 @@
 
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import shortid from "shortid";
+import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name:'tickets'})
 export class ticket {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
     room: string;

@@ -14,7 +14,7 @@ export class TicketService {
         return this.ticketRepository.save(newTicket)
     }
 
-    async viewTicket(ticketId: string){
+    async viewTicket(ticketId: number){
         const ticket = await this.ticketRepository.findOne({where: {id : ticketId} });
         if (ticket){
           return ticket;
@@ -29,7 +29,7 @@ export class TicketService {
 
     }
 
-    async solveTicket(ticketId: string){
+    async solveTicket(ticketId: number){
         const ticket = await this.ticketRepository.findOne({where: {id: ticketId}});
         
         if (ticket) {
@@ -40,7 +40,7 @@ export class TicketService {
           }
 
     }
-    async closeTicket(ticketId: string){
+    async closeTicket(ticketId: number){
         const ticket = await this.ticketRepository.findOne({where:{id:ticketId}});
         
         if (ticket) {
