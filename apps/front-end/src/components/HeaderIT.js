@@ -15,23 +15,24 @@ const Nav = () => {
     <nav>
       {/* <div className="logo">Exam Invigilation Portal</div> */}
       <ul className="header-items">
-    <Link to="/Login">
-        <li className="logo-item"> 
-          <img src="https://icon-library.com/images/blue-exit-icon/blue-exit-icon-8.jpg" alt="Logout Logo" />
-        </li>
-    </Link>
-    
-    <Link to="/IT-Support/assigned-tickets">
-        <li className="logo-item"> 
-          <img src={process.env.PUBLIC_URL + '/home-button-icon.png'} alt="Home Logo" />
-        </li>
-    </Link>
+        <Link to="/Login"
+          onClick={() => { localStorage.setItem('auth', ' ') }}>
+          <li className="logo-item">
+            <img src="https://icon-library.com/images/blue-exit-icon/blue-exit-icon-8.jpg" alt="Logout Logo" />
+          </li>
+        </Link>
+
+        <Link to="/IT-Support/assigned-tickets">
+          <li className="logo-item">
+            <img src={process.env.PUBLIC_URL + '/home-button-icon.png'} alt="Home Logo" />
+          </li>
+        </Link>
         <li className="dropdown" onClick={toggleDropdown}>
-        <img className='logo-item' src={process.env.PUBLIC_URL + '/dropdown-button-icon.png'} alt="dropdown icon" />
+          <img className='logo-item' src={process.env.PUBLIC_URL + '/dropdown-button-icon.png'} alt="dropdown icon" />
           {isOpen && (
             <ul className="dropdown-menu">
-          <Link to="/IT-support/assigned-Tickets">    <li>My tickets</li>     </Link>
-          <Link to="/IT-support/open-Tickets">    <li>Open tickets</li>     </Link>
+              <Link to="/IT-support/assigned-Tickets">    <li>My tickets</li>     </Link>
+              <Link to="/IT-support/open-Tickets">    <li>Open tickets</li>     </Link>
 
             </ul>
           )}
