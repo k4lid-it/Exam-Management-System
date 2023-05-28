@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './AdminExamsPage.css';
 import HeaderAdmin from "../HeaderAdmin";
+import axios from 'axios';
 
 function AdminExamsPage() {
   const [examRoomData, setExamRoomData] = useState([]);
@@ -43,6 +44,16 @@ function AdminExamsPage() {
   const handleInvigilatorChange = (roomId, newInvigilator) => {
     const updatedRooms = rooms.map((room) => {
       if (room.id === roomId) {
+        axios.post('http://localhost:4000/admin/Exams', {
+          oldInvigilator: room.invigilator, // the name of the old invigilator
+          examTime: room.time, // the exam time
+          newInvigilator: newInvigilator // the name of the new invigilator
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            'Content-Type': 'application/json'
+          }
+        })
         return {
           ...room,
           invigilator: newInvigilator
@@ -66,7 +77,7 @@ function AdminExamsPage() {
         {selectedInvigilator === room.id ? (
           <select
             value={selectedInvigilator}
-            onChange={(e) => setSelectedInvigilator(e.target.value)}
+            onChange={(e) => handleInvigilatorChange(room.id, e.target.value)}
           >
             <option value="">Select Invigilator</option>
             {invigilatorOptions.map((invigilator) => (
