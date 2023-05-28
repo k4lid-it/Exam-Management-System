@@ -33,7 +33,7 @@ export class SupportController {
     viewTicketDetails(@Req() req: any, @Query('id') ticketID: number) {
         if (req.user.userType === 'support') {
             return this.supportService.viewTicketDetails(ticketID);
-            // return ticketID;
+
         } else {
             throw new UnauthorizedException();
         }

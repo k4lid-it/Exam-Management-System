@@ -20,16 +20,6 @@ export class StudentController {
     }
 
 
-    @Post('1')
-    checkRoom(@Body("id") studentId : any ){
-        return  this.studentService.checkRoom(studentId);
-    }
-
-    @Post('2')
-    markPresent(@Body("id") studentID : any){
-        return this.studentService.markPresent(studentID);
-    }
-    
 
     
 
