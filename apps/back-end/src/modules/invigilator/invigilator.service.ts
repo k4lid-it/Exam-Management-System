@@ -144,8 +144,8 @@ export class InvigilatorService {
     this.studentRepository.save(student);
   }
 
-  async markAbsentSwitch(markPresentSwitch: markPresentSwitchDto) {
-    const student = await this.studentRepository.findOne({ where: { name: markPresentSwitch.name, subject: markPresentSwitch.subject } });
+  async markAbsentSwitch(markAbsentSwitch: markPresentSwitchDto) {
+    const student = await this.studentRepository.findOne({ where: { name: markAbsentSwitch.name, subject: markAbsentSwitch.subject } });
     student.attendance = 'Absent';
     this.studentRepository.save(student);
   }
