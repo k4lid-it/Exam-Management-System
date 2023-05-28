@@ -28,28 +28,7 @@ export class StudentService {
       }
 
 
-    async checkRoom(studentID: string){
-        const student = await this.studentRepository.findOne({where: {studentID}});
-        
-          return student;
-        
-       
-      }
-      
-        
-      async markPresent(studentID: string){
-          const student = await this.studentRepository.findOne({ where: {studentID} });
-          if (student) {
-            student.attendance = 'present';
-            this.studentRepository.save(student);
-            return "successful";
-          } else {
-            throw new Error('Student not found');
-          }
-        }
-        
-  
-
+ 
 
 
 }
