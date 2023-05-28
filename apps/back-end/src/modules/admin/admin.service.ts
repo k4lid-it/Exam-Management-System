@@ -38,15 +38,26 @@ export class AdminService {
       const newInvigilatorRecords = await this.examRepository.find({where:{invigilator:changeInvigilatorDto.newInvigilator, time:changeInvigilatorDto.time}});
 
       if (newInvigilatorRecords.length > 0) {
-        throw new error ('time conflect');
-      }
-    
+        throw new Error('time conflect');
+      }else {
       oldInvigilator.invigilator = changeInvigilatorDto.newInvigilator;
       await this.examRepository.save(oldInvigilator);
+      return { message: 'success'}
+      }
     }
 
     async viewTickets(): Promise<ticket[]>{
       const tickets =  await this.ticketRepository.find();
+      if (tickets.length > 0){
+        return tickets;
+      }else{
+        throw new Error('No tickets found');
+      }
+
+    }
+
+    async viewMyTickets(adminName:string): Promise<ticket[]>{
+      const tickets =  await this.ticketRepository.find({where:{employee:adminName}});
       if (tickets.length > 0){
         return tickets;
       }else{

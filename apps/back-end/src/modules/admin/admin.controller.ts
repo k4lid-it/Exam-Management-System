@@ -38,6 +38,18 @@ export class AdminController {
         }
     }
 
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('My-ticket')
+    viewMyTickets(@Req() req: any){
+        if (req.user.userType === 'admin'){
+            return this.adminService.viewMyTickets(req.user.name);
+            }else{
+                throw new UnauthorizedException();
+            }
+    }
+
+
     @UseGuards(AuthGuard('jwt'))
     @Get('ticket-details')
     viewTicketDetails(@Req() req: any,@Query() ticketID:number){

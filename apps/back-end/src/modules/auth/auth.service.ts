@@ -34,7 +34,7 @@ export class AuthService {
 
     const adminUser = await this.adminRepository.findOne({ where: { email } })
     if (adminUser && adminUser.password === password) {
-      const user = { email: adminUser.email, name: adminUser.name, userType: 'Admin' }
+      const user = { email: adminUser.email, name: adminUser.name, userType: 'admin' }
       return user;
     }
 
