@@ -29,8 +29,12 @@ function ITsupportPage() {
     // Add more IT support ticket data here...
   ];
 
-  const [examRoomData, setExamRoomData] = useState([]);
+  let [examRoomData, setExamRoomData] = useState([]);
   const token = localStorage.getItem('auth');
+
+  examRoomData = [{
+
+  }]
 
   const url = `http://localhost:4000/support/My-ticket`;
   useEffect(() => {
@@ -54,6 +58,8 @@ function ITsupportPage() {
 
   }, [token]);
 
+  console.log(examRoomData);
+
   // Map over the IT support ticket data and create a table row for each ticket
   const ticketRows = examRoomData.map((ticket) => ( //will be examRoomData.map
     <tr key={ticket.id}>
@@ -71,11 +77,11 @@ function ITsupportPage() {
       </td>
 
       <td>{ticket.room}</td>
-      <td>{ticket.date}</td>
+      {/* <td>{ticket.date}</td> */}
       <td>{ticket.time}</td>
-      <td>{ticket.examPeriod}</td>
-      <td>{ticket.service}</td>
-      <td>{ticket.state}</td>
+      {/* <td>{ticket.examPeriod}</td> */}
+      <td>{ticket.type}</td>
+      <td>{ticket.status}</td>
     </tr>
   ));
 
@@ -93,9 +99,9 @@ function ITsupportPage() {
             <tr>
               <th></th>
               <th>Room</th>
-              <th>Date</th>
+              {/* <th>Date</th> */}
               <th>Time</th>
-              <th>Exam Period</th>
+              {/* <th>Exam Period</th> */}
               <th>Service</th>
               <th>State</th>
             </tr>

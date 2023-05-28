@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Closeticket.css';
 import HeaderIT from '../HeaderIT';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Closeticket() {
   const [selectedOption, setSelectedOption] = useState('');
@@ -34,92 +34,137 @@ export default function Closeticket() {
     };
   };
 
+  // console.log("HI");
+
+  let [examRoomData, setExamRoomData] = useState([]);
+  examRoomData = [{
+
+  }]
+  const token = localStorage.getItem('auth');
+  const id = sessionStorage.getItem('ticketID');
+  const num = parseInt(id, 10);
+  // console.log(id)
+
+
+  let selectedTicket;
+  const url = `http://localhost:4000/ticket/1`;
+  useEffect(() => {
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "Unauthorized") {
+          window.location.href = "../security-stop";
+        } else {
+          setExamRoomData(data);
+          selectedTicket = data.find(ticket => ticket.id === num);
+
+          // Log the selected ticket
+          console.log(selectedTicket);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, [token]);
+  console.log(examRoomData);
+
   // Call the fetchTicketData function to get the ticket data
   const ticketData = fetchTicketData();
+
+
 
 
   return (
     <div>
       <HeaderIT />
-    <div className='container'>
-      <div className='item'>
-        <h2>it support ticket</h2>
-        <p>ticket information:</p>
+      <div className='container'>
+        <div className='item'>
+          <h2>it support ticket</h2>
+          <p>ticket information:</p>
 
-        <table className='tablee'>
-        <tbody>
-            <tr>
-              <td className="tdOne">Room:</td>
-              <td className="tdTwo">{ticketData.room}</td>
-            </tr>
-            <tr>
-              <td className="tdOne">Date:</td>
-              <td className="tdTwo">{ticketData.date}</td>
-            </tr>
-            <tr>
-              <td className="tdOne">Time:</td>
-              <td className="tdTwo">{ticketData.time}</td>
-            </tr>
-            <tr>
-              <td className="tdOne">Exam Period:</td>
-              <td className="tdTwo">{ticketData.examPeriod}</td>
-            </tr>
-            <tr>
-              <td className="tdOne">Service:</td>
-              <td className="tdTwo">{ticketData.service}</td>
-            </tr>
-            <tr>
-              <td className="tdOne">Description:</td>
-              <td className="tdTwo">{ticketData.Description}</td>
-            </tr>
-          </tbody>
-        </table>
+          {selectedTicket ? (
+            <table className='tablee'>
+              <tbody>
+                <tr>
+                  <td className="tdOne">Room:</td>
+                  <td className="tdTwo">{selectedTicket.room}</td>
+                </tr>
+                {/* <tr>
+                  <td className="tdOne">Date:</td>
+                  <td className="tdTwo">{ticketData.date}</td>
+                </tr> */}
+                <tr>
+                  <td className="tdOne">Time:</td>
+                  <td className="tdTwo">{selectedTicket.time}</td>
+                </tr>
+                {/* <tr>
+                  <td className="tdOne">Exam Period:</td>
+                  <td className="tdTwo">{ticketData.examPeriod}</td>
+                </tr> */}
+                <tr>
+                  <td className="tdOne">Service:</td>
+                  <td className="tdTwo">{selectedTicket.type}</td>
+                </tr>
+                <tr>
+                  <td className="tdOne">Description:</td>
+                  <td className="tdTwo">{selectedTicket.description}</td>
+                </tr>
+              </tbody>
+            </table>
+          ) : (
+            <p>Loading...</p>
+          )}
 
-        <form onSubmit={handleSubmit}>
-          <div className='form-info'>
-            <div className='inputs'>
-              <label>
-                <input
-                  type='radio'
-                  name='resolve'
-                  value='Resolved'
-                  checked={selectedOption === 'Resolved'}
-                  onChange={handleOptionChange}
-                  required
-                />
-                Resolved
-              </label>
-              <label>
-                <input
-                  type='radio'
-                  name='resolve'
-                  value='Unresolved'
-                  checked={selectedOption === 'Unresolved'}
-                  onChange={handleOptionChange}
-                  required
-                />
-                Unresolved
-              </label>
+          <form onSubmit={handleSubmit}>
+            <div className='form-info'>
+              <div className='inputs'>
+                <label>
+                  <input
+                    type='radio'
+                    name='resolve'
+                    value='Resolved'
+                    checked={selectedOption === 'Resolved'}
+                    onChange={handleOptionChange}
+                    required
+                  />
+                  Resolved
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='resolve'
+                    value='Unresolved'
+                    checked={selectedOption === 'Unresolved'}
+                    onChange={handleOptionChange}
+                    required
+                  />
+                  Unresolved
+                </label>
+              </div>
+
+              <br />
+
+              <textarea
+                name=''
+                id=''
+                rows='3'
+                placeholder='Write a description... (Optional)'
+              ></textarea>
             </div>
+            <div className='close'>
+              <button type='submit'>Close Ticket</button>
 
-            <br />
-
-            <textarea
-              name=''
-              id=''
-              rows='3'
-              placeholder='Write a description... (Optional)'
-            ></textarea>
-          </div>
-          <div className='close'>
-            <button type='submit'>Close Ticket</button>
-              
               {/* IMPORTAN! Change the link to the correct one, this link takes the user to the "IT-Support" open tickets page where it shows only Open tickets, but in case of an "Admin" user, it will show ALL tickets whether the ticket is Open, In-progress, orClosed. */}
-            <Link to="/IT-support/assigned-tickets">  <button type='submit'>Cancel</button>  </Link>
-          </div>
-        </form>
+              <Link to="/IT-support/assigned-tickets">  <button type='submit'>Cancel</button>  </Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
