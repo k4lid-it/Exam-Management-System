@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { error } from 'console';
 import { changeInvigilatorDto } from 'src/dtos/changeInvigilator.dto';
 import { createAdminDto } from 'src/dtos/createAdminDto.dto';
 import { Administrator } from 'src/entities/Administrator.entity';
@@ -42,19 +41,10 @@ export class AdminService {
       }else {
       oldInvigilator.invigilator = changeInvigilatorDto.newInvigilator;
       await this.examRepository.save(oldInvigilator);
-      return { message: 'success'}
+      return { message: 'Success'}
       }
     }
-
-    async viewTickets(): Promise<ticket[]>{
-      const tickets =  await this.ticketRepository.find();
-      if (tickets.length > 0){
-        return tickets;
-      }else{
-        throw new Error('No tickets found');
-      }
-
-    }
+  
 
     async viewMyTickets(adminName:string): Promise<ticket[]>{
       const tickets =  await this.ticketRepository.find({where:{employee:adminName}});
@@ -73,8 +63,16 @@ export class AdminService {
       }else{
         throw new Error('Ticket not found');
       }
-
     }
+
+  async viewTickets(): Promise<ticket[]> {
+    const tickets = await this.ticketRepository.find();
+    if (tickets.length > 0) {
+      return tickets;
+    } else {
+      throw new Error('No tickets found');
+    }
+  }
 
     async acceptTicket(ticketID:number,admin:string){
       const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
@@ -97,6 +95,7 @@ export class AdminService {
         throw new Error('ticket not found');
       }
     }
+  
 
     async closeTicket(ticketID:number){
       const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
@@ -108,29 +107,29 @@ export class AdminService {
       }
     } 
 
-    async checkStudentsRoom(studentID:string){
-      const studentRecords = await this.studentRepository.find({ where: {studentID} });
-      
-
-      const now = new Date();
-      const options = { hour: '2-digit', minute: '2-digit', hour12: true } as Intl.DateTimeFormatOptions;
-      const currentTime = now.toLocaleTimeString([], options);
+  async checkStudentsRoom(studentID: string) {
+    const studentRecords = await this.studentRepository.find({ where: { studentID } });
 
 
-    const currentStudentRecord = studentRecords .find((student) => {
+    const now = new Date();
+    const options = { hour: '2-digit', minute: '2-digit', hour12: true } as Intl.DateTimeFormatOptions;
+    const currentTime = now.toLocaleTimeString([], options);
+
+
+    const currentStudentRecord = studentRecords.find((student) => {
       const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
-      return currentTime >= startTime && currentTime <= endTime;});
-      
-      if(currentStudentRecord){
-          throw new Error("Please go to room "+currentStudentRecord.room);
-        
-      }else{
-        throw new Error('The student doesnt have an exam at the current time');
-       }
-    } 
+      return currentTime >= startTime && currentTime <= endTime;
+    });
 
-    
+    if (currentStudentRecord) {
+      throw new Error("Please go to room " + currentStudentRecord.room);
+
+    } else {
+      throw new Error('The student doesnt have an exam at the current time');
     }
+  }
 
-    
-    
+
+}
+
+
