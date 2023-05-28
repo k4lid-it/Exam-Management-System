@@ -11,7 +11,7 @@ export class AdminController {
     @UseGuards(AuthGuard('jwt'))
     @Get('Exams')
     viewExams(@Req() req: any) {
-        if (req.user.userType === 'Admin') {
+        if (req.user.userType === 'admin') {
             return this.adminService.viewExams();
         } else {
             throw new UnauthorizedException();
@@ -21,7 +21,7 @@ export class AdminController {
     @UseGuards(AuthGuard('jwt'))
     @Post('Exams')
     changeInvigilator(@Req() req: any, @Body() changeInvigilator: changeInvigilatorDto) {
-        if (req.user.userType === 'Admin') {
+        if (req.user.userType === 'admin') {
             return this.adminService.changeInvigilator(changeInvigilator);
         } else {
             throw new UnauthorizedException();
@@ -31,7 +31,7 @@ export class AdminController {
     @UseGuards(AuthGuard('jwt'))
     @Get('tickets')
     viewTickets(@Req() req: any) {
-        if (req.user.userType === 'Admin') {
+        if (req.user.userType === 'admin') {
             return this.adminService.viewTickets();
         } else {
             throw new UnauthorizedException();

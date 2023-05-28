@@ -30,9 +30,10 @@ export class SupportController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('ticket-details')
-    viewTicketDetails(@Req() req: any, @Query() ticketID:number){
+    viewTicketDetails(@Req() req: any, @Query('id') ticketID:number){
         if (req.user.userType === 'support'){
             return this.supportService.viewTicketDetails(ticketID);
+            
         }else{
             throw new UnauthorizedException();
         }

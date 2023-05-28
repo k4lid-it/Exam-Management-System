@@ -28,7 +28,7 @@ import { AppGatewayModule } from './server/app.module';
     password: 'ProjectPass1',
     database: 'auth_system',
     entities: [student, ticket, exam, invigilator, support, Administrator],
-    synchronize: true,
+    synchronize: false,
   }),
     StudentModule,
     TicketModule,
