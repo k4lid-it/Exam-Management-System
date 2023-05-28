@@ -1,11 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import examRoomData from '../invigilator/examRoomData';
 import './AdminExamsPage.css';
 import HeaderAdmin from "../HeaderAdmin";
 
 function AdminExamsPage() {
-  const [rooms, setRooms] = useState(examRoomData);
+  const [examRoomData, setExamRoomData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const token = localStorage.getItem('auth');
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    fetch('http://localhost:4000/admin/Exams', {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "Unauthorized") {
+          window.location.href = "../security-stop";
+        } else {
+          setExamRoomData(data);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [token]);
+
+  useEffect(() => {
+    setRooms(examRoomData);
+  }, [examRoomData]);
+
+  const [rooms, setRooms] = useState([]);
   const [selectedInvigilator, setSelectedInvigilator] = useState('');
 
   const handleInvigilatorChange = (roomId, newInvigilator) => {
@@ -58,20 +90,24 @@ function AdminExamsPage() {
       <HeaderAdmin />
       <div className="Admin-exams-page">
         <main>
-          <table className="tttable">
-            <thead>
-              <tr>
-                <th>Room</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Invigilator</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {roomRows}
-            </tbody>
-          </table>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <table className="tttable">
+              <thead>
+                <tr>
+                  <th>Room</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Invigilator</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {roomRows}
+              </tbody>
+            </table>
+          )}
         </main>
       </div>
     </div>
