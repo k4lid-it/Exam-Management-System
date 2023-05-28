@@ -46,7 +46,7 @@ function AdminExamsPage() {
       if (room.id === roomId) {
         axios.post('http://localhost:4000/admin/Exams', {
           oldInvigilator: room.invigilator, // the name of the old invigilator
-          examTime: room.time, // the exam time
+          time: room.time, // the exam time
           newInvigilator: newInvigilator // the name of the new invigilator
         }, {
           headers: {
@@ -69,7 +69,7 @@ function AdminExamsPage() {
 
   const roomRows = rooms.map((room) => (
     <tr key={room.id}>
-      <td><Link to={`/exam-room/${room.id}`}>{room.room}</Link></td>
+      <td>{room.room}</td>
       <td>{room.date}</td>
       <td>{room.time}</td>
       <td>{room.invigilator}</td>

@@ -1,0 +1,86 @@
+/* background image */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://img.freepik.com/premium-vector/hexagon-technology-connect-modern-style-blue-background-internet-connection-network-high-digital-technology-abstract-background-technology-graphic-design_46577-751.jpg?w=900");
+    background-size: cover;
+}
+
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 15px;
+}
+
+.ticket-information {
+    background-color: #f2f2f2;
+}
+
+/* 
+    .item{
+      text-transform: capitalize;
+    }
+     */
+.item h2 {
+    background-color: #e9ab33;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.item p {
+    background-color: #d9d9d9;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+
+.tablee {
+    border-collapse: collapse;
+    width: 40%;
+}
+
+table td {
+    padding: 5px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+/* table td:nth-child(1){
+      padding: 5px 8px;
+      background-color: #e9ab33;
+    } */
+/* table td:nth-child(2){
+      padding: 5px 17px;
+      background-color: red;
+    } */
+table tr .tdTwo {
+    background-color: #d9d9d9;
+}
+
+.buttons {
+    margin: 3rem 5rem;
+    cursor: pointer;
+    /*to change the cursor to hand pointer when hover over the button - HD*/
+}
+
+button {
+    border-radius: 15px;
+    padding: 7px 30px;
+    margin: 0.5rem 2rem;
+    text-transform: capitalize;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 86%;
+    }
+
+}

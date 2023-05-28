@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Acceptticket.css';
 import HeaderIT from '../HeaderIT';
 import axios from 'axios';
 
 export default function Acceptticket() {
   const [isLoading, setIsLoading] = useState(true);
-
+  const navigate = useNavigate();
   let [examRoomData, setExamRoomData] = useState([]);
   // examRoomData = [{}];
   const token = localStorage.getItem('auth');
@@ -40,26 +40,32 @@ export default function Acceptticket() {
 
 
   const accept = () => {
-    axios
-      .post(
-        `http://localhost:4000/support/ticket-accept?id=${id}`,
-        {
-          ticketID: id
-        },
-        {
-          headers: {
-            'Accept': 'application/json',
-            Authorization: `Bearer ${token}`,
+    if (true) {
+      axios
+        .post(
+          `http://localhost:4000/support/ticket-accept?id=${id}`,
+          {
+            ticketID: id
+          },
+          {
+            headers: {
+              'Accept': 'application/json',
+              Authorization: `Bearer ${token}`,
+            }
           }
-        }
-      )
-      .then(response => {
-        // Handle the response if needed
-      })
-      .catch(error => {
-        // Handle the error if needed
-      });
+        )
+        .then(response => {
+
+        })
+        .catch(error => {
+          // Handle the error if needed
+        });
+    }
+    navigate('/IT-support/assigned-tickets');
+
+
   };
+
 
   if (isLoading) {
     return <div>Loading...</div>;

@@ -54,7 +54,9 @@ function AdminMyTickets() {
     <tr key={ticket.id}>
       <td>
         {ticket.status === 'In progress' ? (
-          <Link to={`/closeTicket/${ticket.id}`}>View Ticket</Link>
+          <Link to={`/Admin/CloseTicket/${ticket.id}`}
+            onClick={() => { sessionStorage.setItem('ticketID', ticket.id) }}
+          >View Ticket</Link>
         ) : (
           <span></span>
         )}
@@ -82,9 +84,9 @@ function AdminMyTickets() {
             <tr>
               <th></th>
               <th>Room</th>
-              <th>Date</th>
+              {/* <th>Date</th> */}
               <th>Time</th>
-              <th>Exam Period</th>
+              {/* <th>Exam Period</th> */}
               <th>Service</th>
               <th>State</th>
             </tr>

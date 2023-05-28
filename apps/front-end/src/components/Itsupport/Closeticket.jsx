@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Closeticket.css';
 import HeaderIT from '../HeaderIT';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Closeticket() {
   const [selectedOption, setSelectedOption] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -45,6 +46,7 @@ export default function Closeticket() {
     if (selectedOption !== '') {
       if (selectedOption === 'Resolved') { postToClose() }
       else if (selectedOption === 'Unresolved') { postToReopen() }
+      navigate('/IT-support/assigned-tickets');
     }
 
     else {
@@ -53,29 +55,14 @@ export default function Closeticket() {
     }
   };
 
-  // const fetchTicketData = () => {
-  //   // Simulating an API call or data retrieval
-  //   return {
-  //     room: '103',
-  //     date: '16/5/2023',
-  //     time: '2:26 PM',
-  //     examPeriod: '103',
-  //     service: 'Password',
-  //     Description:
-  //       'the QR code is not working, the student needs a password to access the exam, please hurry up! Thank you in advance. One Piece is your uncle!',
-  //   };
-  // };
 
   let [examRoomData, setExamRoomData] = useState([]);
-  // examRoomData = [{}];
   const token = localStorage.getItem('auth');
   const id = sessionStorage.getItem('ticketID');
-  // const num = parseInt(id, 10);
-  const url = `http://localhost:4000/support/ticket-details?id=${id}`;
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(url, {
+    fetch(`http://localhost:4000/support/ticket-details?id=${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -87,7 +74,6 @@ export default function Closeticket() {
           window.location.href = "../security-stop";
         } else {
           setExamRoomData(data);
-          // console.log(examRoomData);
         }
         setIsLoading(false);
       })
@@ -97,9 +83,6 @@ export default function Closeticket() {
       });
   }, [token]);
 
-  // useEffect(() => {
-  //   console.log(examRoomData);
-  // }, [examRoomData]);
 
 
   return (
@@ -173,7 +156,7 @@ export default function Closeticket() {
               ></textarea> */}
             </div>
             <div className='close'>
-              <button type='submit'>ٍSubmit</button>
+              <button type='submit' onClick={() => { window.location.href = '/IT-support/assigned-tickets'; }}>ٍSubmit</button>
               <Link to='/IT-support/assigned-tickets'>
                 <button type='submit'>Cancel</button>
               </Link>

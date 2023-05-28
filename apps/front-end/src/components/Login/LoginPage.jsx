@@ -36,14 +36,17 @@ function Login() {
           if (response.data.info.userType === 'invigilator') {
             //Save the token in a local storage
             localStorage.setItem('auth', response.data.access_token);
+            localStorage.setItem('type', response.data.info.userType);
             window.location.href = '/Invigilator-home';
           }
           else if (response.data.info.userType === 'support') {
             localStorage.setItem('auth', response.data.access_token);
+            localStorage.setItem('type', response.data.info.userType);
             window.location.href = '/IT-Support/Assigned-Tickets'
           }
           else if (response.data.info.userType === 'admin') {
             localStorage.setItem('auth', response.data.access_token);
+            localStorage.setItem('type', response.data.info.userType);
             window.location.href = '/Admin-home'
           }
         })

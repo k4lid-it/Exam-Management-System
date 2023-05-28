@@ -52,7 +52,7 @@ export class AdminController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('ticket-details')
-    viewTicketDetails(@Req() req: any, @Query() ticketID: number) {
+    viewTicketDetails(@Req() req: any, @Query('id') ticketID: number) {
         if (req.user.userType === 'admin') {
             return this.adminService.viewTicketDetails(ticketID);
         } else {
