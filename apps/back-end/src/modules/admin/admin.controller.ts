@@ -11,7 +11,7 @@ export class AdminController {
     @UseGuards(AuthGuard('jwt'))
     @Get('Exams')
     viewExams(@Req() req: any) {
-        if (req.user.userType === 'Admin') {
+        if (req.user.userType === 'admin') {
             return this.adminService.viewExams();
         } else {
             throw new UnauthorizedException();
@@ -21,7 +21,7 @@ export class AdminController {
     @UseGuards(AuthGuard('jwt'))
     @Post('Exams')
     changeInvigilator(@Req() req: any, @Body() changeInvigilator: changeInvigilatorDto) {
-        if (req.user.userType === 'Admin') {
+        if (req.user.userType === 'admin') {
             return this.adminService.changeInvigilator(changeInvigilator);
         } else {
             throw new UnauthorizedException();
@@ -31,7 +31,7 @@ export class AdminController {
     @UseGuards(AuthGuard('jwt'))
     @Get('tickets')
     viewTickets(@Req() req: any) {
-        if (req.user.userType === 'Admin') {
+        if (req.user.userType === 'admin') {
             return this.adminService.viewTickets();
         } else {
             throw new UnauthorizedException();
@@ -41,19 +41,19 @@ export class AdminController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get('My-ticket')
-    viewMyTickets(@Req() req: any){
-        if (req.user.userType === 'admin'){
+    viewMyTickets(@Req() req: any) {
+        if (req.user.userType === 'admin') {
             return this.adminService.viewMyTickets(req.user.name);
-            }else{
-                throw new UnauthorizedException();
-            }
+        } else {
+            throw new UnauthorizedException();
+        }
     }
 
 
     @UseGuards(AuthGuard('jwt'))
     @Get('ticket-details')
-    viewTicketDetails(@Req() req: any,@Query() ticketID:number){
-        if (req.user.userType === 'admin'){
+    viewTicketDetails(@Req() req: any, @Query() ticketID: number) {
+        if (req.user.userType === 'admin') {
             return this.adminService.viewTicketDetails(ticketID);
         } else {
             throw new UnauthorizedException();
@@ -62,8 +62,8 @@ export class AdminController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('ticket-details')
-    acceptTicket(@Req() req: any,@Body('ticketID') ticketID:number){
-        if (req.user.userType === 'admin'){
+    acceptTicket(@Req() req: any, @Body('ticketID') ticketID: number) {
+        if (req.user.userType === 'admin') {
             const admin = req.user.name;
             return this.adminService.acceptTicket(ticketID, admin);
         } else {
@@ -73,8 +73,8 @@ export class AdminController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('ticket-details')
-    reopenTicket(@Req() req: any,@Body('ticketID') ticketID:number){
-        if (req.user.userType === 'admin'){
+    reopenTicket(@Req() req: any, @Body('ticketID') ticketID: number) {
+        if (req.user.userType === 'admin') {
             return this.adminService.reopenTicket(ticketID);
         } else {
             throw new UnauthorizedException();
@@ -83,8 +83,8 @@ export class AdminController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('ticket-details')
-    closeTicket(@Req() req: any,@Body('ticketID') ticketID:number){
-        if (req.user.userType === 'admin'){
+    closeTicket(@Req() req: any, @Body('ticketID') ticketID: number) {
+        if (req.user.userType === 'admin') {
             return this.adminService.closeTicket(ticketID);
         } else {
             throw new UnauthorizedException();
