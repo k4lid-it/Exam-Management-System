@@ -1,8 +1,7 @@
 
-import shortid from "shortid";
 import { BeforeInsert, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name:'tickets'})
+@Entity({ name: 'tickets' })
 export class ticket {
 
     @PrimaryGeneratedColumn()
@@ -18,24 +17,24 @@ export class ticket {
     description: string;
 
     @Column()
-    seat:number;
+    seat: number;
 
-    @Column({nullable:true})
+    @Column({ nullable: true })
     employee: string;
 
-    @Column({type:'time'})
+    @Column({ type: 'time' })
     time: string;
 
     @BeforeInsert()
     updateTimestamp() {
-    const currentDate = new Date();
-    const currentTime = currentDate.toTimeString().split(' ')[0];
-    this.time = currentTime;
+        const currentDate = new Date();
+        const currentTime = currentDate.toTimeString().split(' ')[0];
+        this.time = currentTime;
     }
 
-    @Column({default:'Open'})
+    @Column({ default: 'Open' })
     status: string;
 
 
-    
+
 }
