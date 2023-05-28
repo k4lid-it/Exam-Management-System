@@ -61,7 +61,7 @@ export class AdminController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Post('ticket-details')
+    @Post('ticket-accept')
     acceptTicket(@Req() req: any, @Body('ticketID') ticketID: number) {
         if (req.user.userType === 'admin') {
             const admin = req.user.name;
@@ -72,7 +72,7 @@ export class AdminController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Post('ticket-details')
+    @Post('ticket-reopen')
     reopenTicket(@Req() req: any, @Body('ticketID') ticketID: number) {
         if (req.user.userType === 'admin') {
             return this.adminService.reopenTicket(ticketID);
@@ -82,7 +82,7 @@ export class AdminController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Post('ticket-details')
+    @Post('ticket-close')
     closeTicket(@Req() req: any, @Body('ticketID') ticketID: number) {
         if (req.user.userType === 'admin') {
             return this.adminService.closeTicket(ticketID);

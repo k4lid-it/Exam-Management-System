@@ -6,46 +6,45 @@ import axios from 'axios';
 
 export default function Acceptticket() {
   const [isLoading, setIsLoading] = useState(true);
-  const [examRoomData, setExamRoomData] = useState(null);
+
+  let [examRoomData, setExamRoomData] = useState([]);
+  // examRoomData = [{}];
   const token = localStorage.getItem('auth');
-  const ticketID = sessionStorage.getItem('ticketID');
+  const id = sessionStorage.getItem('ticketID');
+  // const num = parseInt(id, 10);
+  const url = `http://localhost:4000/support/ticket-details?id=${id}`;
 
   useEffect(() => {
-    const fetchTicketData = async () => {
-      try {
-        const response = await fetch(`http://localhost:4000/support/ticket-details?id=${ticketID}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch ticket data');
-        }
-
-        const data = await response.json();
-        if (data.message === 'Unauthorized') {
-          window.location.href = '../security-stop';
+    setIsLoading(true);
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "Unauthorized") {
+          window.location.href = "../security-stop";
         } else {
           setExamRoomData(data);
+          // console.log(examRoomData);
         }
-      } catch (error) {
-        console.error('Error:', error);
-      } finally {
         setIsLoading(false);
-      }
-    };
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setIsLoading(false);
+      });
+  }, [token]);
 
-    fetchTicketData();
-  }, [token, ticketID]);
 
   const accept = () => {
     axios
       .post(
-        `http://localhost:4000/support/ticket-details?id=${ticketID}`,
+        `http://localhost:4000/support/ticket-accept?id=${id}`,
         {
-          ticketID: ticketID
+          ticketID: id
         },
         {
           headers: {

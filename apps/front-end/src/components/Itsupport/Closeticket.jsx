@@ -2,53 +2,79 @@ import React, { useState, useEffect } from 'react';
 import './Closeticket.css';
 import HeaderIT from '../HeaderIT';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Closeticket() {
   const [selectedOption, setSelectedOption] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
+  const postToClose = () => {
+    axios.post('http://localhost:4000/support/ticket-close',
+      {
+        ticketID: sessionStorage.getItem('ticketID'),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  }
+
+  const postToReopen = () => {
+    axios.post('http://localhost:4000/support/ticket-reopen',
+      {
+        ticketID: sessionStorage.getItem('ticketID'),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedOption !== '') {
-      // Submit the form
-      console.log('Form submitted');
-    } else {
+      if (selectedOption === 'Resolved') { postToClose() }
+      else if (selectedOption === 'Unresolved') { postToReopen() }
+    }
+
+    else {
       // Show error message or perform other validation logic
       console.log('Please select an option');
     }
   };
 
-
-  const fetchTicketData = () => {
-    // Simulating an API call or data retrieval
-    return {
-      room: '103',
-      date: '16/5/2023',
-      time: '2:26 PM',
-      examPeriod: '103',
-      service: 'Password',
-      Description: 'the QR code is not working, the student needs a password to access the exam, please hurry up! Thank you in advance. One Piece is your uncle!'
-    };
-  };
-
-  // console.log("HI");
+  // const fetchTicketData = () => {
+  //   // Simulating an API call or data retrieval
+  //   return {
+  //     room: '103',
+  //     date: '16/5/2023',
+  //     time: '2:26 PM',
+  //     examPeriod: '103',
+  //     service: 'Password',
+  //     Description:
+  //       'the QR code is not working, the student needs a password to access the exam, please hurry up! Thank you in advance. One Piece is your uncle!',
+  //   };
+  // };
 
   let [examRoomData, setExamRoomData] = useState([]);
-  examRoomData = [{
-
-  }]
+  // examRoomData = [{}];
   const token = localStorage.getItem('auth');
   const id = sessionStorage.getItem('ticketID');
-  const num = parseInt(id, 10);
-  // console.log(id)
+  // const num = parseInt(id, 10);
+  const url = `http://localhost:4000/support/ticket-details?id=${id}`;
 
-
-  let selectedTicket;
-  const url = `http://localhost:4000/ticket/1`;
   useEffect(() => {
+    setIsLoading(true);
     fetch(url, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -61,22 +87,19 @@ export default function Closeticket() {
           window.location.href = "../security-stop";
         } else {
           setExamRoomData(data);
-          selectedTicket = data.find(ticket => ticket.id === num);
-
-          // Log the selected ticket
-          console.log(selectedTicket);
+          // console.log(examRoomData);
         }
+        setIsLoading(false);
       })
       .catch(error => {
         console.error('Error:', error);
+        setIsLoading(false);
       });
   }, [token]);
-  console.log(examRoomData);
 
-  // Call the fetchTicketData function to get the ticket data
-  const ticketData = fetchTicketData();
-
-
+  // useEffect(() => {
+  //   console.log(examRoomData);
+  // }, [examRoomData]);
 
 
   return (
@@ -87,37 +110,30 @@ export default function Closeticket() {
           <h2>it support ticket</h2>
           <p>ticket information:</p>
 
-          {selectedTicket ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
             <table className='tablee'>
               <tbody>
                 <tr>
-                  <td className="tdOne">Room:</td>
-                  <td className="tdTwo">{selectedTicket.room}</td>
-                </tr>
-                {/* <tr>
-                  <td className="tdOne">Date:</td>
-                  <td className="tdTwo">{ticketData.date}</td>
-                </tr> */}
-                <tr>
-                  <td className="tdOne">Time:</td>
-                  <td className="tdTwo">{selectedTicket.time}</td>
-                </tr>
-                {/* <tr>
-                  <td className="tdOne">Exam Period:</td>
-                  <td className="tdTwo">{ticketData.examPeriod}</td>
-                </tr> */}
-                <tr>
-                  <td className="tdOne">Service:</td>
-                  <td className="tdTwo">{selectedTicket.type}</td>
+                  <td className='tdOne'>Room:</td>
+                  <td className='tdTwo'>{examRoomData.room}</td>
                 </tr>
                 <tr>
-                  <td className="tdOne">Description:</td>
-                  <td className="tdTwo">{selectedTicket.description}</td>
+                  <td className='tdOne'>Time:</td>
+                  <td className='tdTwo'>{examRoomData.time}</td>
+                </tr>
+                <tr>
+                  <td className='tdOne'>Service:</td>
+                  <td className='tdTwo'>{examRoomData.type}</td>
+                </tr>
+                <tr>
+                  <td className='tdOne'>Description:</td>
+                  <td className='tdTwo'>{examRoomData.description}</td>
                 </tr>
               </tbody>
             </table>
-          ) : (
-            <p>Loading...</p>
+
           )}
 
           <form onSubmit={handleSubmit}>
@@ -132,7 +148,7 @@ export default function Closeticket() {
                     onChange={handleOptionChange}
                     required
                   />
-                  Resolved
+                  Mark as Resolved
                 </label>
                 <label>
                   <input
@@ -143,24 +159,24 @@ export default function Closeticket() {
                     onChange={handleOptionChange}
                     required
                   />
-                  Unresolved
+                  Reopen the ticket
                 </label>
               </div>
 
-              <br />
+              {/* <br />
 
               <textarea
                 name=''
                 id=''
                 rows='3'
                 placeholder='Write a description... (Optional)'
-              ></textarea>
+              ></textarea> */}
             </div>
             <div className='close'>
-              <button type='submit'>Close Ticket</button>
-
-              {/* IMPORTAN! Change the link to the correct one, this link takes the user to the "IT-Support" open tickets page where it shows only Open tickets, but in case of an "Admin" user, it will show ALL tickets whether the ticket is Open, In-progress, orClosed. */}
-              <Link to="/IT-support/assigned-tickets">  <button type='submit'>Cancel</button>  </Link>
+              <button type='submit'>ٍSubmit</button>
+              <Link to='/IT-support/assigned-tickets'>
+                <button type='submit'>Cancel</button>
+              </Link>
             </div>
           </form>
         </div>

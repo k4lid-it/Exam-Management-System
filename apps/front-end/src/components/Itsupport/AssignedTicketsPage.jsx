@@ -37,7 +37,10 @@ function ITsupportPage() {
     <tr key={ticket.id}>
       <td>
         {ticket.status === 'In progress' ? (
-          <Link to={`/closeTicket/${ticket.id}`}>View Ticket</Link>
+          <Link
+            to={`/closeTicket/${ticket.id}`}
+            onClick={() => sessionStorage.setItem('ticketID', ticket.id)}
+          >View Ticket</Link>
         ) : (
           <span></span>
         )}
