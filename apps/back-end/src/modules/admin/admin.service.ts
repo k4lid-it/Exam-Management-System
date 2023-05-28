@@ -12,114 +12,115 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class AdminService {
 
-    constructor(@InjectRepository(Administrator) private adminRepository: Repository<Administrator>,
-                @InjectRepository(exam) private examRepository: Repository<exam>,
-                @InjectRepository(ticket) private ticketRepository: Repository<ticket>,
-                @InjectRepository(student) private studentRepository: Repository<student>){}
+  constructor(@InjectRepository(Administrator) private adminRepository: Repository<Administrator>,
+    @InjectRepository(exam) private examRepository: Repository<exam>,
+    @InjectRepository(ticket) private ticketRepository: Repository<ticket>,
+    @InjectRepository(student) private studentRepository: Repository<student>) { }
 
-    async createAdmins(createAdminDtoArray: createAdminDto[]) {
-        const newAdminArray = createAdminDtoArray.map((dto) =>
-          this.adminRepository.create(dto),
-        );
-        return this.adminRepository.save(newAdminArray);
-      }
+  async createAdmins(createAdminDtoArray: createAdminDto[]) {
+    const newAdminArray = createAdminDtoArray.map((dto) =>
+      this.adminRepository.create(dto),
+    );
+    return this.adminRepository.save(newAdminArray);
+  }
 
-      async viewExams(): Promise <exam[]> {
-        const exams = await this.examRepository.find();
-        if (exams.length > 0){
-          return exams;
-        }else{
-          throw new Error('no exams found');
-        }
-      }
+  async viewExams(): Promise<exam[]> {
+    const exams = await this.examRepository.find();
+    if (exams.length > 0) {
+      return exams;
+    } else {
+      throw new Error('no exams found');
+    }
+  }
 
-    async changeInvigilator(changeInvigilatorDto:changeInvigilatorDto){
-      const oldInvigilator = await this.examRepository.findOne({where:{invigilator:changeInvigilatorDto.oldInvigilator, time:changeInvigilatorDto.time}});
-      const newInvigilatorRecords = await this.examRepository.find({where:{invigilator:changeInvigilatorDto.newInvigilator, time:changeInvigilatorDto.time}});
+  async changeInvigilator(changeInvigilatorDto: changeInvigilatorDto) {
+    const oldInvigilator = await this.examRepository.findOne({ where: { invigilator: changeInvigilatorDto.oldInvigilator, time: changeInvigilatorDto.time } });
+    const newInvigilatorRecords = await this.examRepository.find({ where: { invigilator: changeInvigilatorDto.newInvigilator, time: changeInvigilatorDto.time } });
 
-      if (newInvigilatorRecords.length > 0) {
-        throw new error ('time conflect');
-      }
-    
-      oldInvigilator.invigilator = changeInvigilatorDto.newInvigilator;
-      await this.examRepository.save(oldInvigilator);
+    // if (newInvigilatorRecords.length > 0) {
+    //   throw new Error('time conflict');
+    // }
+
+
+    oldInvigilator.invigilator = changeInvigilatorDto.newInvigilator;
+    await this.examRepository.save(oldInvigilator);
+  }
+
+  async viewTickets(): Promise<ticket[]> {
+    const tickets = await this.ticketRepository.find();
+    if (tickets.length > 0) {
+      return tickets;
+    } else {
+      throw new Error('No tickets found');
     }
 
-    async viewTickets(): Promise<ticket[]>{
-      const tickets =  await this.ticketRepository.find();
-      if (tickets.length > 0){
-        return tickets;
-      }else{
-        throw new Error('No tickets found');
-      }
+  }
 
+  async viewTicketDetails(ticketID: string) {
+    const ticket = this.ticketRepository.findOne({ where: { id: ticketID } });
+    if (ticket) {
+      return ticket;
+    } else {
+      throw new Error('Ticket not found');
     }
 
-    async viewTicketDetails(ticketID:string){
-      const ticket = this.ticketRepository.findOne({where:{id:ticketID}});
-      if (ticket){
-        return ticket;
-      }else{
-        throw new Error('Ticket not found');
-      }
+  }
 
+  async acceptTicket(ticketID: string, admin: string) {
+    const ticket = await this.ticketRepository.findOne({ where: { id: ticketID } });
+    if (ticket) {
+      ticket.status = 'In progress';
+      ticket.employee = admin;
+      this.ticketRepository.save(ticket);
+    } else {
+      throw new Error('ticket not found');
     }
+  }
 
-    async acceptTicket(ticketID:string,admin:string){
-      const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
-      if (ticket) {
-        ticket.status = 'In progress';
-        ticket.employee = admin;
-        this.ticketRepository.save(ticket);
-      } else {
-        throw new Error('ticket not found');
-      }
+  async reopenTicket(ticketID: string) {
+    const ticket = await this.ticketRepository.findOne({ where: { id: ticketID } });
+    if (ticket) {
+      ticket.status = 'Open';
+      ticket.employee = null;
+      this.ticketRepository.save(ticket);
+    } else {
+      throw new Error('ticket not found');
     }
+  }
 
-    async reopenTicket(ticketID:string){
-      const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
-      if (ticket) {
-        ticket.status = 'Open';
-        ticket.employee = null;
-        this.ticketRepository.save(ticket);
-      } else {
-        throw new Error('ticket not found');
-      }
+  async closeTicket(ticketID: string) {
+    const ticket = await this.ticketRepository.findOne({ where: { id: ticketID } });
+    if (ticket) {
+      ticket.status = 'Closed';
+      this.ticketRepository.save(ticket);
+    } else {
+      throw new Error('ticket not found');
     }
+  }
 
-    async closeTicket(ticketID:string){
-      const ticket = await this.ticketRepository.findOne({where:{id:ticketID}});
-      if (ticket) {
-        ticket.status = 'Closed';
-        this.ticketRepository.save(ticket);
-      } else {
-        throw new Error('ticket not found');
-      }
-    } 
-
-    async checkStudentsRoom(studentID:string){
-      const studentRecords = await this.studentRepository.find({ where: {studentID} });
-      
-
-      const now = new Date();
-      const options = { hour: '2-digit', minute: '2-digit', hour12: true } as Intl.DateTimeFormatOptions;
-      const currentTime = now.toLocaleTimeString([], options);
+  async checkStudentsRoom(studentID: string) {
+    const studentRecords = await this.studentRepository.find({ where: { studentID } });
 
 
-    const currentStudentRecord = studentRecords .find((student) => {
+    const now = new Date();
+    const options = { hour: '2-digit', minute: '2-digit', hour12: true } as Intl.DateTimeFormatOptions;
+    const currentTime = now.toLocaleTimeString([], options);
+
+
+    const currentStudentRecord = studentRecords.find((student) => {
       const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
-      return currentTime >= startTime && currentTime <= endTime;});
-      
-      if(currentStudentRecord){
-          throw new Error("Please go to room "+currentStudentRecord.room);
-        
-      }else{
-        throw new Error('The student doesnt have an exam at the current time');
-       }
-    } 
+      return currentTime >= startTime && currentTime <= endTime;
+    });
 
-    
+    if (currentStudentRecord) {
+      throw new Error("Please go to room " + currentStudentRecord.room);
+
+    } else {
+      throw new Error('The student doesnt have an exam at the current time');
     }
+  }
 
-    
-    
+
+}
+
+
