@@ -42,7 +42,7 @@ function Login() {
             localStorage.setItem('auth', response.data.access_token);
             window.location.href = '/IT-Support/Assigned-Tickets'
           }
-          else if (response.data.info.userType === 'Admin') {
+          else if (response.data.info.userType === 'admin') {
             localStorage.setItem('auth', response.data.access_token);
             window.location.href = '/Admin-home'
           }
