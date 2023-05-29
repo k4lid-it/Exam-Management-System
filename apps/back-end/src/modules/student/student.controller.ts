@@ -22,7 +22,7 @@ export class StudentController {
 
 
     @Post('mock-exam')
-    examSubmission(examSubmissionDto:examSubmissionDto){
+    examSubmission(@Body() examSubmissionDto:examSubmissionDto){
         return this.studentService.examSubmission(examSubmissionDto);
     }
 
