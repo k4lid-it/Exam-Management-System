@@ -63,6 +63,7 @@ export class InvigilatorService {
   }
 
   async markPresent(studentID: string, invigilator: string) {
+    console.log(studentID, '********', invigilator);
     const studentRecords = await this.studentRepository.find({ where: { studentID } });
     const examRecords = await this.examRepository.find({ where: { invigilator } });
 

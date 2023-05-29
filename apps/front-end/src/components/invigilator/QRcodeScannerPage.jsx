@@ -3,11 +3,14 @@ import QrScanner from 'react-qr-scanner';
 import './QRcodeScannerPage.css';
 import HeaderAdmin from "../HeaderAdmin";
 import HeaderNonAdmin from "../HeaderNonAdmin";
+import { io } from 'socket.io-client';
+import axios from "axios";
 
 const QRCodeScannerPage = () => {
   const [result, setResult] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const socket = io('http://localhost:4000');
 
   useEffect(() => {
     // Check if the user is on a mobile device
@@ -15,9 +18,66 @@ const QRCodeScannerPage = () => {
     setIsMobile(isMobileDevice);
   }, []);
 
+
+
   const handleScan = (data) => {
     if (data) {
-      setResult(data);
+      const jsonString = JSON.stringify(data);
+      const parsedData = JSON.parse(jsonString);
+      const token = localStorage.getItem('auth');
+
+
+      const header = parsedData.text.substring(0, 2);
+      const body = parsedData.text.substring(2);
+      console.log(header);
+      console.log(body);
+
+      // Taking attendace. 
+      if (header === '1x') {
+        axios.post('http://localhost:4000/invigilator/Room/scanner', {
+          studentID: body,
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(response => {
+            setResult('Attendance was successfull');
+          })
+          .catch(error => {
+            setResult('The attendance was not successful, the student exam room/time is wrong.');
+
+          });
+      }
+      //Granting exam access
+      if (header === '2x') {
+        socket.emit('server', body);
+
+      }
+      //Generating password
+      if (header === '3x') {
+        axios.post('http://localhost:4000/invigilator/generate-password', {
+          studentID: sessionStorage.getItem('selectedID'),
+          subject: sessionStorage.getItem('selectedSubject'),
+          salt: body,
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(response => {
+            console.log("res==", response.data.password);
+            setResult("The password is: " + response.data.password);
+          })
+          .catch(error => {
+            setResult('Something went wrong');
+
+          });
+      }
+
+
       setShowPopup(true);
     }
   };
@@ -56,7 +116,7 @@ const QRCodeScannerPage = () => {
             <div className="qrcode-popup">
               <div className="qrcode-popup-content">
                 <h2>Result:</h2>
-                <p>{result && result.text}</p>
+                <p>{result}</p>
                 <button onClick={closePopup}>Close</button>
               </div>
             </div>
