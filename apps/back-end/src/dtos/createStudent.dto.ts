@@ -7,6 +7,4 @@ export class createStudentDto {
     time:string;
     room:string;
     seat: string;
-    //attendance: string;
-    //note: string;
 }

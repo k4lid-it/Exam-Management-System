@@ -5,7 +5,6 @@ import { AuthService } from './auth.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { invigilator } from 'src/entities/invigilator.entity';
 import { support } from 'src/entities/support.entity';
-import { exam } from 'src/entities/Exam.entity';
 import { LocalStrategy } from './local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
@@ -23,7 +22,7 @@ import { Administrator } from 'src/entities/Administrator.entity';
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '2h' },
     })],
   providers: [
     AuthService,
