@@ -14,7 +14,7 @@ export default function Closeticket() {
     };
 
     const postToClose = () => {
-        axios.post('http://localhost:4000/admin/ticket-close',
+        axios.post('https://examportalseuserver.herokuapp.com/admin/ticket-close',
             {
                 ticketID: sessionStorage.getItem('ticketID'),
             },
@@ -28,7 +28,7 @@ export default function Closeticket() {
     }
 
     const postToReopen = () => {
-        axios.post('http://localhost:4000/admin/ticket-reopen',
+        axios.post('https://examportalseuserver.herokuapp.com/admin/ticket-reopen',
             {
                 ticketID: sessionStorage.getItem('ticketID'),
             },
