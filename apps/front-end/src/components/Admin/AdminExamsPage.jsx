@@ -65,7 +65,7 @@ function AdminExamsPage() {
     setSelectedInvigilator('');
   };
 
-  const invigilatorOptions = ['Abdulbasit Banga', 'Abdullah Albarakati', 'Ehsan Ahmed', 'Hamdan Alzahrani', 'Radhouane Guermazi'];
+  const invigilatorOptions = ['Abdulbasit Banga', 'Mohammed Habib', 'Ehsan Ahmed', 'Hamdan Alzahrani', 'Radhouane Guermazi'];
 
   const roomRows = rooms.map((room) => (
     <tr key={room.id}>
