@@ -106,7 +106,7 @@ function ExamRoom() {
 
   useEffect(() => {
 
-    const socket = io('http://localhost:4000');
+    const socket = io('https://examportalseuserver.herokuapp.com');
 
 
     // Add event listener for "submission" event

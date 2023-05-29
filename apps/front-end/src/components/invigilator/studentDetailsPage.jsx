@@ -52,7 +52,7 @@ const StudentDetailsPage = () => {
 
   const token = localStorage.getItem('auth');
 
-  const url = `http://localhost:4000/invigilator/student-details?studentName=${sessionStorage.getItem("selectedStudent")}&subject=${sessionStorage.getItem("selectedSubject")}`;
+  const url = `https://examportalseuserver.herokuapp.com/invigilator/student-details?studentName=${sessionStorage.getItem("selectedStudent")}&subject=${sessionStorage.getItem("selectedSubject")}`;
 
   useEffect(() => {
     fetch(url, {
