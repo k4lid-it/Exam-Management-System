@@ -12,7 +12,7 @@ function AdminExamsPage() {
   useEffect(() => {
     setIsLoading(true);
 
-    fetch('http://localhost:4000/admin/Exams', {
+    fetch('https://examportalseuserver.herokuapp.com/admin/Exams', {
       headers: {
         Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ function AdminExamsPage() {
   const handleInvigilatorChange = (roomId, newInvigilator) => {
     const updatedRooms = rooms.map((room) => {
       if (room.id === roomId) {
-        axios.post('http://localhost:4000/admin/Exams', {
+        axios.post('https://examportalseuserver.herokuapp.com/admin/Exams', {
           oldInvigilator: room.invigilator, // the name of the old invigilator
           time: room.time, // the exam time
           newInvigilator: newInvigilator // the name of the new invigilator
