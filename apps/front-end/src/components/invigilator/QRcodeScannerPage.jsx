@@ -107,7 +107,7 @@ const QRCodeScannerPage = () => {
                 delay={300}
                 onError={handleError}
                 onScan={handleScan}
-                facingMode={isMobile ? 'environment' : 'user'}
+                facingMode={isMobile ? { exact: 'environment' } : 'user'}
                 style={{ width: '100%' }}
               />
             </div>
