@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { createStudentDto } from 'src/dtos/createStudent.dto';
 import { StudentService } from './student.service';
+import { examSubmissionDto } from 'src/dtos/examSubmissionDto.dto';
+
 
 
 @Controller('student')
@@ -17,6 +18,12 @@ export class StudentController {
     @Get()
     viewStudents(){
         return this.studentService.viewStudents();
+    }
+
+
+    @Post('mock-exam')
+    examSubmission(examSubmissionDto:examSubmissionDto){
+        return this.studentService.examSubmission(examSubmissionDto);
     }
 
 

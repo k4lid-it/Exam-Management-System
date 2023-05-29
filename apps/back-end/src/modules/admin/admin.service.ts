@@ -37,7 +37,7 @@ export class AdminService {
       const newInvigilatorRecords = await this.examRepository.find({where:{invigilator:changeInvigilatorDto.newInvigilator, time:changeInvigilatorDto.time}});
 
       if (newInvigilatorRecords.length > 0) {
-        throw new Error('time conflect');
+        return { message: 'Time conflict' };
       }else {
       oldInvigilator.invigilator = changeInvigilatorDto.newInvigilator;
       await this.examRepository.save(oldInvigilator);
