@@ -104,8 +104,6 @@ function ExamRoom() {
   ;
 
 
-
-
   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
   const userRole = 'non-admin';
 
@@ -148,7 +146,7 @@ function ExamRoom() {
           <button className="btn">Request IT Support</button>
         </Link>
 
-        <button onClick={window.print} className="btn">Print this page</button>
+        <button onClick={window.print} className="btn">Export Attendance Report</button>
 
         <table className="students-table">
           <thead>
@@ -158,6 +156,7 @@ function ExamRoom() {
               <th>Course</th>
               <th>College</th>
               <th>Attendance</th>
+              <th>Exam submitted?</th>
             </tr>
           </thead>
           <tbody>
@@ -184,6 +183,10 @@ function ExamRoom() {
                   />
 
                 </td>
+
+                {/* @Khaled do you magic in the below <td>, it should display yes or no to indicate whether the submit button in the mock exam was clicked (and hence sent post request) or not */}
+                <td>Yes</td>
+
               </tr>
             ))}
           </tbody>
