@@ -97,8 +97,21 @@ const RequestITsupportPage = () => {
 
 
           <div className="form-input">
+
+
+  {/* for @KHALED: you can use this code below to make when the send button is clicked it takes the user back to his exam room page or his home page, you have done something very similar in the AdminAcceptTicket.jsx , the code below needs the {Link} to be imported, and the {accept} to be defined. */}
+            {/* <Link to="">
+                        <button type='submit' onClick={accept}>
+                            Send
+                        </button>
+                    </Link> */}
+
+
+{/* then dont forget to delete this old button below*/}
             <button type="submit">Send</button>
           </div>
+
+          
 
         </form>
       </div>
