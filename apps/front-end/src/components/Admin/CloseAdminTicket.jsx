@@ -62,7 +62,7 @@ export default function Closeticket() {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:4000/admin/ticket-details?id=${id}`, {
+        fetch(`https://examportalseuserver.herokuapp.com/admin/ticket-details?id=${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
