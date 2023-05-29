@@ -1,10 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { promises } from 'dns';
-import { loginDto } from 'src/dtos/loginDto.dto';
 import { Administrator } from 'src/entities/Administrator.entity';
-import { exam } from 'src/entities/Exam.entity';
 import { invigilator } from 'src/entities/invigilator.entity';
 import { support } from 'src/entities/support.entity';
 import { Repository } from 'typeorm';
