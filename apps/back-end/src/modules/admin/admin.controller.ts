@@ -91,10 +91,16 @@ export class AdminController {
         }
     }
 
+    @UseGuards(AuthGuard('jwt'))
+    @Post('check-room')
+    checkStudentsRoom(@Req() req: any, @Body('studentID') studentId: string) {
+        if (req.user.userType === 'admin') {
+            return this.adminService.checkStudentsRoom(studentId);
 
-
-
-
+        } else {
+            throw new UnauthorizedException();
+        }
+    }
 
 
     @Post()

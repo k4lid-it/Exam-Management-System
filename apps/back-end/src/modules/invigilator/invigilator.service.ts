@@ -86,10 +86,10 @@ export class InvigilatorService {
         currentStudentRecord.attendance = 'Present';
         this.studentRepository.save(currentStudentRecord);
       } else {
-        throw new Error("This is not the studnet's room please go to room " + currentStudentRecord.room);
+        return { message:"This is not the studnet's room please go to room " + currentStudentRecord.room};
       }
     } else {
-      throw new Error('Student doesnt have an exam at the current time');
+      return { message:"The student doesn't have an exam at the current time"};
     }
 
   }

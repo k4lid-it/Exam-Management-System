@@ -46,12 +46,12 @@ export class AdminService {
     }
   
 
-    async viewMyTickets(adminName:string): Promise<ticket[]>{
+    async viewMyTickets(adminName:string){
       const tickets =  await this.ticketRepository.find({where:{employee:adminName}});
       if (tickets.length > 0){
         return tickets;
       }else{
-        throw new Error('No tickets found');
+        return { message: 'No tickets found' };
       }
 
     }
@@ -61,7 +61,7 @@ export class AdminService {
       if (ticket){
         return ticket;
       }else{
-        throw new Error('Ticket not found');
+        return { message: 'No tickets found' };
       }
     }
 
@@ -122,10 +122,10 @@ export class AdminService {
     });
 
     if (currentStudentRecord) {
-      throw new Error("Please go to room " + currentStudentRecord.room);
+      return { message: 'Please go to room ' + currentStudentRecord.room}
 
     } else {
-      throw new Error('The student doesnt have an exam at the current time');
+      return { message:'The student doesnt have an exam at the current time'};
     }
   }
 
