@@ -76,14 +76,21 @@ export class InvigilatorService {
       return currentTime >= startTime && currentTime <= endTime;
     });
 
-    if (!currentExam) {
-      return { message: "The invigilation time didn't start yet" };
-    }
+    
 
     const currentStudentRecord = studentRecords.find((student) => {
       const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
       return currentTime >= startTime && currentTime <= endTime;
     });
+
+    if (!currentExam) {
+      if (currentStudentRecord) {
+        return { message: 'Please go to room ' + currentStudentRecord.room}
+  
+      } else {
+        return { message:'The student doesnt have an exam at the current time'};
+      }
+    }
 
 
     if (currentStudentRecord) {
