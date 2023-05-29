@@ -3,6 +3,7 @@ import "./LoginPage.css";
 import axios from 'axios';
 import Joi from "joi";
 function Login() {
+  const [error, seterror] = useState(false);
   const [userEmail, setUsername] = useState();
   const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
@@ -51,7 +52,7 @@ function Login() {
           }
         })
         .catch(error => {
-          // Log the error
+          seterror(true);
           console.error(error);
         });
     }
@@ -91,6 +92,8 @@ function Login() {
         <img src="seuLogo.png" alt="Logo" className="logo" />
         <p className="portal-title">SEU Exam Portal</p>
         <h1 className="title">Login using SEU account</h1>
+        {error && <h2>The username or password is incorrect, please try again</h2>}
+
         {errorsList.map((erroor, i) =>
           <div className="alert alert-danger text-danger" key={i}>
             {erroor.message}

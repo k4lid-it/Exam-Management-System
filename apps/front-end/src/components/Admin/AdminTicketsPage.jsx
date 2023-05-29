@@ -32,7 +32,7 @@ function OpenTicketsITsupportPage() {
 
 
   // Map over the IT support ticket data and create a table row for each ticket
-  const ticketRows = examRoomData.map((ticket) => (
+  const ticketRows = Array.isArray(examRoomData) ? examRoomData.map((ticket) => (
     <tr key={ticket.id}>
       <td>
         {ticket.status === 'Open' ? (
@@ -50,7 +50,7 @@ function OpenTicketsITsupportPage() {
       <td>{ticket.type}</td>
       <td>{ticket.status}</td>
     </tr>
-  ));
+  )) : [];
 
   return (
     <div>

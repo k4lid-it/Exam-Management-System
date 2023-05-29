@@ -43,10 +43,11 @@ const QRCodeScannerPage = () => {
           }
         })
           .then(response => {
-            setResult('Attendance was successfull');
+            console.log(response);
+            setResult(response.data.message);
           })
           .catch(error => {
-            setResult('The attendance was not successful, the student exam room/time is wrong.');
+            console.error(error);
 
           });
       }

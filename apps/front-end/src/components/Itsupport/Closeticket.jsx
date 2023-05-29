@@ -46,7 +46,7 @@ export default function Closeticket() {
     if (selectedOption !== '') {
       if (selectedOption === 'Resolved') { postToClose() }
       else if (selectedOption === 'Unresolved') { postToReopen() }
-      navigate('/IT-support/assigned-tickets');
+      window.location.href = '/IT-support/assigned-tickets';
     }
 
     else {

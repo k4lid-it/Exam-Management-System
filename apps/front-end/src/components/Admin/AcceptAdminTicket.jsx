@@ -61,7 +61,7 @@ export default function Acceptticket() {
                     // Handle the error if needed
                 });
         }
-        navigate('/Admin-home');
+        window.location.href = '/Admin-home';
 
 
     };

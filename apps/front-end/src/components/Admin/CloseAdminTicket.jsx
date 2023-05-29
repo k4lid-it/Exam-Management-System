@@ -46,7 +46,7 @@ export default function Closeticket() {
         if (selectedOption !== '') {
             if (selectedOption === 'Resolved') { postToClose() }
             else if (selectedOption === 'Unresolved') { postToReopen() }
-            navigate('/Admin-home');
+            window.location.href = '/Admin-home';
         }
 
         else {

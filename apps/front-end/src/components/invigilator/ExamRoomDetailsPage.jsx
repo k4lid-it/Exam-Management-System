@@ -4,6 +4,7 @@ import "./ExamRoomDetailsPage.css";
 import HeaderNonAdmin from "../HeaderNonAdmin";
 import HeaderAdmin from "../HeaderAdmin";
 import axios from 'axios';
+import io from 'socket.io-client';
 
 
 function ExamRoom() {
@@ -101,11 +102,29 @@ function ExamRoom() {
 
 
   //------------------------------------------
-  ;
+
+
+  useEffect(() => {
+
+    const socket = io('http://localhost:4000');
+
+
+    // Add event listener for "submission" event
+    socket.on('submission', () => {
+      window.location.reload();
+    });
+
+    // Clean up the Socket.IO connection on component unmount
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
 
   // Retrieve user role from state or authentication context, whether it is admin or non-admin, and store it in a variable to be used in the conditional rendering below
   const userRole = 'non-admin';
+  // console.log(examRoomData);
+
 
   return (
     <div>
@@ -185,7 +204,9 @@ function ExamRoom() {
                 </td>
 
                 {/* @Khaled do you magic in the below <td>, it should display yes or no to indicate whether the submit button in the mock exam was clicked (and hence sent post request) or not */}
-                <td>Yes</td>
+                <td id={`submit ${student.studentID}`}>
+                  {student.submitted}
+                </td>
 
               </tr>
             ))}

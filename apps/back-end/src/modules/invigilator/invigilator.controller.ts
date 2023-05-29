@@ -56,7 +56,6 @@ export class InvigilatorController {
     }
 
 
-
     @UseGuards(AuthGuard('jwt'))
     @Post('Room/Scanner')
     markPresnt(@Req() req: any, @Body('studentID') studentId: string) {

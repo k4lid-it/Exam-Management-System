@@ -59,7 +59,7 @@ function OpenTicketsITsupportPage() {
     return <div>Loading...</div>;
   }
 
-  const ticketRows = examRoomData.map((ticket) => (
+  const ticketRows = Array.isArray(examRoomData) ? examRoomData.map((ticket) => (
     <tr key={ticket.id}>
       <td>
         <Link
@@ -74,7 +74,7 @@ function OpenTicketsITsupportPage() {
       <td>{ticket.type}</td>
       <td>{ticket.status}</td>
     </tr>
-  ));
+  )) : [];
 
   return (
     <div>

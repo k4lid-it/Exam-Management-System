@@ -61,7 +61,7 @@ export default function Acceptticket() {
           // Handle the error if needed
         });
     }
-    navigate('/IT-support/assigned-tickets');
+    window.location.href = '/IT-support/assigned-tickets';
 
 
   };

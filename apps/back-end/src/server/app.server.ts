@@ -29,4 +29,10 @@ export class AppGateway implements OnModuleInit {
         console.log(message);
         this.server.emit(message);
     }
+
+    @SubscribeMessage("server-sub")
+    onNewSub(@MessageBody() message: any) {
+        console.log(message);
+        this.server.emit('submission', message);
+    }
 }

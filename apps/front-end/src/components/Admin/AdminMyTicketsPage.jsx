@@ -50,7 +50,7 @@ function AdminMyTickets() {
   }, [token]);
 
   // Map over the IT support ticket data and create a table row for each ticket
-  const ticketRows = examRoomData.map((ticket) => (
+  const ticketRows = Array.isArray(examRoomData) ? examRoomData.map((ticket) => (
     <tr key={ticket.id}>
       <td>
         {ticket.status === 'In progress' ? (
@@ -68,7 +68,7 @@ function AdminMyTickets() {
       <td>{ticket.type}</td>
       <td>{ticket.status}</td>
     </tr>
-  ));
+  )) : [];
 
   return (
     <div>

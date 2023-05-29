@@ -11,12 +11,10 @@ const RequestITsupportPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post("http://localhost:4000/invigilator/ticket", {
-
       room: sessionStorage.getItem("selectedRoom"),
       type: selectedService,
       description: issueDescription,
       seat: selectedSeat
-
     },
       {
         headers: {
@@ -24,7 +22,9 @@ const RequestITsupportPage = () => {
           Authorization: `Bearer ${token}`
         }
       })
-  };
+    window.location.href = (`/exam-room/1`)
+  }
+    ;
 
   const token = localStorage.getItem('auth');
 
@@ -99,7 +99,7 @@ const RequestITsupportPage = () => {
           <div className="form-input">
 
 
-  {/* for @KHALED: you can use this code below to make when the send button is clicked it takes the user back to his exam room page or his home page, you have done something very similar in the AdminAcceptTicket.jsx , the code below needs the {Link} to be imported, and the {accept} to be defined. */}
+            {/* for @KHALED: you can use this code below to make when the send button is clicked it takes the user back to his exam room page or his home page, you have done something very similar in the AdminAcceptTicket.jsx , the code below needs the {Link} to be imported, and the {accept} to be defined. */}
             {/* <Link to="">
                         <button type='submit' onClick={accept}>
                             Send
@@ -107,11 +107,11 @@ const RequestITsupportPage = () => {
                     </Link> */}
 
 
-{/* then dont forget to delete this old button below*/}
+            {/* then dont forget to delete this old button below*/}
             <button type="submit">Send</button>
           </div>
 
-          
+
 
         </form>
       </div>

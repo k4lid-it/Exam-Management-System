@@ -63,10 +63,10 @@ export class InvigilatorService {
   }
 
   async markPresent(studentID: string, invigilator: string) {
-    console.log(studentID, '********', invigilator);
     const studentRecords = await this.studentRepository.find({ where: { studentID } });
     const examRecords = await this.examRepository.find({ where: { invigilator } });
-
+    console.log(studentRecords);
+    console.log(examRecords);
     const now = new Date();
     const options = { hour: '2-digit', minute: '2-digit', hour12: true } as Intl.DateTimeFormatOptions;
     const currentTime = now.toLocaleTimeString([], options);
@@ -76,20 +76,25 @@ export class InvigilatorService {
       return currentTime >= startTime && currentTime <= endTime;
     });
 
+    if (!currentExam) {
+      return { message: "The invigilation time didn't start yet" };
+    }
+
     const currentStudentRecord = studentRecords.find((student) => {
       const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
       return currentTime >= startTime && currentTime <= endTime;
     });
+
 
     if (currentStudentRecord) {
       if (currentStudentRecord.room === currentExam.room) {
         currentStudentRecord.attendance = 'Present';
         this.studentRepository.save(currentStudentRecord);
       } else {
-        throw new Error("This is not the studnet's room please go to room " + currentStudentRecord.room);
+        return { message: "This is not the studnet's room please go to room " + currentStudentRecord.room };
       }
     } else {
-      throw new Error('Student doesnt have an exam at the current time');
+      return { message: "The student doesn't have an exam at the current time" };
     }
 
   }
@@ -104,8 +109,10 @@ export class InvigilatorService {
   }
 
   createTicket(ticketInfo: createTicketDto) {
+
     const newTicket = this.ticketRepository.create({ ...ticketInfo });
     this.socket.emit('server', 'ticketNew');
+    console.log(newTicket);
     return this.ticketRepository.save(newTicket)
   }
 

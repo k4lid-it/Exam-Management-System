@@ -6,29 +6,29 @@ import { examSubmissionDto } from 'src/dtos/examSubmissionDto.dto';
 
 @Controller('student')
 export class StudentController {
-    
-    constructor(private studentService: StudentService){}
+
+    constructor(private studentService: StudentService) { }
 
 
     @Post()
     createStudents(@Body() createStudent: any) {
-    this.studentService.createStudents(createStudent)
+        this.studentService.createStudents(createStudent)
     }
 
     @Get()
-    viewStudents(){
+    viewStudents() {
         return this.studentService.viewStudents();
     }
 
 
     @Post('mock-exam')
-    examSubmission(examSubmissionDto:examSubmissionDto){
+    examSubmission(@Body() examSubmissionDto: examSubmissionDto) {
         return this.studentService.examSubmission(examSubmissionDto);
     }
 
 
 
-    
 
-    
+
+
 }
