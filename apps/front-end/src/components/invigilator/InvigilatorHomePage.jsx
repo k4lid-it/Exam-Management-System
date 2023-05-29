@@ -20,7 +20,7 @@ function InvigilatorHomePage() {
   // console.log("THE TOKEN: " + token);
 
   useEffect(() => {
-    fetch('http://localhost:4000/invigilator/home', {
+    fetch('https://examportalseuserver.herokuapp.com/invigilator/home', {
       headers: {
         Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         'Content-Type': 'application/json'

@@ -9,7 +9,7 @@ export default function QRCodeGeneratorStudent2() {
   const [studentData, setStudentData] = useState({ id: '', name: '' });
   const [qrCodeValue, setQRCodeValue] = useState('');
   const [textValue, setTextValue] = useState('');
-  const socket = io('http://localhost:4000');
+  const socket = io('https://examportalseuserver.herokuapp.com');
 
 
 

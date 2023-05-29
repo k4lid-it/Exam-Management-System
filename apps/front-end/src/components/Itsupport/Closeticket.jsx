@@ -14,7 +14,7 @@ export default function Closeticket() {
   };
 
   const postToClose = () => {
-    axios.post('http://localhost:4000/support/ticket-close',
+    axios.post('https://examportalseuserver.herokuapp.com/support/ticket-close',
       {
         ticketID: sessionStorage.getItem('ticketID'),
       },
@@ -28,7 +28,7 @@ export default function Closeticket() {
   }
 
   const postToReopen = () => {
-    axios.post('http://localhost:4000/support/ticket-reopen',
+    axios.post('https://examportalseuserver.herokuapp.com/support/ticket-reopen',
       {
         ticketID: sessionStorage.getItem('ticketID'),
       },
@@ -62,7 +62,7 @@ export default function Closeticket() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:4000/support/ticket-details?id=${id}`, {
+    fetch(`https://examportalseuserver.herokuapp.com/support/ticket-details?id=${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

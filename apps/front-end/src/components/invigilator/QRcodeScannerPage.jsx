@@ -10,7 +10,7 @@ const QRCodeScannerPage = () => {
   const [result, setResult] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const socket = io('http://localhost:4000');
+  const socket = io('https://examportalseuserver.herokuapp.com');
 
   useEffect(() => {
     // Check if the user is on a mobile device
@@ -34,7 +34,7 @@ const QRCodeScannerPage = () => {
 
       // Taking attendace. 
       if (header === '1x') {
-        axios.post('http://localhost:4000/invigilator/Room/scanner', {
+        axios.post('https://examportalseuserver.herokuapp.com/invigilator/Room/scanner', {
           studentID: body,
         }, {
           headers: {
@@ -58,7 +58,7 @@ const QRCodeScannerPage = () => {
       }
       //Generating password
       if (header === '3x') {
-        axios.post('http://localhost:4000/invigilator/generate-password', {
+        axios.post('https://examportalseuserver.herokuapp.com/invigilator/generate-password', {
           studentID: sessionStorage.getItem('selectedID'),
           subject: sessionStorage.getItem('selectedSubject'),
           salt: body,
