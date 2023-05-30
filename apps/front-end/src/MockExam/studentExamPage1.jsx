@@ -44,12 +44,13 @@ export default function QRCodeGeneratorStudent1() {
     <div>
       <h2>Please ask your Invigilator to scan your QR code to gain exam access:</h2>
       <h1>Student: {studentData.name}</h1>
+      <div className='qr-container'>
       <QRCode
         value={qrCodeValue}
         //   value='seu.edu.sa'
         size={390}
       />
-
+      </div>
       <div className="input-button">
         <h2>or Ask your invigilator for your exam password:</h2>
         <input type="text" value={textValue} placeholder="Enter Exam Password" />
