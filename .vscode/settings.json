@@ -1,4 +1,8 @@
 {
     "appService.defaultWebAppToDeploy": "undefined/subscriptions/f720a81e-bb93-41d3-b14f-0f6eb6291711/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/seuExamPortal",
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
 }

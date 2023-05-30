@@ -6,7 +6,7 @@ import axios from 'axios';
 const QRCodeGeneratorStudent1submit = () => {
 
 
-    const socket = io('https://examportalseuserver.herokuapp.com/');
+    const socket = io('https://examportalseuserver.herokuapp.com');
     const token = localStorage.getItem('auth');
 
     const postSubmit = () => {
@@ -28,7 +28,7 @@ const QRCodeGeneratorStudent1submit = () => {
             <div>
                 <h1>Hani Ghassan Darwicheh Successfully entered Exam</h1>
                 <h1>
-                    Keep your eyes on the paper and do not look at other students' papers
+                    Keep your eyes on the screen and do not look at other students' screens
                 </h1>
                 <h1>Good Luck!</h1>
                 <h1>Exam Duration: 2 hours</h1>
@@ -43,7 +43,7 @@ const QRCodeGeneratorStudent1submit = () => {
         );
     }
     else {
-        window.location.href = "https://examportalseuserver.herokuapp.com/mock-exam/student/1"
+        window.location.href = "https://examportalseu.azurewebsites.net/mock-exam/student/1"
     }
 }
 

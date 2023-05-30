@@ -29,7 +29,7 @@ const QRCodeGeneratorStudent2submit = () => {
             <div>
                 <h1>Abdullah Mohammed Zain Abdulrahman Successfully entered Exam</h1>
                 <h1>
-                    Keep your eyes on the paper and do not look at other students' papers
+                    Keep your eyes on the screen and do not look at other students' screens
                 </h1>
                 <h1>Good Luck!</h1>
 
@@ -45,7 +45,7 @@ const QRCodeGeneratorStudent2submit = () => {
         );
     }
     else {
-        window.location.href = 'https://examportalseuserver.herokuapp.com/mock-exam/student/2/'
+        window.location.href = 'https://examportalseu.azurewebsites.net/mock-exam/student/2/'
     }
 }
 
