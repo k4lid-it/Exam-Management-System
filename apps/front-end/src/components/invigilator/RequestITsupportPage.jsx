@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './RequestITsupportPage.css';
 import HeaderNonAdmin from "../HeaderNonAdmin";
+
 import axios from 'axios';
 
 const RequestITsupportPage = () => {
   const [selectedService, setSelectedService] = useState('');
   const [selectedSeat, setSelectedSeat] = useState('');
   const [issueDescription, setIssueDescription] = useState('');
+
+
+  const token = localStorage.getItem('auth');
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,10 +29,8 @@ const RequestITsupportPage = () => {
         }
       })
     window.location.href = (`/exam-room/1`)
-  }
-    ;
+  };
 
-  const token = localStorage.getItem('auth');
 
   const seatNumbers = JSON.parse(sessionStorage.getItem('seatNumbers'));
 

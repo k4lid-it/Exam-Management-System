@@ -22,7 +22,7 @@ export class InvigilatorService {
     @InjectRepository(ticket) private ticketRepository: Repository<ticket>) { }
 
 
-  socket = io("http://localhost:4000");
+  socket = io("https://examportalseuserver.herokuapp.com");
 
 
 
@@ -76,7 +76,7 @@ export class InvigilatorService {
       return currentTime >= startTime && currentTime <= endTime;
     });
 
-    
+
 
     const currentStudentRecord = studentRecords.find((student) => {
       const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
@@ -85,10 +85,10 @@ export class InvigilatorService {
 
     if (!currentExam) {
       if (currentStudentRecord) {
-        return { message: 'Please go to room ' + currentStudentRecord.room}
-  
+        return { message: 'Please go to room ' + currentStudentRecord.room }
+
       } else {
-        return { message:'The student doesnt have an exam at the current time'};
+        return { message: 'The student doesnt have an exam at the current time' };
       }
     }
 
