@@ -19,6 +19,7 @@
     border-collapse: collapse; /* remove borders between cells */
     margin-top: 20px; /* add some space between header and table */
     background-color: #fff; /* add a white background color to the table */
+    border-radius: 10px; /* add some rounded corners */
   }
   
   .ITsupportPage th,
@@ -27,11 +28,24 @@
     text-align: center; /* center text within cells */
   }
   
+
   .ITsupportPage th {
     background-color: #E9AB33; /* set background color of header cells */
     color: #fff; /* set text color of header cells */
   }
   
+  th:first-child {
+    border-radius: 10px 0 0 0;
+  }
+
+  th:last-child {
+    border-radius: 0 10px 0 0;
+  }
+
+  th:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
   .ITsupportPage tr:hover {
     background-color: #00748e12; /* change background color of row on hover */
   }
