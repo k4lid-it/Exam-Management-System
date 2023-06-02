@@ -11,7 +11,7 @@ export default function QRCodeGeneratorStudent1() {
   const [textValue, setTextValue] = useState('');
   const [error, seterror] = useState(false);
   const socket = io('https://examportalseuserver.herokuapp.com');
-  const password = ' YPzXc/';
+  const password = 'YPzXc/';
 
 
 
