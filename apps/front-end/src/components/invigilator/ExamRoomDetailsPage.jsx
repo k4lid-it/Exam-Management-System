@@ -205,7 +205,12 @@ function ExamRoom() {
 
                 {/* @Khaled do you magic in the below <td>, it should display yes or no to indicate whether the submit button in the mock exam was clicked (and hence sent post request) or not */}
                 <td id={`submit ${student.studentID}`}>
-                  {student.submitted}
+                  {student.submitted === 'Yes' ? (
+                    <img src='/submit_icon.png' alt="Submitted" style={{ width: '30px', height: 'auto' }} />
+                    //Credits goes to the owenr of the photo: ** Attribution: Emoji One **
+                  ) : (
+                    <img src="/not_submit_icon.jpg" alt="Not Submitted" style={{ width: '30px', height: 'auto' }} />
+                  )}
                 </td>
 
               </tr>
