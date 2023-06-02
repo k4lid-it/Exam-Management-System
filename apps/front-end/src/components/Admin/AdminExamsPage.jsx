@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './AdminExamsPage.css';
 import HeaderAdmin from "../HeaderAdmin";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function AdminExamsPage() {
   const [examRoomData, setExamRoomData] = useState([]);
@@ -54,10 +57,26 @@ function AdminExamsPage() {
             'Content-Type': 'application/json'
           }
         })
-        return {
-          ...room,
-          invigilator: newInvigilator
-        };
+          // .then(response)
+          .then(response => {
+            if (response.data.message === "Time conflict") {
+              toast.error('Time conflict'); // Display the toast notification
+            }
+            else {
+              const updatedRoom = {
+                ...room,
+                invigilator: newInvigilator
+              };
+              setRooms((prevRooms) => {
+                return prevRooms.map((prevRoom) =>
+                  prevRoom.id === roomId ? updatedRoom : prevRoom
+                );
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
       }
       return room;
     });
@@ -100,6 +119,7 @@ function AdminExamsPage() {
     <div>
       <HeaderAdmin />
       <div className="Admin-exams-page">
+        <ToastContainer />
         <main>
           {isLoading ? (
             <p>Loading...</p>
