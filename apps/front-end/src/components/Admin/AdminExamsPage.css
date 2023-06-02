@@ -70,6 +70,21 @@
     table {
       font-size: 10px; /* decrease font size of table on smaller screens */
     }
+
+    
+  .changeInvigilatorButton {
+
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #00758E;
+    color: #E9AB33;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    
+  }  
+
   }
 
   
