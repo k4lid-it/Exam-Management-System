@@ -63,7 +63,7 @@ export class InvigilatorService {
   }
 
   async markPresent(studentID: string, invigilator: string) {
-    const studentRecords = await this.studentRepository.find({ where: { studentID } });
+    /*const studentRecords = await this.studentRepository.find({ where: { studentID } });
     const examRecords = await this.examRepository.find({ where: { invigilator } });
     console.log(studentRecords);
     console.log(examRecords);
@@ -82,6 +82,9 @@ export class InvigilatorService {
       const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
       return currentTime >= startTime && currentTime <= endTime;
     });
+    console.log(currentTime);
+    console.log(currentStudentRecord);
+    console.log(currentExam);
 
     if (!currentExam) {
       if (currentStudentRecord) {
@@ -102,8 +105,10 @@ export class InvigilatorService {
       }
     } else {
       return { message: "The student doesn't have an exam at the current time" };
-    }
-
+    }*/
+    const student = await this.studentRepository.findOne({ where: { studentID: studentID, room:'108' } });
+    student.attendance = 'Present';
+    this.studentRepository.save(student);
   }
 
   async viewStudentDetails(studentDetailsDto: studentDetailsDto) {
