@@ -106,9 +106,11 @@ export class InvigilatorService {
     } else {
       return { message: "The student doesn't have an exam at the current time" };
     }*/
-    const student = await this.studentRepository.findOne({ where: { studentID: studentID, room:'108' } });
+    const student = await this.studentRepository.findOne({ where: { studentID: studentID, room: '108' } });
     student.attendance = 'Present';
     this.studentRepository.save(student);
+    return { message: "Attendance marked" };
+
   }
 
   async viewStudentDetails(studentDetailsDto: studentDetailsDto) {
