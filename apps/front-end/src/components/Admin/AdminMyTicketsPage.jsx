@@ -31,7 +31,7 @@ function AdminMyTickets() {
 
 
   useEffect(() => {
-    fetch('https://examportalseuserver.herokuapp.com/admin/My-ticket', {
+    fetch('http://localhost:4000/admin/My-ticket', {
       headers: {
         Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         'Content-Type': 'application/json'

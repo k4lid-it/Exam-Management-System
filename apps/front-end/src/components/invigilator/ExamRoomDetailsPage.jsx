@@ -31,7 +31,7 @@ function ExamRoom() {
   const time = sessionStorage.getItem('selectedTime')
 
 
-  const url = `https://examportalseuserver.herokuapp.com/invigilator/Room?room=${room}&time=${time}`;
+  const url = `http://localhost:4000/invigilator/Room?room=${room}&time=${time}`;
   useEffect(() => {
     fetch(url, {
       headers: {
@@ -65,7 +65,7 @@ function ExamRoom() {
       if (!boolean)
         // Checkbox is checked, mark the student as Present
         await axios.post(
-          "https://examportalseuserver.herokuapp.com/invigilator/Room",
+          "http://localhost:4000/invigilator/Room",
           {
             name: name,
             subject: subject,
@@ -80,7 +80,7 @@ function ExamRoom() {
       else {
         // Checkbox is unchecked, mark the student as Absent
         await axios.post(
-          "https://examportalseuserver.herokuapp.com/invigilator/Room/absent",
+          "http://localhost:4000/invigilator/Room/absent",
           {
             name: name,
             subject: subject,
@@ -106,7 +106,7 @@ function ExamRoom() {
 
   useEffect(() => {
 
-    const socket = io('https://examportalseuserver.herokuapp.com');
+    const socket = io('http://localhost:4000');
 
 
     // Add event listener for "submission" event

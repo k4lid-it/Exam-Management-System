@@ -9,7 +9,7 @@ function OpenTicketsITsupportPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem('auth');
-  const url = 'https://examportalseuserver.herokuapp.com/support/Home';
+  const url = 'http://localhost:4000/support/Home';
 
   const fetchData = async () => {
     try {
@@ -42,7 +42,7 @@ function OpenTicketsITsupportPage() {
   }, [token]);
 
   useEffect(() => {
-    const socket = io('https://examportalseuserver.herokuapp.com');
+    const socket = io('http://localhost:4000');
 
     const handleNewTicket = () => {
       fetchData();

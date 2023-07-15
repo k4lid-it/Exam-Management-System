@@ -12,7 +12,7 @@ export default function Acceptticket() {
     const token = localStorage.getItem('auth');
     const id = sessionStorage.getItem('ticketID');
     // const num = parseInt(id, 10);
-    const url = `https://examportalseuserver.herokuapp.com/admin/ticket-details?id=${id}`;
+    const url = `http://localhost:4000/admin/ticket-details?id=${id}`;
 
     useEffect(() => {
         setIsLoading(true);
@@ -43,7 +43,7 @@ export default function Acceptticket() {
         if (true) {
             axios
                 .post(
-                    `https://examportalseuserver.herokuapp.com/admin/ticket-accept?id=${id}`,
+                    `http://localhost:4000/admin/ticket-accept?id=${id}`,
                     {
                         ticketID: id
                     },

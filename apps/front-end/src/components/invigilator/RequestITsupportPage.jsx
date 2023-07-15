@@ -15,7 +15,7 @@ const RequestITsupportPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("https://examportalseuserver.herokuapp.com/invigilator/ticket", {
+    axios.post("http://localhost:4000/invigilator/ticket", {
 
       room: sessionStorage.getItem("selectedRoom"),
       type: selectedService,

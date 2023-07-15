@@ -10,7 +10,7 @@ const QRCodeScannerPage = () => {
     const [result, setResult] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const socket = io('https://examportalseuserver.herokuapp.com');
+    const socket = io('http://localhost:4000');
 
     useEffect(() => {
         // Check if the user is on a mobile device
@@ -34,7 +34,7 @@ const QRCodeScannerPage = () => {
 
             // Taking attendace. 
             if (header === '1x') {
-                axios.post('https://examportalseuserver.herokuapp.com/admin/check-room', {
+                axios.post('http://localhost:4000/admin/check-room', {
                     studentID: body,
                 }, {
                     headers: {

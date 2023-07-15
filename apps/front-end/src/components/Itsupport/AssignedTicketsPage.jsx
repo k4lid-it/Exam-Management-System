@@ -7,7 +7,7 @@ function ITsupportPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [examRoomData, setExamRoomData] = useState([]);
   const token = localStorage.getItem('auth');
-  const url = `https://examportalseuserver.herokuapp.com/support/My-ticket`;
+  const url = `http://localhost:4000/support/My-ticket`;
 
   useEffect(() => {
     setIsLoading(true);
