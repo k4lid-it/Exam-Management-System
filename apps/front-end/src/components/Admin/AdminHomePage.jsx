@@ -9,11 +9,11 @@ function HomePage() {
     <div className="admin-home-page">
       <HeaderAdmin />
       <div className="admin-home-page-buttons">
-        
+
         <Link to="/AdminExamsPage">
           <button>View Exam Rooms</button>
         </Link>
-        
+
         <Link to="/admin/tickets">
           <button>View all IT Support Tickets</button>
         </Link>
@@ -21,7 +21,11 @@ function HomePage() {
         <Link to="/admin/assigned-tickets">
           <button>View my IT Support Tickets</button>
         </Link>
-        
+
+        <Link to="/Admin/student">
+          <button>Check a student's exams</button>
+        </Link>
+
       </div>
     </div>
     // </div> </div>

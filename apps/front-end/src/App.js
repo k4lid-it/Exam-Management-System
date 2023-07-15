@@ -31,6 +31,7 @@ import QRCodeGeneratorExamSubmitted from './MockExam/mockExamSubmitted';
 import AcceptAdminTicket from './components/Admin/AcceptAdminTicket'
 import CloseAdminTicket from './components/Admin/CloseAdminTicket'
 import QrcodeAdmin from "./components/Admin/QRcodeAdmin"
+import StudentData from './components/Admin/StudentData'
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route exact path="/Admin/Qr-code" element={<QrcodeAdmin />} />
           <Route exact path="/Admin/CloseTicket/:ticketID" element={< CloseAdminTicket />} />
           <Route exact path="/Admin/Accept-ticket/:ticketID" element={<AcceptAdminTicket />} />
+          <Route exact path="/Admin/student" element={<StudentData />} />
           <Route exact path="/Accept-ticket" element={<Acceptticket />} />
           <Route exact path="/Accept-ticket/:ticketID" element={<Acceptticket />} />
           {/* <Route exact path="/CloseTicket" element={<Closeticket />} /> */}

@@ -91,6 +91,15 @@ export class AdminController {
         }
     }
 
+    @UseGuards(AuthGuard('jwt'))
+    @Get('student-details')
+    viewStudentDetails(@Req() req: any, @Query('id') studentID: string) {
+        if (req.user.userType === 'admin') {
+            return this.adminService.viewStudentDetails(studentID);
+        } else {
+            throw new UnauthorizedException();
+        }
+    }
 
 
 

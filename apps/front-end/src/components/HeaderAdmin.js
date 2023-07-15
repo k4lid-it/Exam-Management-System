@@ -35,6 +35,7 @@ const Nav = () => {
               <Link to="/Admin/assigned-Tickets">    <li>My tickets</li>     </Link>
               <Link to="/Admin/Tickets">    <li>All tickets</li>     </Link>
               <Link to="/Admin/Qr-code">    <li>QR Code scanner</li>     </Link>
+              <Link to="/Admin/student">    <li>Check student's information</li>     </Link>
 
 
             </ul>

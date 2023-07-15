@@ -3,37 +3,47 @@
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
   }
-  
+
 
   .Admin-exams-page {
-    margin: 0 auto; /* center page horizontally */
-    max-width: 95%; /* set max-width to limit page width */
+    margin: 0 auto;
+    /* center page horizontally */
+    max-width: 95%;
+    /* set max-width to limit page width */
   }
 
 
   /* page container 
   .InvigilatorHomePage {
     max-width: 800px; /* limit width of page */
-   /* margin: 0 auto; /* center page horizontally */
-   /* padding: 20px; /* add some padding around the content */
+  /* margin: 0 auto; /* center page horizontally */
+  /* padding: 20px; /* add some padding around the content */
   /* } */
-  
+
   /* header */
   header {
-    text-align: center; /* center text within header */
+    text-align: center;
+    /* center text within header */
   }
-  
+
   /* table styles */
   table {
-    width: 100%; /* table fills width of its container */
-    border-collapse: collapse; /* remove borders between cells */
-    margin-top: 20px; /* add some space between header and table */
-    text-align: center; /* center text within cells */
+    width: 100%;
+    /* table fills width of its container */
+    border-collapse: collapse;
+    /* remove borders between cells */
+    margin-top: 20px;
+    /* add some space between header and table */
+    text-align: center;
+    /* center text within cells */
   }
-  
-  th, td {
-    padding: 10px; /* add padding to cells */
-    text-align: center; /* center text within cells */
+
+  th,
+  td {
+    padding: 10px;
+    /* add padding to cells */
+    text-align: center;
+    /* center text within cells */
   }
 
   /* @@@ set button color */
@@ -48,28 +58,32 @@
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    
-  }  
-  
-  th {
-    background-color: #E9AB33; /* set background color of header cells */
-    color: #fff; /* set text color of header cells */
+
   }
+
+  th {
+    background-color: #E9AB33;
+    /* set background color of header cells */
+    color: #fff;
+    /* set text color of header cells */
+  }
+
   /*
   tr:hover {
-    background-color: #ffcf70; /* change background color of row on hover */ /*
+    background-color: #ffcf70; /* change background color of row on hover */
+  /*
   }
   */
-  
+
   td:first-child {
-    text-align: left; /* left-align first cell in each row */
+    text-align: center;
+    /* left-align first cell in each row */
   }
-  
+
   /* responsive styles for smaller screens */
   @media (max-width: 480px) {
     table {
-      font-size: 11px; /* decrease font size of table on smaller screens */
+      font-size: 11px;
+      /* decrease font size of table on smaller screens */
     }
   }
-
-  
