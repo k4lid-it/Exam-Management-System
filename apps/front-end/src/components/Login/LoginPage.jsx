@@ -31,7 +31,7 @@ function Login() {
     event.preventDefault();
     let validateResult = validateForm()
     if (validateResult.error == null) {
-      axios.post('https://examportalseuserver.herokuapp.com/auth/login', { email: userEmail, password: password })
+      axios.post('http://localhost:4000/auth/login', { email: userEmail, password: password })
         .then(response => {
 
           if (response.data.info.userType === 'invigilator') {
