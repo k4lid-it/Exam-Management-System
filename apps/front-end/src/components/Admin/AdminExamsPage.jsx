@@ -72,6 +72,7 @@ function AdminExamsPage() {
                   prevRoom.id === roomId ? updatedRoom : prevRoom
                 );
               });
+              toast.success('Changed successfuly'); // Display the toast notification
             }
           })
           .catch(error => {

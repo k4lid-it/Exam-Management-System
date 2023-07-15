@@ -17,10 +17,9 @@ function StudentData() {
 
 
 
-    let id = textInputValue;
 
     function handleSubmit() {
-        fetch(`http://localhost:4000/admin/student-details?id=${id}`, {
+        fetch(`http://localhost:4000/admin/student-details?id=${textInputValue}`, {
             headers: {
                 Authorization: `Bearer ${token}`, // Include the token in the Authorization header
                 'Content-Type': 'application/json'
