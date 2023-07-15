@@ -15,12 +15,12 @@ body {
 
 .admin-home-page-buttons button {
   margin-bottom: 1rem;
-  padding: 1.5rem 3rem; /* Increase the padding to make the buttons bigger */
+  padding: 1.5rem 1rem; /* Increase the padding to make the buttons bigger */
   border: 1px solid #fff;
   border-radius: 0.25rem;
   background-color: #E9AB33;
   color: #fff;
-  font-size: 1.25rem; /* Increase the font size for larger buttons */
+  font-size: 1.1rem; /* Increase the font size for larger buttons */
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   /* width: 25rem; */

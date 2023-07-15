@@ -9,7 +9,9 @@ export default function QRCodeGeneratorStudent2() {
   const [studentData, setStudentData] = useState({ id: '', name: '' });
   const [qrCodeValue, setQRCodeValue] = useState('');
   const [textValue, setTextValue] = useState('');
-  const socket = io('http://localhost:4000');
+  const [error, seterror] = useState(false);
+  const socket = io('https://examportalseuserver.herokuapp.com');
+  const password = 'b27HsG';
 
 
 
@@ -40,6 +42,11 @@ export default function QRCodeGeneratorStudent2() {
     window.location.href = `/mock-exam/student/2/submit`;
   }
   socket.on(`s190053445,Abdullah Mohammed Zain Abdulrahmman`, openExam)
+
+  const passHandler = (EnteredPassword) => {
+    if (EnteredPassword === password) { openExam() }
+    else { seterror(true) }
+  }
   return (
     <div>
       <h2>Please ask your Invigilator to scan your QR code to gain exam access:</h2>
@@ -51,10 +58,12 @@ export default function QRCodeGeneratorStudent2() {
       />
 
 
-      {/* <div className="input-button">
-        <input type="text" value={textValue} placeholder="Enter Password" />
-        <button>Submit</button>
-      </div> */}
+      <div className="input-button">
+        <h2>or Ask your invigilator for your exam password:</h2>
+        {error && <h2>the password you entered is invalid</h2>}
+        <input type="text" value={textValue} placeholder="Enter Exam Password" onChange={(e) => setTextValue(e.target.value)} />
+        <button onClick={() => { passHandler(textValue) }}>Submit</button>
+      </div>
 
     </div>
   );

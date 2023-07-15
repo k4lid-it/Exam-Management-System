@@ -10,3 +10,15 @@ a {
     background-color: #fff;
     max-width: 40px;
 }
+
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 50%;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    padding: 80px;
+}

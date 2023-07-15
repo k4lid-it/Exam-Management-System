@@ -11,7 +11,7 @@ function OpenTicketsITsupportPage() {
 
 
   useEffect(() => {
-    fetch('http://localhost:4000/admin/tickets', {
+    fetch('https://examportalseuserver.herokuapp.com/admin/tickets', {
       headers: {
         Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         'Content-Type': 'application/json'

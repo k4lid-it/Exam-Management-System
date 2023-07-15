@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './AdminExamsPage.css';
 import HeaderAdmin from "../HeaderAdmin";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function AdminExamsPage() {
   const [examRoomData, setExamRoomData] = useState([]);
@@ -12,7 +15,7 @@ function AdminExamsPage() {
   useEffect(() => {
     setIsLoading(true);
 
-    fetch('http://localhost:4000/admin/Exams', {
+    fetch('https://examportalseuserver.herokuapp.com/admin/Exams', {
       headers: {
         Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         'Content-Type': 'application/json'
@@ -44,7 +47,7 @@ function AdminExamsPage() {
   const handleInvigilatorChange = (roomId, newInvigilator) => {
     const updatedRooms = rooms.map((room) => {
       if (room.id === roomId) {
-        axios.post('http://localhost:4000/admin/Exams', {
+        axios.post('https://examportalseuserver.herokuapp.com/admin/Exams', {
           oldInvigilator: room.invigilator, // the name of the old invigilator
           time: room.time, // the exam time
           newInvigilator: newInvigilator // the name of the new invigilator
@@ -54,10 +57,26 @@ function AdminExamsPage() {
             'Content-Type': 'application/json'
           }
         })
-        return {
-          ...room,
-          invigilator: newInvigilator
-        };
+          // .then(response)
+          .then(response => {
+            if (response.data.message === "Time conflict") {
+              toast.error('Time conflict'); // Display the toast notification
+            }
+            else {
+              const updatedRoom = {
+                ...room,
+                invigilator: newInvigilator
+              };
+              setRooms((prevRooms) => {
+                return prevRooms.map((prevRoom) =>
+                  prevRoom.id === roomId ? updatedRoom : prevRoom
+                );
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
       }
       return room;
     });
@@ -100,6 +119,7 @@ function AdminExamsPage() {
     <div>
       <HeaderAdmin />
       <div className="Admin-exams-page">
+        <ToastContainer />
         <main>
           {isLoading ? (
             <p>Loading...</p>

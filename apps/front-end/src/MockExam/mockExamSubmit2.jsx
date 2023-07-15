@@ -7,12 +7,12 @@ import io from 'socket.io-client';
 
 const QRCodeGeneratorStudent2submit = () => {
 
-    const socket = io('http://localhost:4000');
+    const socket = io('https://examportalseuserver.herokuapp.com');
     const token = localStorage.getItem('auth');
 
     const postSubmit = () => {
 
-        axios.post('http://localhost:4000/student/mock-exam',
+        axios.post('https://examportalseuserver.herokuapp.com/student/mock-exam',
             {
                 "studentID": "190053445",
                 "subject": "IT244"
@@ -29,7 +29,7 @@ const QRCodeGeneratorStudent2submit = () => {
             <div>
                 <h1>Abdullah Mohammed Zain Abdulrahman Successfully entered Exam</h1>
                 <h1>
-                    Keep your eyes on the paper and do not look at other students' papers
+                    Keep your eyes on the screen and do not look at other students' screens
                 </h1>
                 <h1>Good Luck!</h1>
 
@@ -45,7 +45,7 @@ const QRCodeGeneratorStudent2submit = () => {
         );
     }
     else {
-        window.location.href = 'http://localhost:3000/mock-exam/student/2/'
+        window.location.href = 'https://examportalseu.azurewebsites.net/mock-exam/student/2/'
     }
 }
 

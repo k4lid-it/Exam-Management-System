@@ -10,7 +10,7 @@ const QRCodeScannerPage = () => {
     const [result, setResult] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const socket = io('http://localhost:4000');
+    const socket = io('https://examportalseuserver.herokuapp.com');
 
     useEffect(() => {
         // Check if the user is on a mobile device
@@ -34,7 +34,7 @@ const QRCodeScannerPage = () => {
 
             // Taking attendace. 
             if (header === '1x') {
-                axios.post('http://localhost:4000/invigilator/Room/scanner', {
+                axios.post('https://examportalseuserver.herokuapp.com/admin/check-room', {
                     studentID: body,
                 }, {
                     headers: {
@@ -48,34 +48,16 @@ const QRCodeScannerPage = () => {
                     })
                     .catch(error => {
                         console.error(error);
-
                     });
             }
             //Granting exam access
             if (header === '2x') {
-                socket.emit('server', body);
+                setResult("The admin can't grant access to exam, please refer to the invigilator.");
 
             }
             //Generating password
             if (header === '3x') {
-                axios.post('http://localhost:4000/invigilator/generate-password', {
-                    studentID: sessionStorage.getItem('selectedID'),
-                    subject: sessionStorage.getItem('selectedSubject'),
-                    salt: body,
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                })
-                    .then(response => {
-                        console.log("res==", response.data.password);
-                        setResult("The password is: " + response.data.password);
-                    })
-                    .catch(error => {
-                        setResult('Something went wrong');
-
-                    });
+                setResult("The admin can't Generate password, please refer to the invigilator.");
             }
 
 

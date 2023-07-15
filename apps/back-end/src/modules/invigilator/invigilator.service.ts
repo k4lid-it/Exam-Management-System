@@ -22,7 +22,7 @@ export class InvigilatorService {
     @InjectRepository(ticket) private ticketRepository: Repository<ticket>) { }
 
 
-  socket = io("http://localhost:4000");
+  socket = io("https://examportalseuserver.herokuapp.com");
 
 
 
@@ -63,7 +63,7 @@ export class InvigilatorService {
   }
 
   async markPresent(studentID: string, invigilator: string) {
-    const studentRecords = await this.studentRepository.find({ where: { studentID } });
+    /*const studentRecords = await this.studentRepository.find({ where: { studentID } });
     const examRecords = await this.examRepository.find({ where: { invigilator } });
     console.log(studentRecords);
     console.log(examRecords);
@@ -76,14 +76,24 @@ export class InvigilatorService {
       return currentTime >= startTime && currentTime <= endTime;
     });
 
-    if (!currentExam) {
-      return { message: "The invigilation time didn't start yet" };
-    }
+
 
     const currentStudentRecord = studentRecords.find((student) => {
       const [startTime, endTime] = student.time.split('-').map((time) => time.trim());
       return currentTime >= startTime && currentTime <= endTime;
     });
+    console.log(currentTime);
+    console.log(currentStudentRecord);
+    console.log(currentExam);
+
+    if (!currentExam) {
+      if (currentStudentRecord) {
+        return { message: 'Please go to room ' + currentStudentRecord.room }
+
+      } else {
+        return { message: 'The student doesnt have an exam at the current time' };
+      }
+    }
 
 
     if (currentStudentRecord) {
@@ -95,7 +105,11 @@ export class InvigilatorService {
       }
     } else {
       return { message: "The student doesn't have an exam at the current time" };
-    }
+    }*/
+    const student = await this.studentRepository.findOne({ where: { studentID: studentID, room: '108' } });
+    student.attendance = 'Present';
+    this.studentRepository.save(student);
+    return { message: "Attendance marked" };
 
   }
 

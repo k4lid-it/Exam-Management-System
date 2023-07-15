@@ -31,7 +31,7 @@ function ExamRoom() {
   const time = sessionStorage.getItem('selectedTime')
 
 
-  const url = `http://localhost:4000/invigilator/Room?room=${room}&time=${time}`;
+  const url = `https://examportalseuserver.herokuapp.com/invigilator/Room?room=${room}&time=${time}`;
   useEffect(() => {
     fetch(url, {
       headers: {
@@ -65,7 +65,7 @@ function ExamRoom() {
       if (!boolean)
         // Checkbox is checked, mark the student as Present
         await axios.post(
-          "http://localhost:4000/invigilator/Room",
+          "https://examportalseuserver.herokuapp.com/invigilator/Room",
           {
             name: name,
             subject: subject,
@@ -80,7 +80,7 @@ function ExamRoom() {
       else {
         // Checkbox is unchecked, mark the student as Absent
         await axios.post(
-          "http://localhost:4000/invigilator/Room/absent",
+          "https://examportalseuserver.herokuapp.com/invigilator/Room/absent",
           {
             name: name,
             subject: subject,
@@ -106,7 +106,7 @@ function ExamRoom() {
 
   useEffect(() => {
 
-    const socket = io('http://localhost:4000');
+    const socket = io('https://examportalseuserver.herokuapp.com');
 
 
     // Add event listener for "submission" event
@@ -205,7 +205,12 @@ function ExamRoom() {
 
                 {/* @Khaled do you magic in the below <td>, it should display yes or no to indicate whether the submit button in the mock exam was clicked (and hence sent post request) or not */}
                 <td id={`submit ${student.studentID}`}>
-                  {student.submitted}
+                  {student.submitted === 'Yes' ? (
+                    <img src='/submit_icon.png' alt="Submitted" style={{ width: '30px', height: 'auto' }} />
+                    //Credits goes to the owenr of the photo: ** Attribution: Emoji One **
+                  ) : (
+                    <img src="/not_submit_icon.jpg" alt="Not Submitted" style={{ width: '30px', height: 'auto' }} />
+                  )}
                 </td>
 
               </tr>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './RequestITsupportPage.css';
 import HeaderNonAdmin from "../HeaderNonAdmin";
+
 import axios from 'axios';
 
 const RequestITsupportPage = () => {
@@ -8,9 +9,14 @@ const RequestITsupportPage = () => {
   const [selectedSeat, setSelectedSeat] = useState('');
   const [issueDescription, setIssueDescription] = useState('');
 
+
+  const token = localStorage.getItem('auth');
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:4000/invigilator/ticket", {
+    axios.post("https://examportalseuserver.herokuapp.com/invigilator/ticket", {
+
       room: sessionStorage.getItem("selectedRoom"),
       type: selectedService,
       description: issueDescription,
@@ -23,10 +29,8 @@ const RequestITsupportPage = () => {
         }
       })
     window.location.href = (`/exam-room/1`)
-  }
-    ;
+  };
 
-  const token = localStorage.getItem('auth');
 
   const seatNumbers = JSON.parse(sessionStorage.getItem('seatNumbers'));
 
