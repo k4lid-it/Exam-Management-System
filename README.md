@@ -37,3 +37,7 @@ The system improved exam coordination and reduced manual workload.
 ## Screenshots: 
 
 ![Demo](screenshot/login.png)
+![Demo](screenshot/rooms.png)
+![Demo](screenshot/students.png)
+![Demo](screenshot/password.png)
+
